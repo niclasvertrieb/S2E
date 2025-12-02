@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>S2E ProfiTool – Module und Funktionen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg-gradient-start: #e4f2ff;
+      --bg-gradient-end: #ffffff;
+      --primary: #5a8fdc;
+      --primary-soft: #c5daf7;
+      --accent: #f29a9a;
+      --accent-soft: #ffe0e0;
+      --text: #102030;
+      --text-soft: #5a6b81;
+      --card-bg: #ffffff;
+      --border-soft: rgba(0,0,0,0.06);
+      --shadow-soft: 0 18px 40px rgba(15, 76, 110, 0.08);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+      "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+    }
+
+    /* NAVBAR */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-symbol {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: conic-gradient(from 200deg,
+        var(--accent) 0 30%,
+        var(--primary) 30% 65%,
+        var(--primary-soft) 65% 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 24px rgba(20, 60, 120, 0.25);
+    }
+
+    .logo-symbol::before {
+      content: "";
+      width: 60%;
+      height: 60%;
+      border-radius: 10px;
+      border: 2px solid rgba(255,255,255,0.9);
+      border-top-color: transparent;
+      transform: rotate(-20deg);
+    }
+
+    .logo-text-main {
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .logo-text-sub {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      border-radius: var(--radius-pill);
+      padding: 10px 18px;
+      font-size: 0.92rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #6ea8ff);
+      color: #fff;
+      box-shadow: 0 10px 26px rgba(30, 87, 153, 0.35);
+      border-color: rgba(255,255,255,0.4);
+      font-weight: 600;
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 34px rgba(30, 87, 153, 0.45);
+    }
+
+    /* HERO – SIMPLE */
+    .hero-simple {
+      background: linear-gradient(135deg, rgba(90,143,220,0.96), rgba(242,154,154,0.95));
+      border-radius: 32px;
+      padding: 36px 40px 42px;
+      color: #fff;
+      box-shadow: 0 24px 60px rgba(15, 76, 110, 0.25);
+      margin-bottom: 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-simple::after {
+      content: "";
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 220px;
+      height: 220px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.7), rgba(255,255,255,0));
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .hero-breadcrumb {
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+      color: rgba(255,255,255,0.9);
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-breadcrumb a {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 3vw, 2.7rem);
+      line-height: 1.1;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-subtext {
+      font-size: 1.02rem;
+      max-width: 36rem;
+      color: rgba(255,255,255,0.94);
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-tag {
+      font-size: 0.8rem;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(255,255,255,0.92);
+      color: var(--text);
+    }
+
+    /* SECTIONS */
+    .section {
+      margin-bottom: 56px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .section-title {
+      font-size: 1.7rem;
+      margin-bottom: 6px;
+    }
+
+    .section-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-soft);
+      max-width: 34rem;
+      margin: 0 auto;
+    }
+
+    /* GRID 3 */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.96);
+      border-radius: var(--radius-lg);
+      padding: 18px 16px 20px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 0.92rem;
+      color: var(--text-soft);
+    }
+
+    .pill-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-soft);
+      margin-bottom: 6px;
+    }
+
+    /* MODULE DETAIL GRID */
+    .module-detail-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .feature-pill {
+      display: inline-flex;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      background: rgba(90, 143, 220, 0.08);
+      font-size: 0.78rem;
+      margin-bottom: 8px;
+      color: var(--text-soft);
+    }
+
+    .module-list {
+      margin-top: 8px;
+      margin-left: 16px;
+    }
+
+    .module-list li {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-bottom: 4px;
+    }
+
+    /* VIDEOS (OPTIONAL) */
+    .video-small-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .video-small-card {
+      background: rgba(255,255,255,0.95);
+      border-radius: var(--radius-lg);
+      padding: 18px 16px 20px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+    }
+
+    .video-small-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+    }
+
+    .video-small-card video {
+      width: 100%;
+      border-radius: 14px;
+      display: block;
+    }
+
+    /* FAQ */
+    .faq-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));  /* 3-spaltig */
+  gap: 18px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: rgba(255,255,255,0.96);
+  border-radius: 18px;
+  padding: 16px 18px;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.03);
+}
+
+.faq-question {
+  font-size: 1.0rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.faq-answer {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
+
+
+    /* CTA BOTTOM */
+    .cta {
+      background: linear-gradient(135deg, rgba(90, 143, 220, 0.96), rgba(242, 154, 154, 0.95));
+      border-radius: var(--radius-xl);
+      padding: 22px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      color: #fff;
+      box-shadow: 0 14px 32px rgba(33, 56, 118, 0.4);
+    }
+
+    .cta-title {
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+
+    .cta p {
+      font-size: 0.9rem;
+      opacity: 0.95;
+    }
+
+    .cta-input-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .cta-btn {
+      border-radius: var(--radius-pill);
+      border: none;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.6);
+      backdrop-filter: blur(6px);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.2s;
+      font-weight: 600;
+    }
+
+    .cta-btn span {
+      font-size: 1.05rem;
+    }
+
+    .cta-btn:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-1px);
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 34px;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    footer a {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 880px) {
+      .grid-3,
+      .module-detail-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .video-small-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding-inline: 16px;
+      }
+      .nav-links {
+        display: none;
+      }
+
+      .hero-simple {
+        padding: 26px 20px 32px;
+        border-radius: 0 0 32px 32px;
+        margin-inline: -4px;
+      }
+
+      .hero-title {
+        font-size: 2.1rem;
+      }
+
+      .cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .grid-3,
+      .module-detail-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- NAVBAR -->
+    <header class="nav">
+      <div class="nav-left">
+        <div class="logo-symbol"></div>
+        <div>
+          <div class="logo-text-main">s2e</div>
+          <div class="logo-text-sub">ProfiTool für Steuerberater</div>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="index-S2EStartseite.html">Startseite</a>
+        <a href="index-Praxisbeispiele.html">Praxisbeispiele</a>
+        <a href="#module">Module</a>
+        <a href="#funktionen">Funktionen</a>
+      </nav>
+
+      <div class="nav-cta">
+        <button class="btn btn-primary" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">
+          Demo buchen
+        </button>
+      </div>
+    </header>
+
+    <!-- HERO SIMPLE -->
+    <section class="hero-simple">
+      <div class="hero-breadcrumb">
+        <a href="index-S2EStartseite.html">Startseite</a> · <span>Module und Funktionen</span>
+      </div>
+      <h1 class="hero-title">Module und Funktionen</h1>
+      <p class="hero-subtext">
+        Platzhaltertext für eine kurze Einleitung zu den Modulen und Funktionen.
+        Dieser Text beschreibt in wenigen Sätzen, was Besucher auf dieser Seite erwartet.
+      </p>
+      <div class="hero-tags">
+        <span class="hero-tag">Platzhalter-Tag 1</span>
+        <span class="hero-tag">Platzhalter-Tag 2</span>
+        <span class="hero-tag">Platzhalter-Tag 3</span>
+      </div>
+    </section>
+
+    <!-- MODULE-ÜBERSICHT -->
+    <section class="section" id="module">
+      <div class="section-header">
+        <h2 class="section-title">Module im Überblick</h2>
+        <p class="section-subtitle">
+          Platzhaltertext für eine kurze Beschreibung der wichtigsten Module.
+          Hier kann später genauer erklärt werden, welche Bereiche S2E abdeckt.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="pill-label">Modul 1</div>
+          <h3>Jahresabschluss</h3>
+          <p>
+            Platzhaltertext für dieses Modul. Kurzbeschreibung in 2–3 Sätzen,
+            die später durch echte Inhalte ersetzt wird.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="pill-label">Modul 2</div>
+          <h3>Finanzbuchhaltung</h3>
+          <p>
+            Platzhaltertext für dieses Modul. Kurzbeschreibung in 2–3 Sätzen,
+            die später durch echte Inhalte ersetzt wird.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="pill-label">Modul 3</div>
+          <h3>Datenimport &amp; Automatisierung</h3>
+          <p>
+            Platzhaltertext für dieses Modul. Kurzbeschreibung in 2–3 Sätzen,
+            die später durch echte Inhalte ersetzt wird.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FUNKTIONEN IM DETAIL -->
+    <section class="section" id="funktionen">
+      <div class="section-header">
+        <h2 class="section-title">Funktionen im Detail</h2>
+        <p class="section-subtitle">
+          Platzhaltertext für eine Übersicht der wichtigsten Funktionen in den Modulen.
+          Die einzelnen Punkte können später konkret benannt und beschrieben werden.
+        </p>
+      </div>
+
+      <div class="module-detail-grid">
+        <div class="card">
+          <span class="feature-pill">Platzhalter-Kategorie</span>
+          <h3>Funktionstitel 1</h3>
+          <ul class="module-list">
+            <li>Platzhalter-Funktionspunkt eins.</li>
+            <li>Platzhalter-Funktionspunkt zwei.</li>
+            <li>Platzhalter-Funktionspunkt drei.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <span class="feature-pill">Platzhalter-Kategorie</span>
+          <h3>Funktionstitel 2</h3>
+          <ul class="module-list">
+            <li>Platzhalter-Funktionspunkt eins.</li>
+            <li>Platzhalter-Funktionspunkt zwei.</li>
+            <li>Platzhalter-Funktionspunkt drei.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <span class="feature-pill">Platzhalter-Kategorie</span>
+          <h3>Funktionstitel 3</h3>
+          <ul class="module-list">
+            <li>Platzhalter-Funktionspunkt eins.</li>
+            <li>Platzhalter-Funktionspunkt zwei.</li>
+            <li>Platzhalter-Funktionspunkt drei.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <span class="feature-pill">Platzhalter-Kategorie</span>
+          <h3>Funktionstitel 4</h3>
+          <ul class="module-list">
+            <li>Platzhalter-Funktionspunkt eins.</li>
+            <li>Platzhalter-Funktionspunkt zwei.</li>
+            <li>Platzhalter-Funktionspunkt drei.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <span class="feature-pill">Platzhalter-Kategorie</span>
+          <h3>Funktionstitel 5</h3>
+          <ul class="module-list">
+            <li>Platzhalter-Funktionspunkt eins.</li>
+            <li>Platzhalter-Funktionspunkt zwei.</li>
+            <li>Platzhalter-Funktionspunkt drei.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <span class="feature-pill">Platzhalter-Kategorie</span>
+          <h3>Funktionstitel 6</h3>
+          <ul class="module-list">
+            <li>Platzhalter-Funktionspunkt eins.</li>
+            <li>Platzhalter-Funktionspunkt zwei.</li>
+            <li>Platzhalter-Funktionspunkt drei.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- OPTIONALE KURZVIDEOS -->
+    <section class="section" id="videos">
+      <div class="section-header">
+        <h2 class="section-title">Module in kurzen Beispielen</h2>
+        <p class="section-subtitle">
+          Platzhaltertext für eine kurze Erklärung zu den Videos. Hier können später
+          echte Modul-Demos eingebunden werden.
+        </p>
+      </div>
+
+      <div class="video-small-grid">
+        <div class="video-small-card">
+          <h3>Platzhalter-Video 1</h3>
+          <video controls poster="preview-modul1.jpg">
+            <source src="video/modul1.mp4" type="video/mp4" />
+            Ihr Browser unterstützt das Video-Tag nicht.
+          </video>
+        </div>
+
+        <div class="video-small-card">
+          <h3>Platzhalter-Video 2</h3>
+          <video controls poster="preview-modul2.jpg">
+            <source src="video/modul2.mp4" type="video/mp4" />
+            Ihr Browser unterstützt das Video-Tag nicht.
+          </video>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA / DEMO -->
+    <section class="section" id="demo">
+      <div class="cta">
+        <div>
+          <div class="cta-title">Module und Funktionen live sehen</div>
+          <p>
+            Platzhaltertext für die Demo-Einladung. In einer kurzen Online-Demo
+            können später alle Module und Funktionen im Detail gezeigt werden.
+          </p>
+        </div>
+        <div class="cta-input-wrap">
+          <button class="cta-btn" type="button" onclick="window.location.href='mailto:info@deine-kanzlei.de?subject=Demo%20zu%20S2E%20Modulen%20und%20Funktionen';">
+            Demo buchen
+            <span>→</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="section-header">
+        <h2 class="section-title">Häufige Fragen zu Modulen &amp; Funktionen</h2>
+        <p class="section-subtitle">
+          Platzhaltertext für eine kurze Einleitung in den FAQ-Bereich.
+          Die Fragen und Antworten können später konkret ausgefüllt werden.
+        </p>
+      </div>
+
+      <div class="faq-grid">
+   <div class="faq-item">
+     <div class="faq-question">Platzhalter-Frage 1?</div>
+     <div class="faq-answer">Platzhalter-Antwort.</div>
+   </div>
+
+   <div class="faq-item">
+     <div class="faq-question">Platzhalter-Frage 2?</div>
+     <div class="faq-answer">Platzhalter-Antwort.</div>
+   </div>
+
+   <div class="faq-item">
+     <div class="faq-question">Platzhalter-Frage 3?</div>
+     <div class="faq-answer">Platzhalter-Antwort.</div>
+   </div>
+</div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <span>© <span id="year"></span> S2E Software. Alle Rechte vorbehalten.</span>
+      <span>
+        <a href="#">Impressum</a> ·
+        <a href="#">Datenschutz</a>
+      </span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>S2E ProfiTool – Was kann das Tool?</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg-gradient-start: #e4f2ff;
+      --bg-gradient-end: #ffffff;
+      --primary: #5a8fdc;
+      --primary-soft: #c5daf7;
+      --accent: #f29a9a;
+      --accent-soft: #ffe0e0;
+      --text: #102030;
+      --text-soft: #5a6b81;
+      --card-bg: #ffffff;
+      --border-soft: rgba(0,0,0,0.06);
+      --shadow-soft: 0 18px 40px rgba(15, 76, 110, 0.08);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+      "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+    }
+
+    /* NAVBAR */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-symbol {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background: conic-gradient(from 200deg,
+        var(--accent) 0 30%,
+        var(--primary) 30% 65%,
+        var(--primary-soft) 65% 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 24px rgba(20, 60, 120, 0.25);
+    }
+
+    .logo-symbol::before {
+      content: "";
+      width: 60%;
+      height: 60%;
+      border-radius: 10px;
+      border: 2px solid rgba(255,255,255,0.9);
+      border-top-color: transparent;
+      transform: rotate(-20deg);
+    }
+
+    .logo-text-main {
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .logo-text-sub {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      border-radius: var(--radius-pill);
+      padding: 10px 18px;
+      font-size: 0.92rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #6ea8ff);
+      color: #fff;
+      box-shadow: 0 10px 26px rgba(30, 87, 153, 0.35);
+      border-color: rgba(255,255,255,0.4);
+      font-weight: 600;
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 34px rgba(30, 87, 153, 0.45);
+    }
+
+    .btn-ghost {
+      border-color: rgba(90, 111, 143, 0.2);
+      background: rgba(255, 255, 255, 0.6);
+      color: var(--text-soft);
+    }
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text);
+    }
+
+    /* HERO – VIDEO ALS HINTERGRUND */
+    .hero-video-bg {
+      position: relative;
+      width: 100%;
+      height: 460px;
+      border-radius: 32px;
+      overflow: hidden;
+      margin-bottom: 56px;
+      box-shadow: 0 24px 60px rgba(15, 76, 110, 0.25);
+      display: flex;
+      align-items: center;
+    }
+
+    .bg-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 120%;
+      height: auto;
+      transform: translate(-50%, -50%);
+      opacity: 0.9;
+    }
+
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left,
+        rgba(228, 242, 255, 0.7),
+        rgba(16, 32, 48, 0.75));
+      mix-blend-mode: multiply;
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 40px 48px;
+      max-width: 640px;
+      color: #fff;
+    }
+
+    .breadcrumb {
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .breadcrumb a {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 3.2vw, 3rem);
+      line-height: 1.08;
+      margin-bottom: 10px;
+    }
+
+    .hero-highlight {
+      background: linear-gradient(135deg, var(--primary-soft), var(--accent));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtext {
+      font-size: 1.05rem;
+      max-width: 36rem;
+      margin-bottom: 22px;
+      color: rgba(255,255,255,0.92);
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .hero-pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .pill {
+      font-size: 0.82rem;
+      padding: 6px 12px;
+      border-radius: var(--radius-pill);
+      background: rgba(255,255,255,0.92);
+      color: var(--text);
+      border: none;
+    }
+
+      .case-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 1120px; /* breiter */
+  margin: 0 auto;
+}
+
+.case-row {
+  display: grid;
+   display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  border-radius: var(--radius-xl);
+  padding: 32px 32px;
+  border: none;
+  box-shadow: 0 14px 32px rgba(33, 56, 118, 0.30); /* etwas dunkler für Tiefe */
+  color: #fff; /* Text in weiß */
+}
+
+.case-row--reverse {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #fff;
+}
+
+.case-video video {
+  width: 100%;
+  height: 400px;
+  border-radius: 20px;
+  display: block;
+  object-fit: cover;      /* füllt schöner aus */
+}
+
+    .case-text h3 {
+      font-size: 1.2rem;
+      margin-bottom: 8px;
+    }
+
+    .case-text p {
+      font-size: 0.95rem;
+      color: rgba(--text-soft);
+      max-width: 30rem;
+    }
+
+    @media (max-width: 880px) {
+      .case-row,
+      .case-row--reverse {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .case-endline {
+  text-align: center;
+  margin-top: 28px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-soft);
+}
+
+.review-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 180px;
+}
+
+.review-quote {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  margin-bottom: 10px;
+}
+
+.review-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+    /* SECTIONS */
+    .section {
+      margin-bottom: 56px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .section-title {
+      font-size: 1.7rem;
+      margin-bottom: 6px;
+    }
+
+    .section-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-soft);
+      max-width: 34rem;
+      margin: 0 auto;
+    }
+
+    /* CARD GRIDS */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.96);
+      border-radius: var(--radius-lg);
+      padding: 18px 16px 20px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 0.92rem;
+      color: var(--text-soft);
+    }
+
+    .pill-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-soft);
+      margin-bottom: 6px;
+    }
+
+    /* LIST SECTION */
+    .list-section {
+      max-width: 720px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.96);
+      border-radius: var(--radius-xl);
+      padding: 18px 20px 20px;
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.03);
+    }
+
+    .list-section h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+    }
+
+    .list-section ul {
+      margin-left: 18px;
+      margin-top: 8px;
+    }
+
+    .list-section li {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      margin-bottom: 5px;
+    }
+
+    /* CTA BOTTOM */
+    .cta {
+      background: linear-gradient(135deg, rgba(90, 143, 220, 0.96), rgba(242, 154, 154, 0.95));
+      border-radius: var(--radius-xl);
+      padding: 22px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      color: #fff;
+      box-shadow: 0 14px 32px rgba(33, 56, 118, 0.4);
+    }
+
+    .cta-title {
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+
+    .cta p {
+      font-size: 0.9rem;
+      opacity: 0.95;
+    }
+
+    .cta-input-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .cta input {
+      border-radius: var(--radius-pill);
+      border: none;
+      padding: 10px 12px;
+      font-size: 0.9rem;
+      min-width: 220px;
+      outline: none;
+    }
+
+    .cta-btn {
+      border-radius: var(--radius-pill);
+      border: none;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.6);
+      backdrop-filter: blur(6px);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.2s;
+      font-weight: 600;
+    }
+
+    .cta-btn:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-1px);
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 34px;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    footer a {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 880px) {
+      .hero-video-bg {
+        height: auto;
+      }
+
+      .bg-video {
+        width: 140%;
+      }
+
+      .hero-content {
+        padding: 32px 26px;
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding-inline: 16px;
+      }
+      .nav-links {
+        display: none;
+      }
+
+      .hero-video-bg {
+        margin-inline: -4px;
+        border-radius: 0 0 32px 32px;
+      }
+
+      .hero-title {
+        font-size: 2.1rem;
+      }
+
+      .hero-content {
+        padding: 26px 20px 32px;
+      }
+
+      .cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .cta-input-wrap {
+        width: 100%;
+      }
+      .cta input {
+        flex: 1;
+        width: 100%;
+      }
+
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- NAVBAR -->
+    <header class="nav">
+      <div class="nav-left">
+        <div class="logo-symbol"></div>
+        <div>
+          <div class="logo-text-main">s2e</div>
+          <div class="logo-text-sub">ProfiTool für Steuerberater</div>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#was">Was kann das Tool?</a>
+        <a href="#highlights">Highlights</a>
+        <a href="#einsatz">Einsatzbereiche</a>
+      </nav>
+
+      <div class="nav-cta">
+        <button class="btn btn-primary" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">
+          Kontakt & Demo
+        </button>
+      </div>
+    </header>
+
+    <!-- HERO – VIDEO ALS HINTERGRUND -->
+    <section class="hero-video-bg" id="was">
+      <video class="bg-video" autoplay muted loop playsinline>
+        <source src="video/s2e-profitool-overview.mp4" type="video/mp4" />
+        Ihr Browser unterstützt das Video-Tag nicht.
+      </video>
+
+      <div class="video-overlay"></div>
+
+      <div class="hero-content">
+        <div class="breadcrumb">
+          <a href="index.html">Startseite</a> · <span>S2E ProfiTool</span>
+        </div>
+
+        <h1 class="hero-title">
+          Was kann das <span class="hero-highlight">S2E ProfiTool?</span>
+        </h1>
+
+        <p class="hero-subtext">
+          Excel-Add-in für Steuerberater mit eigener Datei- und Vorlagenverwaltung –
+          direkter Zugriff auf Kontenwerte und nahtlose DATEV-Integration.
+        </p>
+
+        <div class="hero-buttons">
+          <button class="btn btn-primary" onclick="document.querySelector('.bg-video').scrollIntoView({behavior:'smooth'})">
+            Erklärvideo ansehen →
+          </button>
+          <button class="btn btn-ghost" onclick="document.getElementById('highlights').scrollIntoView({behavior:'smooth'})">
+            Funktionen im Überblick
+          </button>
+        </div>
+
+    </section>
+
+        <!-- FALLBEISPIELE -->
+    <section class="section" id="fallbeispiele">
+      <div class="section-header">
+        <h2 class="section-title">Praxisbeispiele aus der Kanzlei</h2>
+        <p class="section-subtitle">
+          Kurze Einblicke, wie das S2E ProfiTool im Alltag eingesetzt wird. Texte sind zunächst Platzhalter.
+        </p>
+      </div>
+
+      <div class="case-list">
+
+        <!-- Fall 1: Video links, Text rechts -->
+        <div class="case-row">
+          <div class="case-video">
+            <video controls poster="preview-fall1.jpg">
+              <source src="video/fall1.mp4" type="video/mp4" />
+              Ihr Browser unterstützt das Video-Tag nicht.
+            </video>
+          </div>
+          <div class="case-text">
+            <h3>Fallbeispiel 1 – Platzhalter</h3>
+            <p>
+              Platzhaltertext für Fallbeispiel 1. Maximal drei Sätze, die kurz erklären,
+              was in diesem Beispiel gezeigt wird und welchen Nutzen die Kanzlei davon hat.
+            </p>
+          </div>
+        </div>
+
+        <!-- Fall 2: Text links, Video rechts -->
+        <div class="case-row case-row--reverse">
+          <div class="case-text">
+            <h3>Fallbeispiel 2 – Platzhalter</h3>
+            <p>
+              Platzhaltertext für Fallbeispiel 2. Wieder maximal drei Sätze, z.B. zur
+              Zeitersparnis oder besseren Struktur im Prozess.
+            </p>
+          </div>
+          <div class="case-video">
+            <video controls poster="preview-fall2.jpg">
+              <source src="video/fall2.mp4" type="video/mp4" />
+              Ihr Browser unterstützt das Video-Tag nicht.
+            </video>
+          </div>
+        </div>
+
+        <!-- Fall 3: Video links, Text rechts -->
+        <div class="case-row">
+          <div class="case-video">
+            <video controls poster="preview-fall3.jpg">
+              <source src="video/fall3.mp4" type="video/mp4" />
+              Ihr Browser unterstützt das Video-Tag nicht.
+            </video>
+          </div>
+          <div class="case-text">
+            <h3>Fallbeispiel 3 – Platzhalter</h3>
+            <p>
+              Platzhaltertext für Fallbeispiel 3. Kurz und knackig, maximal drei Sätze
+              zu einem typischen Einsatzszenario.
+            </p>
+          </div>
+        </div>
+
+        <!-- Fall 4: Text links, Video rechts -->
+        <div class="case-row case-row--reverse">
+          <div class="case-text">
+            <h3>Fallbeispiel 4 – Platzhalter</h3>
+            <p>
+              Platzhaltertext für Fallbeispiel 4. Auch hier nur wenige Sätze zur
+              konkreten Verbesserung im Kanzleialltag.
+            </p>
+          </div>
+          <div class="case-video">
+            <video controls poster="preview-fall4.jpg">
+              <source src="video/fall4.mp4" type="video/mp4" />
+              Ihr Browser unterstützt das Video-Tag nicht.
+            </video>
+          </div>
+        </div>
+
+        <!-- Fall 5: Video links, Text rechts -->
+        <div class="case-row">
+          <div class="case-video">
+            <video controls poster="preview-fall5.jpg">
+              <source src="video/fall5.mp4" type="video/mp4" />
+              Ihr Browser unterstützt das Video-Tag nicht.
+            </video>
+          </div>
+          <div class="case-text">
+            <h3>Fallbeispiel 5 – Platzhalter</h3>
+            <p>
+              Platzhaltertext für Fallbeispiel 5. Maximal drei Sätze, Fokus auf einen
+              weiteren typischen Anwendungsfall.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    <<p class="case-endline">…und das war erst der Anfang!</p>
+    </section>
+
+
+    <!-- CTA / KONTAKT -->
+    <section class="section" id="kontakt">
+      <div class="cta">
+        <div>
+          <div class="cta-title">S2E in einer Demo erleben</div>
+          <p>
+            In einer kurzen  Online Demo werden wir Ihnen jede Frage beantworten und Ihnen den vollen Umfang von S2E näher bringen       
+          </p>
+        </div>
+        <<div class="cta-input-wrap">
+          <button class="cta-btn" type="button" onclick="window.location.href='mailto:info@deine-kanzlei.de?subject=Demo%20zum%20S2E%20ProfiTool';">
+            Demo Buchen
+            <span>→</span>
+          </button>
+      </div>
+    </section>
+
+        <!-- REZENSIONEN -->
+    <section class="section" id="rezensionen">
+      <div class="section-header">
+        <h2 class="section-title">Was Kanzleien über S2E sagen</h2>
+        <p class="section-subtitle">
+          Ein kleiner Auszug aus dem Feedback von Steuerkanzleien, die das S2E ProfiTool täglich einsetzen.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card review-card">
+          <p class="review-quote">
+            „Wir haben endlich eine zentrale Lösung statt fünf verschiedener Excel-Versionen.
+            Die Einarbeitung neuer Mitarbeiter ist deutlich leichter geworden.“
+          </p>
+          <p class="review-name">Partner einer Kanzlei mit 12 Mitarbeitenden</p>
+        </div>
+
+        <div class="card review-card">
+          <p class="review-quote">
+            „Vor allem der direkte Zugriff auf Kontenwerte aus Excel heraus ist Gold wert.
+            Die Qualität der Abschlüsse ist gestiegen, bei weniger Zeitaufwand.“
+          </p>
+          <p class="review-name">Leiter Jahresabschluss, mittelgroße Kanzlei</p>
+        </div>
+
+        <div class="card review-card">
+          <p class="review-quote">
+            „S2E passt gut zu unserem Qualitätsanspruch. Die Prozesse sind
+            nachvollziehbar dokumentiert – auch für Vertretung und Prüfung.“
+          </p>
+          <p class="review-name">Qualitätsverantwortliche einer Steuerkanzlei</p>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+      <span>© <span id="year"></span> S2E Software. Alle Rechte vorbehalten.</span>
+      <span>
+        <a href="#">Impressum</a> ·
+        <a href="#">Datenschutz</a>
+      </span>
+    </footer>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
