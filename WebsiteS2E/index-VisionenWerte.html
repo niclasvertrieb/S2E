@@ -62,30 +62,6 @@
       gap: 10px;
     }
 
-    .logo-symbol {
-      width: 36px;
-      height: 36px;
-      border-radius: 12px;
-      background: conic-gradient(from 200deg,
-        var(--accent) 0 30%,
-        var(--primary) 30% 65%,
-        var(--primary-soft) 65% 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 10px 24px rgba(20, 60, 120, 0.25);
-    }
-
-    .logo-symbol::before {
-      content: "";
-      width: 60%;
-      height: 60%;
-      border-radius: 10px;
-      border: 2px solid rgba(255,255,255,0.9);
-      border-top-color: transparent;
-      transform: rotate(-20deg);
-    }
-
     .logo-text-main {
       font-weight: 700;
       font-size: 1.35rem;
@@ -508,6 +484,26 @@
       text-underline-offset: 3px;
     }
 
+    /* <a> exakt wie <button> aussehen lassen */
+a.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  appearance: none;
+  -webkit-appearance: none;
+  line-height: 1;
+}
+
+/* Logo-Bild in der Navbar */
+.logo-image {
+  width: 43px;
+  height: 43px;
+  border-radius: 10px;
+  object-fit: contain;
+  display: block;
+  box-shadow: 0 10px 24px rgba(20, 60, 120, 0.22);
+}
+
     /* RESPONSIVE */
     @media (max-width: 900px) {
       .story-grid {
@@ -559,27 +555,28 @@
     <!-- NAVBAR -->
     <header class="nav">
       <div class="nav-left">
-        <div class="logo-symbol"></div>
+        <img src="img/s2e-logo.png" alt="S2E Logo" class="logo-image">
         <div>
           <div class="logo-text-main">s2e</div>
-          <div class="logo-text-sub">Schweizer Taschenmesser für Steuerberater</div>
+          <div class="logo-text-sub">Eure neue Lieblingsabkürzung</div>
         </div>
       </div>
 
       <nav class="nav-links">
-        <a href="index-S2EStartseite.html">Startseite</a>
-        <a href="index-Praxisbeispiele.html">Praxisbeispiele</a>
-        <a href="index-ModuleFunktionen.html">Module &amp; Funktionen</a>
-        <a href="index-Kosten.html">Kosten</a>
-        <a href="#top">Vision &amp; Werte</a>
-      </nav>
+  <a href="index.html">Startseite</a>
+  <a href="index-Praxisbeispiele.html">Praxisbeispiele</a>
+  <a href="index-ModuleFunktionen.html">Module & Funktionen</a>
+  <a href="index-Kosten.html">Preise & Nutzen</a>
+  <a href="index-VisionenWerte.html">Vision & Werte</a>
+  <a href="index-Hilfecenter.html">Hilfecenter</a>
+</nav>
 
       <div class="nav-cta">
-        <button class="btn btn-primary" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">
-          Demo buchen
-        </button>
-      </div>
-    </header>
+    <a href="index-bookins.html" class="btn btn-primary">
+      Demo buchen
+    </a>
+  </div>
+</header>
 
     <!-- HERO SIMPLE -->
     <section class="hero-simple" id="top">

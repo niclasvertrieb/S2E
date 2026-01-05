@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>S2E – Demo buchen</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg-gradient-start: #e4f2ff;
+      --bg-gradient-end: #ffffff;
+      --primary: #5a8fdc;
+      --primary-soft: #c5daf7;
+      --accent: #f29a9a;
+      --accent-soft: #ffe0e0;
+      --text: #102030;
+      --text-soft: #5a6b81;
+      --card-bg: #ffffff;
+      --border-soft: rgba(0,0,0,0.06);
+      --shadow-soft: 0 18px 40px rgba(15, 76, 110, 0.08);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+      "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+    }
+
+    /* NAVBAR wie auf den anderen Seiten */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-text-main {
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .logo-text-sub {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn {
+      border-radius: var(--radius-pill);
+      padding: 10px 18px;
+      font-size: 0.92rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #6ea8ff);
+      color: #fff;
+      box-shadow: 0 10px 26px rgba(30, 87, 153, 0.35);
+      border-color: rgba(255,255,255,0.4);
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 34px rgba(30, 87, 153, 0.45);
+    }
+
+    .btn-ghost {
+      border-color: rgba(90, 111, 143, 0.2);
+      background: rgba(255, 255, 255, 0.6);
+      color: var(--text-soft);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text);
+    }
+
+    /* HERO-Bereich der Demo-Seite */
+    .hero-demo {
+      margin-top: 10px;
+      margin-bottom: 24px;
+    }
+
+    .hero-demo h1 {
+      font-size: 2.3rem;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .hero-demo-text {
+      font-size: 0.98rem;
+      color: var(--text-soft);
+      max-width: 640px;
+    }
+
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .hero-note {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+    }
+
+    .hero-note a {
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    /* Standard Section & Headline-Styles wie auf den anderen Seiten */
+    .section {
+      margin-top: 40px;
+    }
+
+    .section-header {
+      margin-bottom: 16px;
+      max-width: 620px;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+
+    .section-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+    }
+
+    /* S2E-Container mit Pastell-Hintergrund */
+    .section-shell-s2e {
+      background: var(--accent-soft);
+      border-radius: var(--radius-xl);
+      padding: 24px 24px 28px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.04);
+      margin-top: 12px;
+    }
+
+    /* Layout: links Formular, rechts Infos */
+    .demo-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 22px;
+      align-items: flex-start;
+      margin-top: 10px;
+    }
+
+    .demo-left,
+    .demo-right {
+      min-width: 0;
+    }
+
+    .demo-form-shell h3 {
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+
+    .demo-form-shell p.small-hint {
+      font-size: 0.83rem;
+      color: var(--text-soft);
+    }
+
+    /* Formular-Optik */
+    .demo-form {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .form-row-double {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .form-field label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-soft);
+    }
+
+    .form-field input,
+    .form-field textarea,
+    .form-field select {
+      border-radius: 12px;
+      border: 1px solid var(--border-soft);
+      padding: 9px 11px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      background: #fff;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .form-field input:focus,
+    .form-field textarea:focus,
+    .form-field select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 1px rgba(90, 143, 220, 0.3);
+    }
+
+    .form-field textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .demo-form small {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+    }
+
+    .demo-submit-row {
+      margin-top: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: flex-start;
+    }
+
+    /* Rechte Seite: Info-Karten & Platzhalter-Kalender */
+    .demo-info-card {
+      background: rgba(255,255,255,0.85);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      padding: 16px 16px 18px;
+      box-shadow: 0 8px 22px rgba(15, 76, 110, 0.04);
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .demo-info-card + .demo-info-card {
+      margin-top: 14px;
+    }
+
+    .demo-info-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .demo-list {
+      margin-top: 6px;
+      padding-left: 18px;
+    }
+
+    .demo-list li {
+      margin-bottom: 4px;
+    }
+
+    .calendar-placeholder {
+      margin-top: 6px;
+      border-radius: 16px;
+      border: 1px dashed rgba(0,0,0,0.12);
+      padding: 14px 12px;
+      font-size: 0.82rem;
+      color: var(--text-soft);
+      background: rgba(255,255,255,0.9);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(90, 143, 220, 0.08);
+      color: var(--text-soft);
+    }
+
+    /* FOOTER wie auf den anderen Seiten */
+    footer {
+      margin-top: 40px;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    footer a {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    /* Platzhalter für CTA auf Bookings-Seite */
+.nav-cta-placeholder {
+  visibility: hidden;   /* unsichtbar, aber Platz bleibt */
+  pointer-events: none; /* nicht klickbar */
+}
+
+/* Logo-Bild in der Navbar */
+.logo-image {
+  width: 43px;
+  height: 43px;
+  border-radius: 10px;
+  object-fit: contain;
+  display: block;
+  box-shadow: 0 10px 24px rgba(20, 60, 120, 0.22);
+}
+
+    /* RESPONSIVE */
+    @media (max-width: 880px) {
+      .demo-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page {
+        padding-inline: 16px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .hero-demo h1 {
+        font-size: 2rem;
+      }
+    }
+
+      * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    overflow-y: scroll;
+  }
+
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+    "Segoe UI", sans-serif;
+    background: radial-gradient(circle at top left, var(--bg-gradient-start), var(--bg-gradient-end));
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- NAVBAR -->
+    <header class="nav">
+      <div class="nav-left">
+       <img src="img/s2e-logo.png" alt="S2E Logo" class="logo-image">
+        <div>
+          <div class="logo-text-main">s2e</div>
+          <div class="logo-text-sub">Eure neue Lieblingsabkürzung</div>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="index.html">Startseite</a>
+        <a href="index-Praxisbeispiele.html">Praxisbeispiele</a>
+        <a href="index-ModuleFunktionen.html">Module &amp; Funktionen</a>
+        <a href="index-Kosten.html">Preise &amp; Nutzen</a>
+        <a href="index-VisionenWerte.html">Vision &amp; Werte</a>
+        <a href="index-Hilfecenter.html">Hilfecenter</a>
+      </nav>
+
+      <div class="nav-cta">
+  <a class="btn btn-primary nav-cta-placeholder">
+    Demo buchen
+  </a>
+</div>
+    </header>
+
+
+    <!-- HERO: Demo buchen -->
+    <section class="hero-demo">
+      <h1>Live-Demo zu S2E buchen</h1>
+      <p class="hero-demo-text">
+        In 30–45 Minuten zeigen wir Ihnen live, wie S2E Ihre Abstimmung, Buchungssätze
+        und OPOS-Arbeitspapiere beschleunigt – mit Beispielen aus Ihrem Kanzlei-Alltag.
+      </p>
+
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">
+          Demo-Anfrage ausfüllen →
+        </button>
+        <p class="hero-note">
+          Oder direkt anrufen: <a href="tel:+4915563363965">+49&nbsp;1556&nbsp;3363965</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- HAUPTBEREICH: Formular + Infos -->
+    <section class="section" id="demo">
+      <div class="section-header">
+        <h2 class="section-title">Kurzes Formular, klare Demo</h2>
+        <p class="section-subtitle">
+          Hinterlassen Sie ein paar Eckdaten – wir melden uns mit einem Terminvorschlag und
+          richten die Demo auf Ihre Kanzlei aus.
+        </p>
+      </div>
+
+      <div class="demo-layout">
+        <!-- LINKS: Netlify-Formular -->
+        <div class="demo-left">
+          <div class="section-shell-s2e demo-form-shell">
+            <h3>Demo-Anfrage für S2E</h3>
+            <p class="small-hint">
+              Die Felder mit * sind Pflichtfelder. Sie erhalten im Anschluss eine Bestätigung per E-Mail.
+            </p>
+
+            <!-- Netlify-Formular -->
+            <form name="demo-booking" method="POST" data-netlify="true" class="demo-form">
+              <!-- Wichtig für Netlify -->
+              <input type="hidden" name="form-name" value="demo-booking" />
+
+              <div class="form-row-double">
+                <div class="form-field">
+                  <label for="name">Name *</label>
+                  <input id="name" name="Name" required />
+                </div>
+                <div class="form-field">
+                  <label for="kanzlei">Kanzlei / Unternehmen *</label>
+                  <input id="kanzlei" name="Kanzlei" required />
+                </div>
+              </div>
+
+              <div class="form-row-double">
+                <div class="form-field">
+                  <label for="email">E-Mail *</label>
+                  <input id="email" name="E-Mail" type="email" required />
+                </div>
+                <div class="form-field">
+                  <label for="telefon">Telefon (optional)</label>
+                  <input id="telefon" name="Telefon" />
+                </div>
+              </div>
+
+              <div class="form-row-double">
+                <div class="form-field">
+                  <label for="mitarbeiter">Mitarbeiter in FIBU / JA (ca.)</label>
+                  <input id="mitarbeiter" name="Mitarbeiter FIBU/JA" type="number" min="1" />
+                </div>
+                <div class="form-field">
+                  <label for="zeitfenster">Wunschtermin / Zeitfenster *</label>
+                  <input id="zeitfenster" name="Wunschtermin" placeholder="z. B. KW 3, vormittags" required />
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="heute">Wie arbeiten Sie heute? (optional)</label>
+                <textarea id="heute"
+                          name="Aktuelle Arbeitsweise"
+                          placeholder="z. B. Abstimmung in Excel, DATEV-Unternehmen online, eigene Vorlagen …"></textarea>
+              </div>
+
+              <div class="form-field">
+                <label for="fokus">Was soll in der Demo auf jeden Fall gezeigt werden?</label>
+                <textarea id="fokus"
+                          name="Demo-Fokus"
+                          placeholder="z. B. OPOS-Listen, Automatische Buchungssätze, Soll/Ist-Abgleich …"></textarea>
+              </div>
+
+              <div class="demo-submit-row">
+                <button type="submit" class="btn btn-primary">
+                  Demo-Anfrage senden →
+                </button>
+                <small>
+                  Mit dem Absenden stimmen Sie zu, dass wir Sie zur Terminabstimmung per E-Mail oder Telefon kontaktieren.
+                </small>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- RECHTS: Nutzen & Platzhalter für Kalender/Bookings -->
+        <div class="demo-right">
+          <div class="demo-info-card">
+            <h3>Was Sie in der Demo sehen</h3>
+            <ul class="demo-list">
+              <li>Soll/Ist-Abgleich mit echten Zahlen aus Beispielmandanten</li>
+              <li>Automatische Buchungssätze &amp; Arbeitspapiere</li>
+              <li>OPOS-Listen strukturieren, kommentieren, filtern</li>
+              <li>Wie Sie S2E in Ihren Jahresabschluss-Prozess integrieren</li>
+            </ul>
+
+            <div class="pill-row">
+              <span class="pill">30–45 Minuten</span>
+              <span class="pill">Keine Sales-Show</span>
+              <span class="pill">Fokus: FIBU &amp; Jahresabschluss</span>
+            </div>
+          </div>
+
+          <div class="demo-info-card">
+            <h3>Direkte Online-Buchung (Platzhalter)</h3>
+            <p>
+              Hier können Sie später ein Tool wie <strong>Microsoft Bookings</strong>, <strong>Calendly</strong> oder
+              <strong>TidyCal</strong> einbinden, damit Termine automatisch vergeben werden.
+            </p>
+            <div class="calendar-placeholder">
+              <!-- HINWEIS: Hier später den Einbettungscode von Bookings/Calendly einfügen -->
+              <p style="margin-bottom:4px;">
+                <strong>Späterer Einbau:</strong><br />
+                Ersetzen Sie diese Box durch den Einbettungscode Ihres Termin-Tools
+                (iFrame von Microsoft Bookings, Calendly, o. Ä.).
+              </p>
+              <p style="font-size:0.78rem; margin-top:6px;">
+                Solange noch kein Tool eingebunden ist, nutzen Sie das Formular links.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <span>© <span id="year"></span> S2E · Schweizer Taschenmesser für Steuerberater</span>
+      <span>Platzhalter · Impressum · Datenschutz</span>
+    </footer>
+  </div>
+
+  <script>
+    // Jahr im Footer automatisch aktualisieren
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

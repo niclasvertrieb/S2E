@@ -62,30 +62,6 @@
       gap: 10px;
     }
 
-    .logo-symbol {
-      width: 36px;
-      height: 36px;
-      border-radius: 12px;
-      background: conic-gradient(from 200deg,
-        var(--accent) 0 30%,
-        var(--primary) 30% 65%,
-        var(--primary-soft) 65% 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 10px 24px rgba(20, 60, 120, 0.25);
-    }
-
-    .logo-symbol::before {
-      content: "";
-      width: 60%;
-      height: 60%;
-      border-radius: 10px;
-      border: 2px solid rgba(255,255,255,0.9);
-      border-top-color: transparent;
-      transform: rotate(-20deg);
-    }
-
     .logo-text-main {
       font-weight: 700;
       font-size: 1.35rem;
@@ -165,14 +141,14 @@
     }
 
     .bg-video {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 120%;
-      height: auto;
-      transform: translate(-50%, -50%);
-      opacity: 0.9;
-    }
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: none;
+  opacity: 0.9;
+}
 
     .video-overlay {
       position: absolute;
@@ -216,17 +192,17 @@
     }
 
     .hero-subtext {
-      font-size: 1.05rem;
-      max-width: 36rem;
-      margin-bottom: 22px;
-      color: rgba(255,255,255,0.92);
-    }
+       color: #000 !important;
+  font-size: 15px;
+  line-height: 1.35;
+  margin: 0;
+}
 
     .hero-buttons {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-bottom: 16px;
+      margin-bottom: 22px;
     }
 
     .hero-pill-row {
@@ -245,6 +221,34 @@
       border: none;
     }
 
+    .hero-box {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  border-radius: 18px;
+  padding: 20px 26px;
+
+  max-width: 720px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+}
+
+.hero-box--title {
+  margin-bottom: 14px;
+  max-width: 380px;     /* 👈 kleiner als Titel-Box */
+  padding: 16px 22px;   /* 👈 weniger Höhe */
+}
+
+.hero-box--text {
+  max-width: 480px;
+  padding: 6px 14px;      /* 🔥 wirklich flach */
+ color: #000 !important;
+  font-size: 15px;
+  line-height: 1.35;
+  margin-bottom: 16px;
+}
+
+
       .case-list {
   display: flex;
   flex-direction: column;
@@ -253,24 +257,49 @@
   margin: 0 auto;
 }
 
+.case-avatar {
+  position: absolute;
+  right: 1px;
+  bottom: 1px;
+
+  width: 300px;
+  height: auto;
+
+  border-radius: 20px; /* oder 0, wenn ganz eckig */
+  object-fit: cover;
+
+  border: none;        /* 👈 wichtig */
+  box-shadow: none;  /* 👈 wichtig */
+  opacity: 0.92;
+
+  z-index: 2;
+}
+
 .case-row {
+   position: relative;
   display: grid;
-   display: grid;
   grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 32px;
   align-items: center;
-  background: linear-gradient(135deg, var(--primary), var(--accent));
+
+  /* S2E Pastellverlauf – identisch zu Rubbellosen */
+  background: linear-gradient(
+    135deg,
+    #c2d1f9 0%,
+    #f5c5ba 100%
+  );
+
   border-radius: var(--radius-xl);
-  padding: 32px 32px;
-  border: none;
-  box-shadow: 0 14px 32px rgba(33, 56, 118, 0.30); /* etwas dunkler für Tiefe */
-  color: #fff; /* Text in weiß */
+  padding: 32px;
+  border: 1px solid rgba(255,255,255,0.45);
+  box-shadow: 0 14px 32px rgba(33, 56, 118, 0.22);
+
+  /* Text jetzt dunkel wie bei Rubbel & Video */
+  color: #102030;
 }
 
 .case-row--reverse {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
-  background: linear-gradient(135deg, var(--primary), var(--accent));
-  color: #fff;
 }
 
 .case-video video {
@@ -284,11 +313,12 @@
     .case-text h3 {
       font-size: 1.2rem;
       margin-bottom: 8px;
+      color: #102030;
     }
 
     .case-text p {
       font-size: 0.95rem;
-      color: rgba(--text-soft);
+      color: var(--text-soft); 
       max-width: 30rem;
     }
 
@@ -486,6 +516,26 @@
       text-underline-offset: 3px;
     }
 
+    /* <a> exakt wie <button> aussehen lassen */
+a.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  appearance: none;
+  -webkit-appearance: none;
+  line-height: 1;
+}
+
+/* Logo-Bild in der Navbar */
+.logo-image {
+  width: 43px;
+  height: 43px;
+  border-radius: 10px;
+  object-fit: contain;
+  display: block;
+  box-shadow: 0 10px 24px rgba(20, 60, 120, 0.22);
+}
+
     /* RESPONSIVE */
     @media (max-width: 880px) {
       .hero-video-bg {
@@ -549,48 +599,54 @@
     <!-- NAVBAR -->
     <header class="nav">
       <div class="nav-left">
-        <div class="logo-symbol"></div>
+       <img src="img/s2e-logo.png" alt="S2E Logo" class="logo-image"> 
         <div>
           <div class="logo-text-main">s2e</div>
-          <div class="logo-text-sub">ProfiTool für Steuerberater</div>
+          <div class="logo-text-sub">Eure neue Lieblingsabkürzung</div>
         </div>
       </div>
 
       <nav class="nav-links">
-        <a href="#was">Was kann das Tool?</a>
-        <a href="#highlights">Highlights</a>
-        <a href="#einsatz">Einsatzbereiche</a>
-      </nav>
+  <a href="index.html">Startseite</a>
+  <a href="index-Praxisbeispiele.html">Praxisbeispiele</a>
+  <a href="index-ModuleFunktionen.html">Module & Funktionen</a>
+  <a href="index-Kosten.html">Preise & Nutzen</a>
+  <a href="index-VisionenWerte.html">Vision & Werte</a>
+  <a href="index-Hilfecenter.html">Hilfecenter</a>
+</nav>
 
       <div class="nav-cta">
-        <button class="btn btn-primary" onclick="document.getElementById('kontakt').scrollIntoView({behavior:'smooth'})">
-          Kontakt & Demo
-        </button>
-      </div>
-    </header>
+    <a href="index-bookins.html" class="btn btn-primary">
+      Demo buchen
+    </a>
+  </div>
+</header>
 
     <!-- HERO – VIDEO ALS HINTERGRUND -->
     <section class="hero-video-bg" id="was">
       <video class="bg-video" autoplay muted loop playsinline>
-        <source src="video/s2e-profitool-overview.mp4" type="video/mp4" />
+        <source src="video/praxisbsp-hero.mp4" type="video/mp4" />
         Ihr Browser unterstützt das Video-Tag nicht.
       </video>
 
       <div class="video-overlay"></div>
 
       <div class="hero-content">
-        <div class="breadcrumb">
-          <a href="index.html">Startseite</a> · <span>S2E ProfiTool</span>
-        </div>
+        
 
-        <h1 class="hero-title">
-          Was kann das <span class="hero-highlight">S2E ProfiTool?</span>
-        </h1>
+        <div class="hero-box hero-box--title">
+  <h1 class="hero-title">
+    Was kann das <span class="hero-highlight">S2E ProfiTool?</span>
+  </h1>
+</div>
 
-        <p class="hero-subtext">
-          Excel-Add-in für Steuerberater mit eigener Datei- und Vorlagenverwaltung –
-          direkter Zugriff auf Kontenwerte und nahtlose DATEV-Integration.
-        </p>
+<div class="hero-box hero-box--text">
+  <p class="hero-subtext">
+    Excel-Add-in für Steuerberater mit eigener Datei- und Vorlagenverwaltung –
+    direkter Zugriff auf Kontenwerte und nahtlose DATEV-Integration.
+  </p>
+</div>
+
 
         <div class="hero-buttons">
           <button class="btn btn-primary" onclick="document.querySelector('.bg-video').scrollIntoView({behavior:'smooth'})">
@@ -600,6 +656,7 @@
             Funktionen im Überblick
           </button>
         </div>
+      </div>
 
     </section>
 
@@ -617,8 +674,9 @@
         <!-- Fall 1: Video links, Text rechts -->
         <div class="case-row">
           <div class="case-video">
-            <video controls poster="preview-fall1.jpg">
-              <source src="video/fall1.mp4" type="video/mp4" />
+            <video controls playsinline preload="metadata"
+               poster="img/praxis-fall1-poster.jpg">
+              <source src="video/praxis-fall1.mp4" type="video/mp4" />
               Ihr Browser unterstützt das Video-Tag nicht.
             </video>
           </div>
@@ -628,8 +686,9 @@
               Platzhaltertext für Fallbeispiel 1. Maximal drei Sätze, die kurz erklären,
               was in diesem Beispiel gezeigt wird und welchen Nutzen die Kanzlei davon hat.
             </p>
-          </div>
-        </div>
+          </div> 
+           <img src="img/niclas.jpg" alt="Niclas – S2E" class="case-avatar" />
+</div>      
 
         <!-- Fall 2: Text links, Video rechts -->
         <div class="case-row case-row--reverse">
@@ -641,18 +700,20 @@
             </p>
           </div>
           <div class="case-video">
-            <video controls poster="preview-fall2.jpg">
-              <source src="video/fall2.mp4" type="video/mp4" />
-              Ihr Browser unterstützt das Video-Tag nicht.
-            </video>
-          </div>
+            <video controls playsinline preload="metadata"
+       poster="img/praxis-fall2-poster.jpg">
+  <source src="video/praxis-fall2.mp4" type="video/mp4" />
+  Ihr Browser unterstützt das Video-Tag nicht.
+</video>
+        </div>
         </div>
 
         <!-- Fall 3: Video links, Text rechts -->
         <div class="case-row">
-          <div class="case-video">
-            <video controls poster="preview-fall3.jpg">
-              <source src="video/fall3.mp4" type="video/mp4" />
+  <div class="case-video">
+    <video controls playsinline preload="metadata"
+           poster="img/praxis-fall3-poster.jpg">
+      <source src="video/praxis-fall3.mp4" type="video/mp4" />
               Ihr Browser unterstützt das Video-Tag nicht.
             </video>
           </div>
@@ -675,8 +736,9 @@
             </p>
           </div>
           <div class="case-video">
-            <video controls poster="preview-fall4.jpg">
-              <source src="video/fall4.mp4" type="video/mp4" />
+    <video controls playsinline preload="metadata"
+           poster="img/praxis-fall4-poster.jpg">
+      <source src="video/praxis-fall4.mp4" type="video/mp4" />
               Ihr Browser unterstützt das Video-Tag nicht.
             </video>
           </div>
@@ -684,9 +746,10 @@
 
         <!-- Fall 5: Video links, Text rechts -->
         <div class="case-row">
-          <div class="case-video">
-            <video controls poster="preview-fall5.jpg">
-              <source src="video/fall5.mp4" type="video/mp4" />
+  <div class="case-video">
+    <video controls playsinline preload="metadata"
+           poster="img/praxis-fall5-poster.jpg">
+      <source src="video/praxis-fall5.mp4" type="video/mp4" />
               Ihr Browser unterstützt das Video-Tag nicht.
             </video>
           </div>
@@ -701,26 +764,37 @@
 
       </div>
 
-    <<p class="case-endline">…und das war erst der Anfang!</p>
+    <p class="case-endline">…und das war erst der Anfang!</p>
     </section>
 
 
-    <!-- CTA / KONTAKT -->
-    <section class="section" id="kontakt">
-      <div class="cta">
-        <div>
-          <div class="cta-title">S2E in einer Demo erleben</div>
-          <p>
-            In einer kurzen  Online Demo werden wir Ihnen jede Frage beantworten und Ihnen den vollen Umfang von S2E näher bringen       
-          </p>
-        </div>
-        <<div class="cta-input-wrap">
-          <button class="cta-btn" type="button" onclick="window.location.href='mailto:info@deine-kanzlei.de?subject=Demo%20zum%20S2E%20ProfiTool';">
-            Demo Buchen
-            <span>→</span>
-          </button>
-      </div>
-    </section>
+    <!-- CTA / DEMO -->
+    <section class="section" id="demo">
+  <div class="cta" style="
+    background: linear-gradient(135deg, #c2d1f9 0%, #f5c5ba 100%);
+    border-radius: 24px;
+    padding: 26px 28px;
+    box-shadow: 0 14px 32px rgba(33, 56, 118, 0.3);
+    color: #102030;
+    border: 1px solid rgba(255,255,255,0.35);
+  ">
+    <div>
+      <div class="cta-title" style="color:#102030;">Module und Funktionen live sehen</div>
+      <p style="color:#334;">
+        Platzhaltertext für die Demo-Einladung. In einer kurzen Online-Demo
+        können später alle Module und Funktionen im Detail gezeigt werden.
+      </p>
+    </div>
+
+    <!-- Button in Standard S2E-Blau -->
+    <div class="cta-input-wrap">
+      <button class="btn btn-primary" type="button"
+        onclick="window.location.href='mailto:info@deine-kanzlei.de?subject=Demo%20zu%20S2E%20Modulen%20und%20Funktionen';">
+        Demo buchen →
+      </button>
+    </div>
+  </div>
+</section>
 
         <!-- REZENSIONEN -->
     <section class="section" id="rezensionen">
