@@ -20,6 +20,11 @@
       --radius-xl: 24px;
       --radius-lg: 18px;
       --radius-pill: 999px;
+      --hero-cta-gradient: linear-gradient(
+    135deg,
+    #c2d1f9 0%,
+    #f5c5ba 100%
+  );
     }
 
     * {
@@ -47,6 +52,84 @@
       margin: 0 auto;
       padding: 24px 20px 60px;
     }
+
+    /* ===== Hilfecenter Suche & Artikel ===== */
+
+.search-results {
+  position: absolute;
+  left: 50%;
+  top: calc(78% + 46px);
+  transform: translateX(-50%);
+  width: 80%;
+  max-width: 520px;
+  z-index: 4;
+  display: none;
+  color:black
+}
+
+.search-results.is-open { display: block; }
+
+.search-results .result-card {
+  background: rgba(255,255,255,0.96);
+  border-radius: 16px;
+  box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+  padding: 8px;
+  margin-top: 8px;
+}
+
+.result-item {
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.result-item:hover {
+  background: rgba(90,143,220,0.12);
+}
+
+.result-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.result-meta {
+  font-size: 0.8rem;
+  color: var(--text-soft);
+}
+
+/* Overlay */
+.article-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(16,32,48,0.55);
+  display: none;
+  z-index: 999;
+  padding: 18px;
+}
+
+.article-overlay.is-open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.article-modal {
+  background: #fff;
+  border-radius: 22px;
+  padding: 20px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 85vh;
+  overflow: auto;
+  color:black
+}
+
+.article-close {
+  margin-left: auto;
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
 
     /* NAVBAR */
     .nav {
@@ -119,26 +202,26 @@
 
     /* HERO HELP MIT HEADER-BILD UND SUCHE */
     .hero-help {
-      position: relative;
-      height: 320px;
-      border-radius: 32px;
-      padding: 40px;
-      margin-bottom: 80px;
-      /* Hier könntest du später ein echtes Bild hinterlegen */
-      background:
-        linear-gradient(135deg, rgba(90,143,220,0.96), rgba(242,154,154,0.95));
-      color: white;
-      box-shadow: 0 24px 60px rgba(15, 76, 110, 0.25);
-      overflow: hidden;
-    }
+  position: relative;
+  height: 320px;
+  border-radius: 32px;
+  padding: 40px;
+  margin-bottom: 80px;
+
+  background: var(--hero-cta-gradient);
+
+  color: white;
+  box-shadow: 0 24px 60px rgba(15, 76, 110, 0.25);
+  overflow: visible;
+}
 
     .hero-help::after {
       content: "";
       position: absolute;
-      right: -80px;
-      top: -80px;
-      width: 220px;
-      height: 220px;
+      right: -120px;
+      top: -12opx;
+      width: 180px;
+      height: 180px;
       border-radius: 999px;
       background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.7), rgba(255,255,255,0));
       opacity: 0.5;
@@ -197,6 +280,16 @@
     .search-box input::placeholder {
       color: rgba(16,32,48,0.65);
     }
+
+    .cta {
+  background: var(--hero-cta-gradient);
+  border-radius: 24px;
+  padding: 26px 28px;
+  box-shadow: 0 14px 32px rgba(33, 56, 118, 0.3);
+  color: #102030;
+  border: 1px solid rgba(255,255,255,0.35);
+}
+
 
     /* SECTIONS */
     .section {
@@ -282,60 +375,72 @@
     }
 
     /* CTA / SUPPORT */
-    .cta {
-      background: linear-gradient(135deg, rgba(90, 143, 220, 0.96), rgba(242, 154, 154, 0.95));
-      border-radius: var(--radius-xl);
-      padding: 22px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      color: #fff;
-      box-shadow: 0 14px 32px rgba(33, 56, 118, 0.4);
-    }
+    /* CTA / DEMO */
+/* CTA Container Layout (fehlt aktuell in kosten.html) */
+.cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
 
-    .cta-title {
-      font-size: 1.2rem;
-      margin-bottom: 4px;
-    }
+    /* Abstand um den CTA (bei dir so genutzt) */
+.section { margin-bottom: 56px; }
 
-    .cta p {
-      font-size: 0.9rem;
-      opacity: 0.95;
-    }
+/* CTA Typo */
+.cta-title {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
 
-    .cta-input-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-    }
+/* CTA Text (Praxisbeispiele hat das im CSS + zusätzlich inline color im <p>) */
+.cta p {
+  font-size: 0.9rem;
+  opacity: 0.95;
+}
 
-    .cta-btn {
-      border-radius: var(--radius-pill);
-      border: none;
-      padding: 10px 18px;
-      font-size: 0.9rem;
-      background: rgba(255,255,255,0.08);
-      color: #fff;
-      cursor: pointer;
-      border: 1px solid rgba(255,255,255,0.6);
-      backdrop-filter: blur(6px);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: 0.2s;
-      font-weight: 600;
-    }
+/* CTA Button-Wrap */
+.cta-input-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
 
-    .cta-btn span {
-      font-size: 1.05rem;
-    }
+/* Button Basis */
+.btn {
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 0.92rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
 
-    .cta-btn:hover {
-      background: rgba(255,255,255,0.2);
-      transform: translateY(-1px);
-    }
+/* Primär-Button */
+.btn-primary {
+  background: linear-gradient(135deg, #5a8fdc, #6ea8ff);
+  color: #fff;
+  box-shadow: 0 10px 26px rgba(30, 87, 153, 0.35);
+  border-color: rgba(255,255,255,0.4);
+  font-weight: 600;
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px rgba(30, 87, 153, 0.45);
+}
+
+/* Mobile: CTA untereinander */
+@media (max-width: 640px) {
+  .cta { flex-direction: column; align-items: flex-start; }
+  .cta-input-wrap { width: 100%; }
+}
+
 
     /* FOOTER */
     footer {
@@ -459,6 +564,20 @@ a.btn {
       <div class="search-box">
         <input type="text" placeholder="Wonach suchst du? (Platzhalter-Suche)" />
       </div>
+      <div class="search-results" id="searchResults"></div>
+
+<!-- Artikel Overlay -->
+<div class="article-overlay" id="articleOverlay" aria-hidden="true">
+  <div class="article-modal">
+    <button class="article-close" id="articleClose" type="button">
+      Schließen ✕
+    </button>
+
+    <div class="article-meta" id="articleMeta"></div>
+    <h2 class="article-title" id="articleTitle"></h2>
+    <div class="article-content" id="articleContent"></div>
+  </div>
+</div>
     </section>
 
     <!-- KATEGORIEN / HILFEBEREICHE -->
@@ -529,23 +648,31 @@ a.btn {
     </section>
 
     <!-- CTA / SUPPORT -->
-    <section class="section" id="support-cta">
-      <div class="cta">
-        <div>
-          <div class="cta-title">Noch keine Antwort gefunden?</div>
-          <p>
-            Platzhaltertext: Hier kann später stehen, wie der Support am besten erreichbar ist –
-            z.&nbsp;B. per E-Mail, Telefon oder Online-Termin.
-          </p>
-        </div>
-        <div class="cta-input-wrap">
-          <button class="cta-btn" type="button" onclick="window.location.href='mailto:info@deine-kanzlei.de?subject=Frage%20zu%20S2E';">
-            Support kontaktieren
-            <span>→</span>
-          </button>
-        </div>
-      </div>
-    </section>
+    <!-- CTA / DEMO -->
+<section class="section" id="demo">
+  <div class="cta" style="
+    background: linear-gradient(135deg, #c2d1f9 0%, #f5c5ba 100%);
+    border-radius: 24px;
+    padding: 26px 28px;
+    box-shadow: 0 14px 32px rgba(33, 56, 118, 0.3);
+    color: #102030;
+    border: 1px solid rgba(255,255,255,0.35);
+  ">
+    <div>
+      <div class="cta-title" style="color:#102030;">Noch keine Antwort gefunden?</div>
+      <p style="color:#334;">
+        Platzhaltertext: Hier kann später stehen, wie der Support am besten erreichbar ist – z. B. per E-Mail, Telefon oder Online-Termin.
+      </p>
+    </div>
+
+    <div class="cta-input-wrap">
+      <button class="btn btn-primary" type="button"
+        onclick="window.location.href='mailto:info@deine-kanzlei.de?subject=Demo%20zu%20S2E%20Modulen%20und%20Funktionen';">
+        Support kontaktieren →
+      </button>
+    </div>
+  </div>
+</section>
 
     <!-- FAQ UNTER CTA -->
     <section class="section" id="faq">
@@ -595,7 +722,152 @@ a.btn {
   </div>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  // Footer Jahr
+  document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // 1) Deine Hilfecenter-Daten (hier fügst du später einfach neue Artikel hinzu)
+  const HELP_ARTICLES = [
+    {
+      id: "erste-schritte",
+      title: "Erste Schritte mit S2E",
+      category: "Erste Schritte",
+      keywords: ["setup", "start", "installation", "einrichtung"],
+      content:
+`Hier kommt dein Inhalt rein.
+
+Beispiel-Struktur:
+1) Was ist S2E?
+2) Erste Einrichtung
+3) Häufige Fehler
+
+Tipp: Schreib einfach in normalem Text, Zeilenumbrüche bleiben erhalten.`
+    },
+    {
+      id: "support-kontakt",
+      title: "Support kontaktieren",
+      category: "Support",
+      keywords: ["email", "termin", "hilfe", "support"],
+      content:
+`So erreichst du uns:
+- E-Mail: ...
+- Termin: ...
+- Reaktionszeit: ...`
+    },
+    {
+      id: "datenimport",
+      title: "Datenimport & Schnittstellen",
+      category: "Datenimport",
+      keywords: ["datev", "csv", "import", "schnittstelle"],
+      content:
+`Platzhalter: Hier erklärst du später CSV/DATEV-Import usw.`
+    }
+  ];
+
+  // 2) Elemente
+  const input = document.querySelector(".search-box input");
+  const resultsBox = document.getElementById("searchResults");
+
+  const overlay = document.getElementById("articleOverlay");
+  const closeBtn = document.getElementById("articleClose");
+  const metaEl = document.getElementById("articleMeta");
+  const titleEl = document.getElementById("articleTitle");
+  const contentEl = document.getElementById("articleContent");
+
+  // 3) Helpers
+  function normalize(s) {
+    return (s || "").toString().toLowerCase().trim();
+  }
+
+  function matchesArticle(article, q) {
+    const hay = [
+      article.title,
+      article.category,
+      ...(article.keywords || []),
+      article.content
+    ].map(normalize).join(" ");
+    return hay.includes(q);
+  }
+
+  function openArticle(article) {
+    metaEl.textContent = `Kategorie: ${article.category}`;
+    titleEl.textContent = article.title;
+    contentEl.textContent = article.content;
+
+    overlay.classList.add("is-open");
+    overlay.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeArticle() {
+    overlay.classList.remove("is-open");
+    overlay.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+
+  function renderResults(list, q) {
+    if (!q) {
+      resultsBox.classList.remove("is-open");
+      resultsBox.innerHTML = "";
+      return;
+    }
+
+    resultsBox.classList.add("is-open");
+
+    const html = `
+      <div class="result-card">
+        ${
+          list.length
+            ? list.map(a => `
+              <div class="result-item" data-id="${a.id}">
+                <div class="result-title">${a.title}</div>
+                <div class="result-meta">${a.category}</div>
+              </div>
+            `).join("")
+            : `<div class="no-results">Keine Treffer für „${q}“</div>`
+        }
+      </div>
+    `;
+    resultsBox.innerHTML = html;
+  }
+
+  // 4) Live-Suche
+  input.addEventListener("input", () => {
+    const q = normalize(input.value);
+    const list = q
+      ? HELP_ARTICLES.filter(a => matchesArticle(a, q)).slice(0, 8)
+      : [];
+    renderResults(list, q);
+  });
+
+  // 5) Klick auf Ergebnis
+  resultsBox.addEventListener("click", (e) => {
+    const item = e.target.closest(".result-item");
+    if (!item) return;
+
+    const id = item.getAttribute("data-id");
+    const article = HELP_ARTICLES.find(a => a.id === id);
+    if (article) openArticle(article);
+  });
+
+  // 6) Overlay schließen
+  closeBtn.addEventListener("click", closeArticle);
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closeArticle();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeArticle();
+  });
+
+  // 7) Klick außerhalb: Ergebnisse schließen
+  document.addEventListener("click", (e) => {
+  const inSearch = e.target.closest(".search-box") || e.target.closest("#searchResults");
+  if (!inSearch && !normalize(input.value)) {
+    resultsBox.classList.remove("is-open");
+    resultsBox.innerHTML = "";
+  }
+});
+});
+</script>
 </body>
 </html>

@@ -165,6 +165,18 @@
       text-underline-offset: 3px;
     }
 
+    .hero-context {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--text-soft);
+}
+
+.hero-demo {
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+
     /* Standard Section & Headline-Styles wie auf den anderen Seiten */
     .section {
       margin-top: 40px;
@@ -185,15 +197,18 @@
       color: var(--text-soft);
     }
 
-    /* S2E-Container mit Pastell-Hintergrund */
-    .section-shell-s2e {
-      background: var(--accent-soft);
-      border-radius: var(--radius-xl);
-      padding: 24px 24px 28px;
-      border: 1px solid rgba(0, 0, 0, 0.06);
-      box-shadow: 0 10px 26px rgba(0,0,0,0.04);
-      margin-top: 12px;
-    }
+    /* Formular-Container = gleicher Look wie CTA */
+.section-shell-s2e {
+  background: linear-gradient(135deg, #c2d1f9 0%, #f5c5ba 100%);
+  border-radius: 24px;
+  padding: 26px 28px;
+
+  box-shadow: 0 14px 32px rgba(33, 56, 118, 0.3);
+  border: 1px solid rgba(255,255,255,0.35);
+
+  color: #102030;
+}
+
 
     /* Layout: links Formular, rechts Infos */
     .demo-layout {
@@ -283,7 +298,7 @@
       align-items: flex-start;
     }
 
-    /* Rechte Seite: Info-Karten & Platzhalter-Kalender */
+    /* Rechte Seite: Info-Karten & YouTube/Datev */
     .demo-info-card {
       background: rgba(255,255,255,0.85);
       border-radius: var(--radius-lg);
@@ -337,6 +352,30 @@
       background: rgba(90, 143, 220, 0.08);
       color: var(--text-soft);
     }
+
+    .demo-divider{
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  margin: 14px 0 10px;
+}
+
+.demo-links-title{
+  margin-top: 2px;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.demo-links{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.demo-links .btn {
+  padding: 12px 22px;
+  font-size: 0.95rem;
+}
 
     /* FOOTER wie auf den anderen Seiten */
     footer {
@@ -447,15 +486,10 @@
         In 30–45 Minuten zeigen wir Ihnen live, wie S2E Ihre Abstimmung, Buchungssätze
         und OPOS-Arbeitspapiere beschleunigt – mit Beispielen aus Ihrem Kanzlei-Alltag.
       </p>
-
-      <div class="hero-actions">
-        <button class="btn btn-primary" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">
-          Demo-Anfrage ausfüllen →
-        </button>
-        <p class="hero-note">
-          Oder direkt anrufen: <a href="tel:+4915563363965">+49&nbsp;1556&nbsp;3363965</a>
-        </p>
-      </div>
+<p class="hero-context">
+  Unverbindlich · Persönlich · Auf Ihre Kanzlei zugeschnitten
+</p>
+    
     </section>
 
     <!-- HAUPTBEREICH: Formular + Infos -->
@@ -558,24 +592,23 @@
               <span class="pill">Fokus: FIBU &amp; Jahresabschluss</span>
             </div>
           </div>
+           <hr class="demo-divider" />
 
-          <div class="demo-info-card">
-            <h3>Direkte Online-Buchung (Platzhalter)</h3>
-            <p>
-              Hier können Sie später ein Tool wie <strong>Microsoft Bookings</strong>, <strong>Calendly</strong> oder
-              <strong>TidyCal</strong> einbinden, damit Termine automatisch vergeben werden.
-            </p>
-            <div class="calendar-placeholder">
-              <!-- HINWEIS: Hier später den Einbettungscode von Bookings/Calendly einfügen -->
-              <p style="margin-bottom:4px;">
-                <strong>Späterer Einbau:</strong><br />
-                Ersetzen Sie diese Box durch den Einbettungscode Ihres Termin-Tools
-                (iFrame von Microsoft Bookings, Calendly, o. Ä.).
-              </p>
-              <p style="font-size:0.78rem; margin-top:6px;">
-                Solange noch kein Tool eingebunden ist, nutzen Sie das Formular links.
-              </p>
-            </div>
+<p class="demo-links-title"><strong>Mehr dazu:</strong></p>
+
+<div class="demo-links">
+  <a href="https://www.youtube.com/@dersteuerfuturist4438"
+     class="btn btn-primary"
+     target="_blank" rel="noopener">
+    Folgt uns doch auf YouTube →
+  </a>
+
+  <a href="HIER_DEIN_DATEV_MARKTPLATZ_LINK"
+     class="btn btn-primary"
+     target="_blank" rel="noopener">
+    S2E im DATEV-Marktplatz →
+  </a>
+</div>
           </div>
         </div>
       </div>
@@ -584,7 +617,7 @@
     <!-- FOOTER -->
     <footer>
       <span>© <span id="year"></span> S2E · Schweizer Taschenmesser für Steuerberater</span>
-      <span>Platzhalter · Impressum · Datenschutz</span>
+      <span>Impressum · Datenschutz</span>
     </footer>
   </div>
 

@@ -188,6 +188,34 @@
       color: var(--text);
     }
 
+    /* HERO mit Bild */
+.hero-image {
+  background-image: url("img/hero-visionwerte.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: right 0% bottom 100%;
+  color: #fff;
+}
+
+/* dunkles Overlay für Lesbarkeit */
+.hero-image::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(16, 32, 48, 0.55),
+    rgba(16, 32, 48, 0.35)
+  );
+  z-index: 0;
+}
+
+/* Inhalt nach vorne holen */
+.hero-image > * {
+  position: relative;
+  z-index: 1;
+}
+
     /* GENERAL SECTIONS */
     .section {
       margin-bottom: 56px;
@@ -233,6 +261,15 @@
       font-size: 0.92rem;
       color: var(--text-soft);
     }
+
+    /* Platzhalterbox im CTA-Farbverlauf */
+.card-cta {
+  background: linear-gradient(135deg, #c2d1f9 0%, #f5c5ba 100%);
+  color: #102030;
+  border: 1px solid rgba(255,255,255,0.35);
+  box-shadow: 0 14px 32px rgba(33, 56, 118, 0.3);
+}
+
 
     .pill-label {
       font-size: 0.78rem;
@@ -312,16 +349,25 @@
     }
 
     .team-photo-wrap {
-      width: 80px;
-      height: 80px;
-      border-radius: 999px;
-      margin: 0 auto 10px;
-      overflow: hidden;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+  width: 110px;
+  height: 110px;
+  border-radius: 999px;
+  margin: 0 auto 14px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.team-photo-img {
+  width: 102px;
+  height: 102px;
+  border-radius: 999px;
+  object-fit: cover;
+  display: block;
+  background: #fff;
+}
 
     .team-photo {
       width: 74px;
@@ -383,61 +429,72 @@
       margin-top: 2px;
     }
 
-    /* CTA BOTTOM */
-    .cta {
-      background: linear-gradient(135deg, rgba(90, 143, 220, 0.96), rgba(242, 154, 154, 0.95));
-      border-radius: var(--radius-xl);
-      padding: 22px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      color: #fff;
-      box-shadow: 0 14px 32px rgba(33, 56, 118, 0.4);
-    }
 
-    .cta-title {
-      font-size: 1.2rem;
-      margin-bottom: 4px;
-    }
+      /* CTA / DEMO */
+/* CTA Container Layout (fehlt aktuell in kosten.html) */
+.cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
 
-    .cta p {
-      font-size: 0.9rem;
-      opacity: 0.95;
-    }
+    /* Abstand um den CTA (bei dir so genutzt) */
+.section { margin-bottom: 56px; }
 
-    .cta-input-wrap {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-    }
+/* CTA Typo */
+.cta-title {
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
 
-    .cta-btn {
-      border-radius: var(--radius-pill);
-      border: none;
-      padding: 10px 18px;
-      font-size: 0.9rem;
-      background: rgba(255,255,255,0.08);
-      color: #fff;
-      cursor: pointer;
-      border: 1px solid rgba(255,255,255,0.6);
-      backdrop-filter: blur(6px);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: 0.2s;
-      font-weight: 600;
-    }
+/* CTA Text (Praxisbeispiele hat das im CSS + zusätzlich inline color im <p>) */
+.cta p {
+  font-size: 0.9rem;
+  opacity: 0.95;
+}
 
-    .cta-btn span {
-      font-size: 1.05rem;
-    }
+/* CTA Button-Wrap */
+.cta-input-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
 
-    .cta-btn:hover {
-      background: rgba(255,255,255,0.2);
-      transform: translateY(-1px);
-    }
+/* Button Basis */
+.btn {
+  border-radius: 999px;
+  padding: 10px 18px;
+  font-size: 0.92rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+}
+
+/* Primär-Button */
+.btn-primary {
+  background: linear-gradient(135deg, #5a8fdc, #6ea8ff);
+  color: #fff;
+  box-shadow: 0 10px 26px rgba(30, 87, 153, 0.35);
+  border-color: rgba(255,255,255,0.4);
+  font-weight: 600;
+}
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px rgba(30, 87, 153, 0.45);
+}
+
+/* Mobile: CTA untereinander */
+@media (max-width: 640px) {
+  .cta { flex-direction: column; align-items: flex-start; }
+  .cta-input-wrap { width: 100%; }
+}
 
     /* FAQ GRID */
     .faq-grid {
@@ -579,7 +636,7 @@ a.btn {
 </header>
 
     <!-- HERO SIMPLE -->
-    <section class="hero-simple" id="top">
+    <section class="hero-simple hero-image" id="top">
       <div class="hero-breadcrumb">
         <a href="index-S2EStartseite.html">Startseite</a> · <span>Vision &amp; Werte</span>
       </div>
@@ -623,7 +680,7 @@ a.btn {
           </p>
         </div>
 
-        <div class="story-side">
+        <div class="card card-cta">
           <div>
             <h4>Platzhalter-Box</h4>
             <p>
@@ -690,48 +747,44 @@ a.btn {
       </div>
 
       <div class="team-grid">
-        <div class="team-card">
-          <div class="team-photo-wrap">
-            <div class="team-photo">
-              Foto<br />Platzhalter
-            </div>
-          </div>
-          <div class="team-name">Platzhalter-Name 1</div>
-          <div class="team-role">Platzhalter-Rolle</div>
-          <p class="team-text">
-            Platzhaltertext für den Hintergrund dieser Person. Hier kann später stehen, aus
-            welchem Bereich sie kommt und welchen Blick sie in S2E einbringt.
-          </p>
-        </div>
 
-        <div class="team-card">
-          <div class="team-photo-wrap">
-            <div class="team-photo">
-              Foto<br />Platzhalter
-            </div>
-          </div>
-          <div class="team-name">Platzhalter-Name 2</div>
-          <div class="team-role">Platzhalter-Rolle</div>
-          <p class="team-text">
-            Platzhaltertext für den Hintergrund dieser Person. Zum Beispiel technische
-            Verantwortung, Produktentwicklung oder koordinierende Aufgaben.
-          </p>
-        </div>
+  <div class="team-card">
+    <div class="team-photo-wrap">
+      <img src="img/sven.jpg" alt="Name 1" class="team-photo-img">
+    </div>
+    <div class="team-name">Platzhalter-Name 1</div>
+    <div class="team-role">Platzhalter-Rolle</div>
+    <p class="team-text">
+      Platzhaltertext für den Hintergrund dieser Person. Hier kann später stehen, aus
+      welchem Bereich sie kommt und welchen Blick sie in S2E einbringt.
+    </p>
+  </div>
 
-        <div class="team-card">
-          <div class="team-photo-wrap">
-            <div class="team-photo">
-              Foto<br />Platzhalter
-            </div>
-          </div>
-          <div class="team-name">Platzhalter-Name 3</div>
-          <div class="team-role">Platzhalter-Rolle</div>
-          <p class="team-text">
-            Platzhaltertext für den Hintergrund dieser Person. Hier kann später ein weiterer
-            Schwerpunkt beschrieben werden, z.&nbsp;B. Kanzlei-Praxis oder Qualitätssicherung.
-          </p>
-        </div>
-      </div>
+  <div class="team-card">
+    <div class="team-photo-wrap">
+      <img src="img/scheafer.jpg" alt="Name 2" class="team-photo-img">
+    </div>
+    <div class="team-name">Platzhalter-Name 2</div>
+    <div class="team-role">Platzhalter-Rolle</div>
+    <p class="team-text">
+      Platzhaltertext für den Hintergrund dieser Person. Zum Beispiel technische
+      Verantwortung, Produktentwicklung oder koordinierende Aufgaben.
+    </p>
+  </div>
+
+  <div class="team-card">
+    <div class="team-photo-wrap">
+      <img src="img/jens.jpg" alt="Name 3" class="team-photo-img">
+    </div>
+    <div class="team-name">Platzhalter-Name 3</div>
+    <div class="team-role">Platzhalter-Rolle</div>
+    <p class="team-text">
+      Platzhaltertext für den Hintergrund dieser Person. Hier kann später ein weiterer
+      Schwerpunkt beschrieben werden, z. B. Kanzlei-Praxis oder Qualitätssicherung.
+    </p>
+  </div>
+
+</div>
     </section>
 
     <!-- WIE WIR ARBEITEN -->
@@ -754,23 +807,31 @@ a.btn {
     </section>
 
     <!-- CTA / DEMO -->
-    <section class="section" id="demo">
-      <div class="cta">
-        <div>
-          <div class="cta-title">S2E &amp; uns persönlich kennenlernen</div>
-          <p>
-            Platzhaltertext: In einer kurzen Online-Demo kann später nicht nur das Tool gezeigt
-            werden, sondern auch, wie das Team dahinter denkt und arbeitet.
-          </p>
-        </div>
-        <div class="cta-input-wrap">
-          <button class="cta-btn" type="button" onclick="window.location.href='mailto:info@deine-kanzlei.de?subject=Demo%20zu%20S2E%20und%20Team';">
-            Demo buchen
-            <span>→</span>
-          </button>
-        </div>
-      </div>
-    </section>
+<section class="section" id="demo">
+  <div class="cta" style="
+    background: linear-gradient(135deg, #c2d1f9 0%, #f5c5ba 100%);
+    border-radius: 24px;
+    padding: 26px 28px;
+    box-shadow: 0 14px 32px rgba(33, 56, 118, 0.3);
+    color: #102030;
+    border: 1px solid rgba(255,255,255,0.35);
+  ">
+    <div>
+      <div class="cta-title" style="color:#102030;">Module und Funktionen live sehen</div>
+      <p style="color:#334;">
+        Platzhaltertext für die Demo-Einladung. In einer kurzen Online-Demo
+        können später alle Module und Funktionen im Detail gezeigt werden.
+      </p>
+    </div>
+
+    <div class="cta-input-wrap">
+      <div class="cta-actions">
+  <a href="index-bookins.html" class="btn btn-primary">
+    Demo buchen →
+  </a>
+</div>
+  </div>
+</section>
 
     <!-- FAQ UNTER DEMO -->
     <section class="section" id="faq">

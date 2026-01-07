@@ -649,7 +649,7 @@ section:nth-of-type(4) {
     }
 
     .roi-output strong {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       color: var(--text);
     }
 
@@ -945,6 +945,19 @@ html {
   box-shadow: 0 10px 24px rgba(20, 60, 120, 0.22);
 }
 
+/* ===============================
+   Number-Input Pfeile ausblenden
+   =============================== */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
+
     /* RESPONSIVE */
     @media (max-width: 880px) {
       .hero {
@@ -1032,12 +1045,13 @@ html {
         </p>
 
         <div class="hero-actions">
-          <button class="btn btn-primary" onclick="document.getElementById('demo').scrollIntoView({behavior:'smooth'})">
-            Jetzt Demo buchen →
-          </button>
-          <button class="btn btn-ghost" onclick="document.getElementById('themen').scrollIntoView({behavior:'smooth'})">
-            Module & Funktionen
-          </button>
+         <a href="index-bookins.html" class="btn btn-primary">
+    Jetzt Demo buchen →
+  </a>
+
+  <a href="index-ModuleFunktionen.html" class="btn btn-ghost">
+    Module & Funktionen
+  </a> 
         </div>
 
         <div class="hero-hint">
@@ -1182,7 +1196,7 @@ html {
          BUTTON unter den 4 großen Hebeln
          Link-Button zur Seite "Module & Funktionen"
          ============================================ -->
-    <div style="margin-top: 26px; text-align: left;">
+    <div style="margin-top: 26px; text-align: center;">
       <a href="index-ModuleFunktionen.html">
         <button class="btn btn-primary" style="padding: 12px 26px; font-size: 1rem;">
           Zu den Modulen & Funktionen →
@@ -1378,7 +1392,7 @@ html {
       <p style="margin-top:10px;">
         <strong>Wichtig:</strong>
          Das Ergebnis zeigt, wie viel Ihre Kanzlei zusätzlich verdienen kann, 
-        nachdem die 30 € pro Mitarbeiter/Monat bereits abgezogen wurden.Es wird automatisch mit 15 Stunden Zeitersparnis pro Mitarbeiter und Monat gerechnet.
+        nachdem die 30 € pro Mitarbeiter/Monat bereits abgezogen wurden. Es wird automatisch mit 15 Stunden Zeitersparnis pro Mitarbeiter und Monat gerechnet.
       </p>
     </div>
 
@@ -1463,9 +1477,9 @@ html {
 
     <!-- Button in Standard S2E-Blau -->
     <div class="cta-input-wrap">
-      <button class="btn btn-primary" type="button"
-        onclick="window.location.href='mailto:info@deine-kanzlei.de?subject=Demo%20zu%20S2E%20Modulen%20und%20Funktionen';">
-        Demo buchen →
+        <a href="index-bookins.html" class="btn btn-primary">
+  Demo buchen →
+</a>
       </button>
     </div>
   </div>
@@ -1560,17 +1574,13 @@ document.querySelectorAll(".roi-step").forEach((btn) => {
 
     input.value = next;
 
-    // Nach jeder Änderung direkt neu berechnen
-    berechneROI();
-  });
+   });
 });
-
-// Initial berechnen
-berechneROI();
+ 
 </script>
 
 
-// ======== S2E RUBBEL-EFFEKT – FINAL VERSION ======== 
+<!-- rubbelfunktion -->
 
 <script>
 document.querySelectorAll(".scratch-container").forEach(container => {
