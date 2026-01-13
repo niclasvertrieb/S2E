@@ -499,6 +499,42 @@
       transform: translateY(-1px);
     }
 
+    /* FAQ GRID – wie auf der Kostenseite */
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  background: rgba(255,255,255,0.96);
+  border-radius: 18px;
+  padding: 16px 18px;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.03);
+}
+
+.faq-question {
+  font-size: 0.98rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.faq-answer {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
+
+/* Responsive wie auf der Kostenseite */
+@media (max-width: 820px) {
+  .faq-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .faq-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
     /* FOOTER */
     footer {
       margin-top: 34px;
@@ -684,8 +720,7 @@ a.btn {
           <div class="case-text">
             <h3>Fallbeispiel 1 – Platzhalter</h3>
             <p>
-              Platzhaltertext für Fallbeispiel 1. Maximal drei Sätze, die kurz erklären,
-              was in diesem Beispiel gezeigt wird und welchen Nutzen die Kanzlei davon hat.
+              Automatisches „Aufploppen“ von Abstimmdifferenzen im Bereich Anlag und der Banksalden. Ein versehentliches und umbemerktes „Verbuchen“ im Bereich von Bank und Anlag nach erster Abstimmung fällt damit sofort ins Auge. Ohne zusätzliche Zeit der Kontrolle.
             </p>
           </div> 
            <img src="img/niclas.jpg" alt="Niclas – S2E" class="case-avatar" />
@@ -696,8 +731,7 @@ a.btn {
           <div class="case-text">
             <h3>Fallbeispiel 2 – Platzhalter</h3>
             <p>
-              Platzhaltertext für Fallbeispiel 2. Wieder maximal drei Sätze, z.B. zur
-              Zeitersparnis oder besseren Struktur im Prozess.
+              FIBU: Monatliche automatische Abgrenzung / Buchung von Versicherungen, Leasingverträgen, Rückstellung für Jahresabschluss, Berufsgenossenschaft, 13. Gehälter und vieles weitere. Wiederkehrende Buchungen in Kanzlei-Rechnungswesen werden überflüssig. In Excel mit Überwachung und Abgleich.
             </p>
           </div>
           <div class="case-video">
@@ -721,8 +755,7 @@ a.btn {
           <div class="case-text">
             <h3>Fallbeispiel 3 – Platzhalter</h3>
             <p>
-              Platzhaltertext für Fallbeispiel 3. Kurz und knackig, maximal drei Sätze
-              zu einem typischen Einsatzszenario.
+             FIBU: Monatliche automatische Verbuchung (kreditorisch oder debitorisch) von Mieten, Leasing, alle wiederkehrende Leistungen (z. B. Stadtwerke). Vorteil: Überwachung, ob Zahlungen tatsächlich erfolgt sind. Auswertung für den Mandanten aus Excel heraus.  
             </p>
           </div>
         </div>
@@ -732,8 +765,7 @@ a.btn {
           <div class="case-text">
             <h3>Fallbeispiel 4 – Platzhalter</h3>
             <p>
-              Platzhaltertext für Fallbeispiel 4. Auch hier nur wenige Sätze zur
-              konkreten Verbesserung im Kanzleialltag.
+              FIBU: Monatliche automatische Kontrolle von den einschlägigen Konten (Lohnabstimmung, durchlaufende Posten, Geldtransit). Erwartete Salden werden den tatsächlichen automatisch gegenübergestellt. Dokumentation in Excel möglich. 
             </p>
           </div>
           <div class="case-video">
@@ -757,8 +789,7 @@ a.btn {
           <div class="case-text">
             <h3>Fallbeispiel 5 – Platzhalter</h3>
             <p>
-              Platzhaltertext für Fallbeispiel 5. Maximal drei Sätze, Fokus auf einen
-              weiteren typischen Anwendungsfall.
+             Jahresabschluss: Vollautomatische Abstimmung von Verrechnungskonten im Konzern in einer Excel-Tabelle. Die Daten werden und manuelle Eingabe von mehreren Mandanten in einer Tabelle eingelesen. Saldo muss 0,00 ergeben. Solange dies nicht der Fall ist: Roter Reiter in Excel. 
             </p>
           </div>
         </div>
@@ -801,37 +832,28 @@ a.btn {
         <!-- REZENSIONEN -->
     <section class="section" id="rezensionen">
       <div class="section-header">
-        <h2 class="section-title">Was Kanzleien über S2E sagen</h2>
+        <h2 class="section-title">Häufige Fragen zu S2E</h2>
         <p class="section-subtitle">
           Ein kleiner Auszug aus dem Feedback von Steuerkanzleien, die das S2E ProfiTool täglich einsetzen.
         </p>
       </div>
 
-      <div class="grid-3">
-        <div class="card review-card">
-          <p class="review-quote">
-            „Wir haben endlich eine zentrale Lösung statt fünf verschiedener Excel-Versionen.
-            Die Einarbeitung neuer Mitarbeiter ist deutlich leichter geworden.“
-          </p>
-          <p class="review-name">Partner einer Kanzlei mit 12 Mitarbeitenden</p>
-        </div>
+      <div class="faq-grid">
+  <div class="faq-item">
+    <div class="faq-question">Wie sicher sind meine Daten?</div>
+    <div class="faq-answer">Ihre Daten bleiben vollständig in Ihrer bestehenden Serverstruktur. Die Absicherung erfolgt über die Datensicherung des Verzeichnisses auf Ihrem Datenserver und unterliegt damit den gleichen Sicherheits- und Backup-Mechanismen wie Ihre übrigen Kanzleidaten. S2E fügt sich in Ihre vorhandene IT-Umgebung ein, ohne externe Datenspeicherung oder zusätzliche Risiken.</div>
+  </div>
 
-        <div class="card review-card">
-          <p class="review-quote">
-            „Vor allem der direkte Zugriff auf Kontenwerte aus Excel heraus ist Gold wert.
-            Die Qualität der Abschlüsse ist gestiegen, bei weniger Zeitaufwand.“
-          </p>
-          <p class="review-name">Leiter Jahresabschluss, mittelgroße Kanzlei</p>
-        </div>
+  <div class="faq-item">
+    <div class="faq-question">Gibt es eine Testphase?</div>
+    <div class="faq-answer">Ja. Sie können S2E einen Monat lang unverbindlich testen und sich in Ruhe ein eigenes Bild vom Funktionsumfang und dem Nutzen für Ihre Kanzlei machen.</div>
+  </div>
 
-        <div class="card review-card">
-          <p class="review-quote">
-            „S2E passt gut zu unserem Qualitätsanspruch. Die Prozesse sind
-            nachvollziehbar dokumentiert – auch für Vertretung und Prüfung.“
-          </p>
-          <p class="review-name">Qualitätsverantwortliche einer Steuerkanzlei</p>
-        </div>
-      </div>
+  <div class="faq-item">
+    <div class="faq-question">Gibt es Support bei Problemen?</div>
+    <div class="faq-answer">Ja. Ihnen steht ein Hilfecenter mit Antworten auf die häufigsten Fragen zur Verfügung. Sollten Sie dort keine passende Lösung finden, können Sie uns jederzeit per E-Mail kontaktieren. So stellen wir sicher, dass Sie auch bei individuellen Fragen oder speziellen Anforderungen Unterstützung erhalten.</div>
+  </div>
+</div>
     </section>
 
 
@@ -839,8 +861,8 @@ a.btn {
     <footer>
       <span>© <span id="year"></span> S2E Software. Alle Rechte vorbehalten.</span>
       <span>
-        <a href="#">Impressum</a> ·
-        <a href="#">Datenschutz</a>
+        <a href="index-Impressum.html">Impressum</a> ·
+        <a href="index-Datenschutz.html">Datenschutz</a>
       </span>
     </footer>
   </div>

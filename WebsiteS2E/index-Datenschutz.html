@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Datenschutzerklärung – S2E</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <style>
+    :root {
+      --bg-gradient-start: #e4f2ff;
+      --bg-gradient-end: #ffffff;
+      --primary: #5a8fdc;
+      --text: #102030;
+      --text-soft: #5a6b81;
+      --card-bg: #ffffff;
+      --border-soft: rgba(0,0,0,0.06);
+      --shadow-soft: 0 18px 40px rgba(15, 76, 110, 0.08);
+      --radius-xl: 24px;
+      --radius-pill: 999px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+    }
+
+    /* NAVBAR */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+    .nav-left { display: flex; align-items: center; gap: 10px; }
+    .logo-image {
+      width: 43px; height: 43px; border-radius: 10px; object-fit: contain;
+      display: block; box-shadow: 0 10px 24px rgba(20, 60, 120, 0.22);
+    }
+    .logo-text-main {
+      font-weight: 700; font-size: 1.35rem; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+    .logo-text-sub { font-size: 0.78rem; color: var(--text-soft); }
+
+    .nav-links {
+      display: flex; gap: 20px; font-size: 0.9rem; color: var(--text-soft);
+    }
+    .nav-links a:hover { color: var(--text); }
+
+    .btn {
+      border-radius: var(--radius-pill);
+      padding: 10px 18px;
+      font-size: 0.92rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+      line-height: 1;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #6ea8ff);
+      color: #fff;
+      box-shadow: 0 10px 26px rgba(30, 87, 153, 0.35);
+      border-color: rgba(255,255,255,0.4);
+      font-weight: 600;
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 34px rgba(30, 87, 153, 0.45);
+    }
+
+    /* HERO */
+    .hero-simple {
+      background: rgba(255,255,255,0.75);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      border-radius: var(--radius-xl);
+      padding: 34px 36px 36px;
+      margin-bottom: 26px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-simple::after{
+      content:"";
+      position:absolute;
+      right:-120px;
+      top:-140px;
+      width:180px;
+      height:180px;
+      border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.65), rgba(90,143,220,0.35));
+      opacity:0.8;
+      pointer-events:none;
+    }
+    .hero-title {
+      font-size: clamp(2.1rem, 3.1vw, 2.7rem);
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .hero-subtext {
+      font-size: 1.02rem;
+      color: var(--text-soft);
+      max-width: 40rem;
+    }
+
+    /* CARD CONTENT */
+    .card {
+      background: rgba(255,255,255,0.95);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.04);
+      padding: 22px 22px 18px;
+    }
+
+    .card h2 {
+      font-size: 1.1rem;
+      margin: 18px 0 8px;
+    }
+    .card h2:first-of-type { margin-top: 0; }
+
+    .card p, .card li {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    .card ul { margin: 10px 0 14px 18px; }
+    .divider { height: 1px; background: rgba(0,0,0,0.06); margin: 16px 0; }
+
+    .note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(90,143,220,0.10);
+      border: 1px solid rgba(90,143,220,0.18);
+      color: var(--text-soft);
+      font-size: 0.9rem;
+    }
+
+    /* FOOTER */
+    footer {
+      max-width: 1120px;
+      margin: 34px auto 0;
+      padding: 0 20px;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    footer a {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display:none; }
+      .hero-simple { padding: 26px 20px 24px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <header class="nav">
+      <div class="nav-left">
+        <img src="img/s2e-logo.png" alt="S2E Logo" class="logo-image">
+        <div>
+          <div class="logo-text-main">s2e</div>
+          <div class="logo-text-sub">Eure neue Lieblingsabkürzung</div>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="index.html">Startseite</a>
+        <a href="index-Praxisbeispiele.html">Praxisbeispiele</a>
+        <a href="index-ModuleFunktionen.html">Module &amp; Funktionen</a>
+        <a href="index-Kosten.html">Preise &amp; Nutzen</a>
+        <a href="index-VisionenWerte.html">Vision &amp; Werte</a>
+        <a href="index-Hilfecenter.html">Hilfecenter</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a href="index-bookins.html" class="btn btn-primary">Demo buchen</a>
+      </div>
+    </header>
+
+    <section class="hero-simple">
+      <h1 class="hero-title">Datenschutzerklärung</h1>
+      <p class="hero-subtext">
+        Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO.
+      </p>
+    </section>
+
+   <section class="card">
+
+  <h2>Datenschutzrichtlinien</h2>
+  <p><strong>S2E Software GmbH</strong></p>
+  <p>
+    Der Schutz Ihrer persönlichen Daten hat für S2E Software GmbH, oberste Priorität.
+    Dieses Prinzip gilt für unser Internet-Angebot ebenso wie für unsere konventionellen Dienstleistungen.
+    Daher möchten wir Sie an dieser Stelle informieren, wie wir die Datenschutzbestimmungen in unseren Internet-Angeboten umsetzen.
+    Weitere Informationen zu den Risiken der Internet-Nutzung und den Möglichkeiten sich zu schützen finden Sie im Internet unter der Adresse
+    <strong>www.datenschutz.de</strong>.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Datenschutz</h2>
+  <p><strong>Der Schutz Ihrer Privatsphäre ist S2E Software GmbH wichtig!</strong></p>
+  <p>
+    Nachfolgend informieren wir Sie darüber, wie wir mit Ihren Daten umgehen, die bei der Nutzung unserer Internetseiten erhoben werden.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Verantwortlicher</h2>
+  <p>Verantwortlicher im Sinne der EU-Datenschutz-Grundverordnung (DS-GVO) ist:</p>
+  <p>
+    <strong>S2E Software GmbH</strong><br>
+    Mittelweg 25<br>
+    26180 Rastede<br><br>
+    Telefon: +49 4402 9726150<br>
+    Email: <a href="mailto:mail@s2e-software.com">mail@s2e-software.com</a>
+  </p>
+
+  <p>
+    Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst.
+    Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
+  </p>
+  <p>
+    Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich.
+    Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden,
+    erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben.
+    Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann.
+    Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Cookies</h2>
+  <p>
+    Auf der Internetseite von <strong>https://www.s2e-software.com/</strong> werden sog. Cookies eingesetzt.
+    Bei Cookies handelt es sich um kleine Textdateien, die für die Dauer Ihrer Browser – Sitzung im Zwischenspeicher Ihres Internetbrowsers
+    (sog. Session-Cookies) oder für eine festgelegte Dauer (sog. permanent – Cookies) auf Ihrer Festplatte gespeichert werden.
+    Cookies ermöglichen die Wiedererkennung des Browsers, so dass Ihnen bei künftigen Besuchen der Webseite schneller und gezielter Inhalte
+    zur Verfügung gestellt werden können. Wir verwenden daher technisch notwendige Cookies, um unserem berechtigten Interesse an der Bereitstellung
+    einer auf die Wünsche der User zugeschnittene Inhalte anbieten zu können. Marketing- oder Tracking-Cookies kommen nur zum Einsatz,
+    wenn Sie in die Verwendung ausdrücklich einwilligen.
+  </p>
+
+  <p>
+    Sie können die Installation der Cookies durch Verweigerung der Einwilligung und auch durch eine entsprechende Einstellung Ihrer Browser Software verhindern;
+    wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht sämtliche Funktionen dieser Website vollumfänglich nutzen können.
+    Durch die Nutzung dieser Website erklären Sie sich mit der Bearbeitung der über Sie erhobenen Daten durch Google in der zuvor beschriebenen Art und Weise
+    und zu dem zuvor benannten Zweck einverstanden.
+  </p>
+
+  <p>
+    Sie können der Erhebung und Speicherung Ihrer Daten jederzeit mit Wirkung für die Zukunft widersprechen.
+    Hierzu können Sie die Erfassung der durch das Cookie erzeugten und auf Ihre Nutzung der Website bezogenen Daten (inkl. Ihrer IP-Adresse) an Google
+    sowie die Verarbeitung dieser Daten durch Google verhindern, indem Sie das unter dem folgenden Link verfügbare Browser-Plug-In herunterladen und installieren:
+  </p>
+  <p>
+    <a href="https://tools.google.com/dlpage/gaoptout?hl=de" target="_blank" rel="noopener noreferrer">
+      https://tools.google.com/dlpage/gaoptout?hl=de
+    </a>
+  </p>
+
+  <p>
+    Als Content Management System (CMS) setzen wir das System MODX ein. MODX setzt Session-Cookies, welche die Nutzung unseres Angebots für Sie angenehmer gestalten sollen.
+    Es ermöglicht uns nachzuvollziehen, dass Sie einzelne Seiten unserer Internetseite bereits besucht haben. Die Cookies werden nach Verlassen der Seite automatisch gelöscht.
+    Die durch Cookies verarbeiteten Daten sind für die genannten Zwecke zur Wahrung unserer berechtigten Interessen sowie der Dritter nach Art. 6 Abs. 1 S. 1 lit. f DSGVO erforderlich.
+  </p>
+
+  <p>
+    Für den Einsatz von Tracking und Marketing Cookies ist ihre ausdrückliche Einwilligung erforderlich.
+    Hierzu haben Sie zu Beginn des Nutzungsvorgangs die Möglichkeit, über den Cookie-Banner Ihre Einwilligung zu verweigern oder zu erteilen und sich über die Datenschutzregeln unseres Unternehmens zu informieren.
+  </p>
+
+  <p>
+    Erteilen Sie uns die Einwilligung, ist Rechtsgrundlage der Verarbeitung personenbezogener Daten Art. 6 Abs. 1 lit. a DSGVO.
+    Eine erteilte Einwilligung können Sie jederzeit und ohne Angabe von Gründen widerrufen. Senden Sie hierfür z.B. eine E-Mail an:
+    <a href="mailto:mail@s2e-software.com">mail@s2e-software.com</a>.
+    Im Impressum (LINK) finden Sie weitere Kontaktdaten, an die Sie den Widerruf richten können.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Google Maps</h2>
+  <p>
+    In unserem Internetauftritt setzen wir Google Maps zur Darstellung unseres Standorts sowie zur Erstellung einer Anfahrtsbeschreibung ein.
+    Es handelt sich hierbei um einen Dienst der Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland, nachfolgend nur „Google“ genannt.
+  </p>
+  <p>
+    Für den Einsatz von Google Maps ist ihre ausdrückliche Einwilligung erforderlich. Hierzu haben Sie zu Beginn des Nutzungsvorgangs die Möglichkeit,
+    über den Cookie-Banner Ihre Einwilligung zu verweigern oder zu erteilen und sich über die Datenschutzregeln unseres Unternehmens zu informieren.
+  </p>
+  <p>
+    Erteilen Sie uns die Einwilligung, ist Rechtsgrundlage der Verarbeitung personenbezogener Daten Art. 6 Abs. 1 lit. a DSGVO.
+    Eine erteilte Einwilligung können Sie jederzeit und ohne Angabe von Gründen widerrufen. Senden Sie hierfür z.B. eine E-Mail an:
+    <a href="mailto:mail@s2e-software.com">mail@s2e-software.com</a>. Im Impressum finden Sie weitere Kontaktdaten, an die Sie den Widerruf richten können.
+  </p>
+  <p>
+    Sofern Sie über den Cookie Banner bei Aufruf der Website Ihre Einwilligung zu der Anwendung Google-Maps erteilen, speichert Google über Ihren Internet-Browser ein Cookie auf Ihrem Endgerät.
+    Um unseren Standort anzuzeigen und eine Anfahrtsbeschreibung zu erstellen, werden Ihre Nutzereinstellungen und -daten verarbeitet.
+    Hierbei können wir nicht ausschließen, dass Google Server in den USA einsetzt. Durch die so hergestellte Verbindung zu Google kann Google ermitteln,
+    von welcher Website Ihre Anfrage gesendet worden ist und an welche IP-Adresse die Anfahrtsbeschreibung zu übermitteln ist.
+  </p>
+  <p>
+    Sofern Sie mit der Verarbeitung nicht einverstanden sind, haben Sie zudem die Möglichkeit, die Installation der Cookies durch die entsprechenden Einstellungen in Ihrem Internet-Browser zu verhindern.
+    Einzelheiten hierzu finden Sie vorstehend unter dem Punkt „Cookies“.
+  </p>
+  <p>
+    Zudem erfolgt die Nutzung von Google Maps sowie der über Google Maps erlangten Informationen nach den
+    Durch die Zertifizierung nach dem EU-US-Datenschutzschild („EU-US Privacy Shield“)
+    <a href="https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active" target="_blank" rel="noopener noreferrer">
+      https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active
+    </a>
+    garantiert Google, dass die Datenschutzvorgaben der EU auch bei der Verarbeitung von Daten in den USA eingehalten werden.
+  </p>
+  <p>
+    Google-Nutzungsbedingungen:
+    <a href="https://policies.google.com/terms?gl=DE&hl=de" target="_blank" rel="noopener noreferrer">
+      https://policies.google.com/terms?gl=DE&hl=de
+    </a><br>
+    Geschäftsbedingungen für Google Maps:
+    <a href="https://www.google.com/intl/de_de/help/terms_maps.html" target="_blank" rel="noopener noreferrer">
+      https://www.google.com/intl/de_de/help/terms_maps.html
+    </a><br>
+    Weitere Informationen:
+    <a href="https://adssettings.google.com/authenticated" target="_blank" rel="noopener noreferrer">
+      https://adssettings.google.com/authenticated
+    </a>,
+    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
+      https://policies.google.com/privacy
+    </a>
+  </p>
+  <p>
+    Mit Urteil vom 16.07.2020 hat der Europäische Gerichtshof (EuGH) das Datenschutzabkommen Privacy Shield zwischen den USA und der EU für ungültig erklärt.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>XING</h2>
+  <p>
+    Unsere Webseite nutzt Funktionen des Netzwerks XING. Anbieter ist die XING AG, Dammtorstraße 29-32, 20354 Hamburg, Deutschland.
+  </p>
+  <p>
+    Für die Nutzung von Xing ist ihre ausdrückliche Einwilligung erforderlich. Hierzu haben Sie zu Beginn des Nutzungsvorgangs die Möglichkeit,
+    über den Cookie-Banner Ihre Einwilligung zu verweigern oder zu erteilen und sich über die Datenschutzregeln unseres Unternehmens zu informieren.
+  </p>
+  <p>
+    Erteilen Sie uns die Einwilligung, ist Rechtsgrundlage der Verarbeitung personenbezogener Daten Art. 6 Abs. 1 lit. a DSGVO.
+  </p>
+  <p>
+    Eine erteilte Einwilligung können Sie jederzeit und ohne Angabe von Gründen widerrufen. Senden Sie hierfür z.B. eine E-Mail an:
+    <a href="mailto:mail@s2e-software.com">mail@s2e-software.com</a>. Im Impressum finden Sie weitere Kontaktdaten, an die Sie den Widerruf richten können.
+  </p>
+  <p>
+    Bei jedem Abruf einer unserer Seiten, die Funktionen von XING enthält, wird eine Verbindung zu Servern von XING hergestellt.
+    Eine Speicherung von personenbezogenen Daten erfolgt dabei nach unserer Kenntnis nicht. Insbesondere werden keine IP-Adressen gespeichert oder das Nutzungsverhalten ausgewertet.
+  </p>
+  <p>
+    Weitere Informationen zum Datenschutz und dem XING Share-Button finden Sie in der Datenschutzerklärung von XING unter:
+    <a href="https://www.xing.com/app/share?op=data_protection" target="_blank" rel="noopener noreferrer">
+      https://www.xing.com/app/share?op=data_protection
+    </a>
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>LinkedIn</h2>
+  <p>
+    Unsere Website nutzt Funktionen der LinkedIn Corporation. LinkedIn ist ein Internetbasiertes soziales Netzwerk, das eine Konnektierung der Nutzer mit bestehenden Geschäftskontakten
+    sowie das Knüpfen von neuen Businesskontakten ermöglicht. Über 400 Millionen registrierte Personen nutzen LinkedIn in mehr als 200 Ländern.
+    Damit ist LinkedIn derzeit die größte Plattform für Businesskontakte und eine der meistbesuchten Internetseiten der Welt.
+  </p>
+  <p>
+    Betreibergesellschaft von LinkedIn ist die LinkedIn Corporation, 2029 Stierlin Court Mountain View, CA 94043, USA.
+    Für Datenschutzangelegenheiten außerhalb der USA ist LinkedIn Ireland, Privacy Policy Issues, Wilton Plaza, Wilton Place, Dublin 2, Ireland, zuständig.
+  </p>
+  <p>
+    Für die Nutzung von LinkedIn ist ihre ausdrückliche Einwilligung erforderlich. Hierzu haben Sie zu Beginn des Nutzungsvorgangs die Möglichkeit,
+    über den Cookie-Banner Ihre Einwilligung zu verweigern oder zu erteilen und sich über die Datenschutzregeln unseres Unternehmens zu informieren.
+  </p>
+  <p>
+    Erteilen Sie uns die Einwilligung, ist Rechtsgrundlage der Verarbeitung personenbezogener Daten Art. 6 Abs. 1 lit. a DSGVO.
+  </p>
+  <p>
+    Eine erteilte Einwilligung können Sie jederzeit und ohne Angabe von Gründen widerrufen. Senden Sie hierfür z.B. eine E-Mail an:
+    <a href="mailto:mail@s2e-software.com">mail@s2e-software.com</a>. Im Impressum finden Sie weitere Kontaktdaten, an die Sie den Widerruf richten können.
+  </p>
+  <p>
+    Bei jedem einzelnen Abruf unserer Internetseite, die mit einer LinkedIn-Komponente (LinkedIn-Plug-In) ausgestattet ist, veranlasst diese Komponente,
+    dass der von der betroffenen Person verwendete Browser eine entsprechende Darstellung der Komponente von LinkedIn herunterlädt.
+    Weitere Informationen zu den LinkedIn-Plug-Ins können unter
+    <a href="https://developer.linkedin.com/plugins" target="_blank" rel="noopener noreferrer">
+      https://developer.linkedin.com/plugins
+    </a>
+    abgerufen werden. Im Rahmen dieses technischen Verfahrens erhält LinkedIn Kenntnis darüber, welche konkrete Unterseite unserer Internetseite durch die betroffene Person besucht wird.
+  </p>
+  <p>
+    Sofern die betroffene Person gleichzeitig bei LinkedIn eingeloggt ist, erkennt LinkedIn mit jedem Aufruf unserer Internetseite durch die betroffene Person und während der gesamten Dauer
+    des jeweiligen Aufenthaltes auf unserer Internetseite, welche konkrete Unterseite unserer Internetseite die betroffene Person besucht.
+    Diese Informationen werden durch die LinkedIn-Komponente gesammelt und durch LinkedIn dem jeweiligen LinkedIn-Account der betroffenen Person zugeordnet.
+  </p>
+  <p>
+    Betätigt die betroffene Person einen auf unserer Internetseite integrierten LinkedIn-Button, ordnet LinkedIn diese Information dem persönlichen LinkedIn-Benutzerkonto der betroffenen Person zu
+    und speichert diese personenbezogenen Daten.
+  </p>
+  <p>
+    LinkedIn erhält über die LinkedIn-Komponente immer dann eine Information darüber, dass die betroffene Person unsere Internetseite besucht hat,
+    wenn die betroffene Person zum Zeitpunkt des Aufrufes unserer Internetseite gleichzeitig bei LinkedIn eingeloggt ist; dies findet unabhängig davon statt,
+    ob die betroffene Person die LinkedIn-Komponente anklickt oder nicht.
+    Ist eine derartige Übermittlung dieser Informationen an LinkedIn von der betroffenen Person nicht gewollt, kann diese die Übermittlung dadurch verhindern,
+    dass sie sich vor einem Aufruf unserer Internetseite aus ihrem LinkedIn-Account ausloggt.
+  </p>
+  <p>
+    LinkedIn bietet unter
+    <a href="https://www.linkedin.com/psettings/guest-controls" target="_blank" rel="noopener noreferrer">
+      https://www.linkedin.com/psettings/guest-controls
+    </a>
+    die Möglichkeit, E-Mail-Nachrichten, SMS-Nachrichten und zielgerichtete Anzeigen abzubestellen sowie Anzeigen-Einstellungen zu verwalten.
+  </p>
+  <p>
+    LinkedIn nutzt ferner Partner wie Quantcast, Google Analytics, BlueKai, DoubleClick, Nielsen, Comscore, Eloqua und Lotame, die Cookies setzen können.
+    Solche Cookies können unter
+    <a href="https://www.linkedin.com/legal/cookie-policy" target="_blank" rel="noopener noreferrer">
+      https://www.linkedin.com/legal/cookie-policy
+    </a>
+    abgelehnt werden.
+    Die geltenden Datenschutzbestimmungen von LinkedIn sind unter
+    <a href="https://www.linkedin.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">
+      https://www.linkedin.com/legal/privacy-policy
+    </a>
+    abrufbar. Die Cookie-Richtlinie von LinkedIn ist unter
+    <a href="https://www.linkedin.com/legal/cookie-policy" target="_blank" rel="noopener noreferrer">
+      https://www.linkedin.com/legal/cookie-policy
+    </a>
+    abrufbar.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>YouTube</h2>
+  <p>
+    Unsere Webseite nutzt Plugins der von Google betriebenen Seite YouTube.
+    Betreiber der Seiten ist die YouTube, LLC, 901 Cherry Ave., San Bruno, CA 94066, USA.
+  </p>
+  <p>
+    Für den Einsatz von YouTube ist ihre ausdrückliche Einwilligung erforderlich. Hierzu haben Sie zu Beginn des Nutzungsvorgangs die Möglichkeit,
+    über den Cookie-Banner Ihre Einwilligung zu verweigern oder zu erteilen und sich über die Datenschutzregeln unseres Unternehmens zu informieren.
+  </p>
+  <p>
+    Erteilen Sie uns die Einwilligung, ist Rechtsgrundlage der Verarbeitung personenbezogener Daten Art. 6 Abs. 1 lit. a DSGVO.
+    Eine erteilte Einwilligung können Sie jederzeit und ohne Angabe von Gründen widerrufen. Senden Sie hierfür z.B. eine E-Mail an:
+    <a href="mailto:mail@s2e-software.com">mail@s2e-software.com</a>. Im Impressum finden Sie weitere Kontaktdaten, an die Sie den Widerruf richten können.
+  </p>
+  <p>
+    Wenn Sie eine unserer mit einem YouTube- Plugin ausgestatteten Seiten besuchen, wird eine Verbindung zu den Servern von YouTube hergestellt.
+    Dabei wird dem Youtube-Server mitgeteilt, welche unserer Seiten Sie besucht haben.
+  </p>
+  <p>
+    Wenn Sie in Ihrem YouTube-Account eingeloggt sind ermöglichen Sie YouTube, Ihr Surfverhalten direkt Ihrem persönlichen Profil zuzuordnen.
+    Dies können Sie verhindern, indem Sie sich aus Ihrem YouTube- Account ausloggen.
+  </p>
+  <p>
+    Weitere Informationen zum Umgang von Nutzerdaten finden Sie in der Datenschutzerklärung von YouTube unter:
+    <a href="https://www.google.de/intl/de/policies/privacy" target="_blank" rel="noopener noreferrer">
+      https://www.google.de/intl/de/policies/privacy
+    </a>
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Twitter</h2>
+  <p>
+    Auf unseren Seiten sind Funktionen des Dienstes Twitter eingebunden. Diese Funktionen werden angeboten durch die Twitter Inc.,
+    1355 Market Street, Suite 900, San Francisco, CA 94103, USA.
+  </p>
+  <p>
+    Für den Einsatz von Twitter ist ihre ausdrückliche Einwilligung erforderlich. Hierzu haben Sie zu Beginn des Nutzungsvorgangs die Möglichkeit,
+    über den Cookie-Banner Ihre Einwilligung zu verweigern oder zu erteilen und sich über die Datenschutzregeln unseres Unternehmens zu informieren.
+  </p>
+  <p>
+    Erteilen Sie uns die Einwilligung, ist Rechtsgrundlage der Verarbeitung personenbezogener Daten Art. 6 Abs. 1 lit. a DSGVO.
+    Eine erteilte Einwilligung können Sie jederzeit und ohne Angabe von Gründen widerrufen. Senden Sie hierfür z.B. eine E-Mail an:
+    <a href="mailto:mail@s2e-software.com">mail@s2e-software.com</a>. Im Impressum finden Sie weitere Kontaktdaten, an die Sie den Widerruf richten können.
+  </p>
+  <p>
+    Durch das Benutzen von Twitter und der Funktion "Re-Tweet" werden die von Ihnen besuchten Webseiten mit Ihrem Twitter-Account verknüpft und anderen Nutzern bekannt gegeben.
+    Dabei werden auch Daten an Twitter übertragen. Wir weisen darauf hin, dass wir als Anbieter der Seiten keine Kenntnis vom Inhalt der übermittelten Daten sowie deren Nutzung durch Twitter erhalten.
+  </p>
+  <p>
+    Weitere Informationen hierzu finden Sie in der Datenschutzerklärung von Twitter unter
+    <a href="https://twitter.com/privacy" target="_blank" rel="noopener noreferrer">
+      https://twitter.com/privacy
+    </a>.
+    Ihre Datenschutzeinstellungen bei Twitter können Sie in den Konto-Einstellungen unter:
+    <a href="https://twitter.com/account/settings" target="_blank" rel="noopener noreferrer">
+      https://twitter.com/account/settings
+    </a>
+    ändern.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Server-Log-Files</h2>
+  <p>
+    Bei jedem Aufruf der Internetseite <strong>https://www.s2e-software.com</strong> erhebt und speichert der Seitenprovider automatisch Informationen
+    in so genannten Server-Log Files, die Ihr Browser automatisch an uns übermittelt.
+  </p>
+  <p>Folgende Daten können hierbei erhoben werden:</p>
+  <ul>
+    <li>Informationen über den Browsertyp und die verwendete Version</li>
+    <li>Das Betriebssystem des Nutzers</li>
+    <li>Den Internet-Service Provider des Nutzers</li>
+    <li>Die IP-Adresse des Nutzers</li>
+    <li>Datum und Uhrzeit des Zugriffs</li>
+    <li>Webseiten, von denen das System des Nutzers auf unsere Internetseite gelangt (Referrer)</li>
+  </ul>
+  <p>
+    Diese Daten sind nicht bestimmten Personen zuzuordnen. Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.
+    Wir behalten uns vor, diese Daten nachträglich zu prüfen, wenn uns konkrete Anhaltspunkte für eine rechtswidrige Nutzung bekannt werden.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Downloadbereich</h2>
+  <p>
+    Wir bieten unseren Besuchern einen Downloadbereich an, in dem Checklisten kostenfrei herunterladen werden können.
+  </p>
+  <p>
+    Die Nutzung des Downloadbereichs ist auf diverse Cookies angewiesen. Um den Downloadbereich nutzen zu können, müssen Sie daher in das Setzen der entsprechenden Cookies einwilligen.
+    Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO.
+  </p>
+  <p>
+    Für das Laden des Downloadbereichs ist der Einsatz von Cookies erforderlich. Ihre Einwilligung zum Setzen der Cookies auf Ihrem Endgerät können Sie im Cookie-Banner erteilen.
+    Das Cookie dient allein dem Laden des Downloadbereichs in Ihrem Browser. Ihre Einwilligung zur Verarbeitung können Sie jederzeit durch Öffnen der Cookie-Einstellungen widerrufen.
+    Durch den Widerruf ist ein Aufrufen des Downloadbereichs nicht mehr möglich.
+  </p>
+  <p>
+    Ein weiteres Cookie wird für die Freischaltung der jeweiligen Downloads gesetzt. Das Cookie dient der Verifizierung des Downloadlinks,
+    der Ihnen im Rahmen eines jeden Downloads per E-Mail zugesandt wird. Für diese Verarbeitung benötigen wir ebenfalls Ihre Einwilligung.
+    Ihre Einwilligung zur Verarbeitung können Sie jederzeit durch Öffnen der Cookie-Einstellungen widerrufen.
+    Durch den Widerruf ist ein Download von Dateien nicht mehr möglich.
+  </p>
+  <p>
+    Der Einsatz der Cookies erfolgt nur zu den genannten Zwecken. Eine Übermittlung an Dritte und insbesondere in Drittländer findet nicht statt.
+  </p>
+
+  <p>
+    Sobald Sie dem Einsatz der Cookies zugestimmt haben, müssen Sie sich zunächst durch unser Double-Opt-In-Verfahren verifizieren, um die Downloadfunktion nutzen zu können.
+    Hierbei müssen Sie Ihre Kontaktdaten in die vorgesehenen Felder eintragen. Mit der Eingabe und Absendung Ihrer Kontaktdaten fordern Sie eine Aktivierung Ihres Zugangs zum Downloadbereich an.
+    Sie erhalten eine E-Mail, die über den darin enthaltenen Link bestätigt werden muss. Durch die Bestätigung wird Ihr Zugang zum Downloadbereich freigeschaltet.
+  </p>
+
+  <p>Wir verarbeiten Ihre personenbezogenen Daten in diesem Rahmen zu mehreren Zwecken:</p>
+  <ul>
+    <li><strong>Verifikation und Einrichtung eines Zugangs:</strong> Durch das beschriebene Verifikationsverfahren prüfen wir, ob Sie eine menschliche Person sind. Damit verhindern wir etwa den Zugriff von Bots.</li>
+    <li><strong>Kontrolle des Missbrauchs des Downloadbereichs:</strong> Ein Downloadzähler, der die Anzahl der getätigten Downloads des verifizierten Nutzers zählt, dient dieser Kontrolle. Insbesondere ist eine Rückverfolgung der Nutzer durch Speicherung der Kontaktdaten notwendig, um vor allem unbefugt kommerzielle oder missbräuchliche Downloads nachprüfen zu können.</li>
+    <li><strong>Statistische Zwecke:</strong> Mit dem Downloadzähler werten wir aus, wie oft Sie ein Dokument geladen haben und wie oft ein Dokument insgesamt durch alle Benutzer geladen wurde. Die Daten nutzen wir, um unser Angebot weiter zu optimieren.</li>
+  </ul>
+
+  <p>
+    Mit der Absendung Ihrer Kontaktdaten willigen Sie ein, dass wir Ihre Daten zu den genannten Zwecken verarbeiten dürfen.
+    Die Daten werden nicht zu anderen Zwecken verarbeitet. Eine Übermittlung an Dritte (externe Dienstleister) erfolgt nur, soweit sie erforderlich ist,
+    um einen Missbrauch festzustellen und rückverfolgen zu können.
+  </p>
+
+  <p>
+    Die Verarbeitung Ihrer personenbezogenen Daten erfolgt auf Grundlage Ihrer Einwilligung gem. Art. 6 Abs. 1 lit. a DSGVO.
+    Ihre Einwilligung können Sie jederzeit per E-Mail an <a href="mailto:mail@s2e-software.com">mail@s2e-software.com</a> widerrufen.
+    Hierdurch verlieren Sie Ihren Zugang zum Downloadbereich. Ihre Kontaktdaten werden sodann grundsätzlich gelöscht,
+    spätestens nach Ablauf der Verjährungsfristen zur Geltendmachung etwaiger Ansprüche wegen Missbrauchs des Downloadbereichs.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Kontaktformular</h2>
+  <p>
+    Auf unserer Internetseite ist ein Kontakformular vorhanden, das Sie für die elektronische Kontaktaufnahme nutzen können.
+    Wenn Sie uns eine Email senden öffnet sich das Fenster Ihres Mailprogramms (z.B. outlook) und unsere Mailadresse ist bereits im Adressfenster eingegeben.
+    Senden Sie uns eine E-Mail, erhalten wir von Ihnen mindestens Ihre Mailadresse und die weiteren, von Ihnen freiwillig gemachten Angaben z.B. zu Ihrer Person (Name, Vorname, Adresse).
+  </p>
+  <p>
+    Die Bereitstellung des Kontaktbuttons im Kontaktformular dient unseren berechtigten Interessen, da wir so mehr Möglichkeiten haben, mit Ihnen in Kontakt zu treten.
+    Alternativ ist eine Kontaktaufnahme telefonisch oder postalisch möglich.
+    Nehmen Sie über einen der o.g. Kanäle Kontakt mit uns auf, so werden die von Ihnen übermittelten personenbezogenen Daten automatisch gespeichert.
+    Die Speicherung dient allein zu Zwecken der Bearbeitung oder der Kontaktaufnahme. Eine Weitergabe der Daten an Dritte findet nicht statt.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Newsletterdaten</h2>
+  <p>
+    Wenn Sie den auf der Webseite angebotenen Newsletter beziehen möchten, benötigen wir von Ihnen eine E-Mail-Adresse sowie Informationen,
+    welche uns die Überprüfung gestatten, dass Sie der Inhaber der angegebenen E-Mail-Adresse sind und mit dem Empfang des Newsletters einverstanden sind.
+    Weitere Daten werden nicht erhoben. Diese Daten verwenden wir ausschließlich für den Versand der angeforderten Informationen und geben sie nicht an Dritte weiter.
+  </p>
+  <p>
+    Die erteilte Einwilligung zur Speicherung der Daten, der E-Mail-Adresse sowie deren Nutzung zum Versand des Newsletters können Sie jederzeit widerrufen,
+    etwa über den "Austragen"-Link im Newsletter.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>SSL-Verschlüsselung</h2>
+  <p>
+    Diese Seite nutzt aus Gründen der Sicherheit und zum Schutz der Übertragung vertraulicher Inhalte, wie zum Beispiel der Anfragen, die Sie an uns als Seitenbetreiber senden,
+    eine SSL-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von "http://" auf "https://" wechselt
+    und an dem Schloss-Symbol in Ihrer Browserzeile. Wenn die SSL Verschlüsselung aktiviert ist, können die Daten, die Sie an uns übermitteln, nicht von Dritten mitgelesen werden.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Recht auf Auskunft, Löschung, Sperrung</h2>
+  <p>
+    Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten, personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung
+    sowie ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit
+    unter der im Impressum angegebenen Adresse an uns wenden.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Widerspruch Werbe-Mails</h2>
+  <p>
+    Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten, zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit widersprochen.
+    Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Bewerbung</h2>
+  <p>
+    Sofern Sie sich über die E-Mail-Adresse <a href="mailto:mail@s2e-software.com">mail@s2e-software.com</a> bei uns bewerben:
+    Ihre Bewerbung und die damit erfassten Daten werden in unserem Hause vertraulich behandelt.
+    Zugriff hat ausschließlich die Geschäftsleitung und diejenigen Mitarbeiter, die für die Einarbeitung zuständig wären oder unsere jeweiligen Ressortleiter.
+    Ihre Daten werden während des Bewerbungsprozesses intern nicht elektronisch verarbeitet.
+    Ausschließlich Ihre per E-Mail eingegangene Bewerbung wird für sechs Monate gespeichert. Danach erfolgt eine automatische Löschung.
+    Sofern uns Unterlagen in Papierform überlassen worden sind, werden diese im Original per Post zurückgesandt. Kopien werden nicht aufbewahrt.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Betroffenenrechte</h2>
+  <p>Sie haben das Recht:</p>
+  <ul>
+    <li>
+      gemäß Art. 15 DSGVO Auskunft über Ihre von uns verarbeiteten personenbezogenen Daten zu verlangen. Insbesondere können Sie Auskunft über die Verarbeitungszwecke,
+      die Kategorie der personenbezogenen Daten, die Kategorien von Empfängern, gegenüber denen Ihre Daten offengelegt wurden oder werden, die geplante Speicherdauer,
+      das Bestehen eines Rechts auf Berichtigung, Löschung, Einschränkung der Verarbeitung oder Widerspruch, das Bestehen eines Beschwerderechts, die Herkunft ihrer Daten,
+      sofern diese nicht bei uns erhoben wurden, sowie über das Bestehen einer automatisierten Entscheidungsfindung einschließlich Profiling und ggf. aussagekräftigen Informationen
+      zu deren Einzelheiten verlangen;
+    </li>
+    <li>
+      gemäß Art. 16 DSGVO unverzüglich die Berichtigung unrichtiger oder Vervollständigung Ihrer bei uns gespeicherten personenbezogenen Daten zu verlangen;
+    </li>
+    <li>
+      gemäß Art. 17 DSGVO die Löschung Ihrer bei uns gespeicherten personenbezogenen Daten zu verlangen, soweit nicht die Verarbeitung zur Ausübung des Rechts auf freie Meinungsäußerung
+      und Information, zur Erfüllung einer rechtlichen Verpflichtung, aus Gründen des öffentlichen Interesses oder zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen erforderlich ist;
+    </li>
+    <li>
+      gemäß Art. 18 DSGVO die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen, soweit die Richtigkeit der Daten von Ihnen bestritten wird,
+      die Verarbeitung unrechtmäßig ist, Sie aber deren Löschung ablehnen und wir die Daten nicht mehr benötigen, Sie jedoch diese zur Geltendmachung, Ausübung oder Verteidigung
+      von Rechtsansprüchen benötigen oder Sie gemäß Art. 21 DSGVO Widerspruch gegen die Verarbeitung eingelegt haben;
+    </li>
+    <li>
+      gemäß Art. 20 DSGVO Ihre personenbezogenen Daten, die Sie uns bereitgestellt haben, in einem strukturierten, gängigen und maschinenlesebaren Format zu erhalten
+      oder die Übermittlung an einen anderen Verantwortlichen zu verlangen;
+    </li>
+    <li>
+      gemäß Art. 7 Abs. 3 DSGVO Ihre einmal erteilte Einwilligung jederzeit gegenüber uns zu widerrufen. Dies hat zur Folge, dass wir die Datenverarbeitung,
+      die auf dieser Einwilligung beruhte, für die Zukunft nicht mehr fortführen dürfen und
+    </li>
+    <li>
+      gemäß Art. 77 DSGVO sich bei einer Aufsichtsbehörde zu beschweren. In der Regel können Sie sich hierfür an die Aufsichtsbehörde Ihres üblichen Aufenthaltsortes
+      oder Arbeitsplatzes oder unseres Unternehmenssitzes wenden.
+    </li>
+  </ul>
+
+  <div class="divider"></div>
+
+  <h2>Stand</h2>
+  <p>
+    Diese Datenschutzerklärung ist aktuell gültig und hat den Stand <strong>August 2022</strong>.
+  </p>
+
+</section>
+
+
+    <footer>
+      <span>© <span id="year"></span> S2E Software. Alle Rechte vorbehalten.</span>
+      <span>
+        <a href="index-Impressum.html">Impressum</a> ·
+        <a href="index-Datenschutz.html">Datenschutz</a>
+      </span>
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

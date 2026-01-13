@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Impressum – S2E</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg-gradient-start: #e4f2ff;
+      --bg-gradient-end: #ffffff;
+      --primary: #5a8fdc;
+      --primary-soft: #c5daf7;
+      --accent: #f29a9a;
+      --accent-soft: #ffe0e0;
+      --text: #102030;
+      --text-soft: #5a6b81;
+      --card-bg: #ffffff;
+      --border-soft: rgba(0,0,0,0.06);
+      --shadow-soft: 0 18px 40px rgba(15, 76, 110, 0.08);
+      --radius-xl: 24px;
+      --radius-lg: 18px;
+      --radius-pill: 999px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+    }
+
+    /* NAVBAR (wie Startseite) */
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-image {
+      width: 43px;
+      height: 43px;
+      border-radius: 10px;
+      object-fit: contain;
+      display: block;
+      box-shadow: 0 10px 24px rgba(20, 60, 120, 0.22);
+    }
+
+    .logo-text-main {
+      font-weight: 700;
+      font-size: 1.35rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .logo-text-sub {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    .nav-cta { display: flex; gap: 10px; align-items: center; }
+
+    .btn {
+      border-radius: var(--radius-pill);
+      padding: 10px 18px;
+      font-size: 0.92rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      transition: all 0.18s ease;
+      white-space: nowrap;
+      line-height: 1;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #6ea8ff);
+      color: #fff;
+      box-shadow: 0 10px 26px rgba(30, 87, 153, 0.35);
+      border-color: rgba(255,255,255,0.4);
+      font-weight: 600;
+    }
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 34px rgba(30, 87, 153, 0.45);
+    }
+
+    .btn-ghost {
+      border-color: rgba(90, 111, 143, 0.2);
+      background: rgba(255, 255, 255, 0.6);
+      color: var(--text-soft);
+    }
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text);
+    }
+
+    /* HERO */
+    .hero-simple {
+      background: rgba(255,255,255,0.75);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      border-radius: var(--radius-xl);
+      padding: 34px 36px 36px;
+      margin-bottom: 26px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-simple::after{
+      content:"";
+      position:absolute;
+      right:-120px;
+      top:-140px;
+      width:180px;
+      height:180px;
+      border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.65), rgba(242,154,154,0.45));
+      opacity:0.8;
+      pointer-events:none;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 3.3vw, 2.8rem);
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .hero-subtext {
+      font-size: 1.02rem;
+      color: var(--text-soft);
+      max-width: 34rem;
+    }
+
+    /* CONTENT CARD */
+    .card {
+      background: rgba(255,255,255,0.95);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.04);
+      padding: 22px 22px 18px;
+    }
+
+    .card h2 {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .card p, .card li {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .card .muted {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      opacity: 0.9;
+      margin-top: 6px;
+    }
+
+    .list {
+      margin: 10px 0 14px 18px;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(0,0,0,0.06);
+      margin: 16px 0;
+    }
+
+    .website-credit a {
+  display: inline-block;
+  margin-top: 4px;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.website-credit a:hover {
+  color: #3f78c5;
+}
+
+    /* FOOTER wie Startseite */
+    footer {
+      max-width: 1120px;
+      margin: 34px auto 0;
+      padding: 0 20px;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    footer a {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display:none; }
+      .hero-simple { padding: 26px 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <header class="nav">
+      <div class="nav-left">
+        <img src="img/s2e-logo.png" alt="S2E Logo" class="logo-image">
+        <div>
+          <div class="logo-text-main">s2e</div>
+          <div class="logo-text-sub">Eure neue Lieblingsabkürzung</div>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="index.html">Startseite</a>
+        <a href="index-Praxisbeispiele.html">Praxisbeispiele</a>
+        <a href="index-ModuleFunktionen.html">Module &amp; Funktionen</a>
+        <a href="index-Kosten.html">Preise &amp; Nutzen</a>
+        <a href="index-VisionenWerte.html">Vision &amp; Werte</a>
+        <a href="index-Hilfecenter.html">Hilfecenter</a>
+      </nav>
+
+      <div class="nav-cta">
+        <a href="index-bookins.html" class="btn btn-primary">Demo buchen</a>
+      </div>
+    </header>
+
+    <section class="hero-simple">
+      <h1 class="hero-title">Impressum</h1>
+      <p class="hero-subtext">
+        Angaben gemäß § 5 TMG (sowie weitere Informationspflichten).
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Anbieter</h2>
+      <p>
+        <strong>S2E Software GmbH</strong><br>
+        Mittelweg 25 <br>
+        26180 Rastede<br>
+        Deutschland
+      </p>
+
+      <div class="divider"></div>
+      <h2>Kontakt</h2>
+      <p>
+        Telefon: +49 4402 9726150<br>
+        Email: mail@s2e-software.com
+      </p>
+
+      <div class="divider"></div>
+
+      <h2>Registereintrag</h2>
+      <p>
+        Eingetragen im Handelsregister Oldenburg HRB 216896<br>
+      </p>
+     
+      
+
+      <div class="divider"></div>
+
+      <h2>Umsatzsteuer</h2>
+      <p>
+        Umsatzsteueridentifikationsnummer: DE 343614935
+      </p>
+      
+
+      <div class="divider"></div>
+
+      <h2>Verantwortlich für den Inhalt</h2>
+      <p>
+        S2E Software GmbH<br>
+        Mittelweg 25 <br>
+        26180 Rastede<br>
+        Deutschland
+      </p>
+
+      <div class="divider"></div>
+
+      <h2>Haftung für Inhalte</h2>
+      <p>
+        Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
+        Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen
+        oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+      </p>
+
+      <div class="divider"></div>
+
+      <h2>Haftung für Links</h2>
+      <p>
+        Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte
+        auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+      </p>
+
+      <div class="divider"></div>
+
+      <h2>Urheberrecht</h2>
+      <p>
+        Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Beiträge Dritter sind als solche gekennzeichnet.
+        Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+      </p>
+
+     <div class="divider"></div>
+
+<h2>Website</h2>
+<p class="muted website-credit">
+  Website von <strong>Niclas Seevers</strong><br>
+  <a href="https://www.se-beko.de/" target="_blank" rel="noopener noreferrer">
+    Seevers Bewusste Kommunikation
+  </a>
+</p>
+      
+
+    <footer>
+      <span>© <span id="year"></span> S2E Software. Alle Rechte vorbehalten.</span>
+      <span>
+        <a href="index-Impressum.html">Impressum</a> ·
+        <a href="index-Datenschutz.html">Datenschutz</a>
+      </span>
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

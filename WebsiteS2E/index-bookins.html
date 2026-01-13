@@ -379,14 +379,17 @@
 
     /* FOOTER wie auf den anderen Seiten */
     footer {
-      margin-top: 40px;
-      font-size: 0.78rem;
-      color: var(--text-soft);
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
+  max-width: 1120px;
+  margin: 40px auto 0;
+  padding: 0 20px;
+  font-size: 0.78rem;
+  color: var(--text-soft);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 
     footer a {
       text-decoration: underline;
@@ -616,9 +619,12 @@
 
     <!-- FOOTER -->
     <footer>
-      <span>© <span id="year"></span> S2E · Schweizer Taschenmesser für Steuerberater</span>
-      <span>Impressum · Datenschutz</span>
-    </footer>
+  <span>© <span id="year"></span> S2E · Schweizer Taschenmesser für Steuerberater</span>
+  <span>
+    <a href="index-Impressum.html">Impressum</a> ·
+    <a href="index-Datenschutz.html">Datenschutz</a>
+  </span>
+</footer>
   </div>
 
   <script>

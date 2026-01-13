@@ -210,7 +210,7 @@
 
   background: var(--hero-cta-gradient);
 
-  color: white;
+  color: #102030;
   box-shadow: 0 24px 60px rgba(15, 76, 110, 0.25);
   overflow: visible;
 }
@@ -233,10 +233,17 @@
       z-index: 2;
     }
 
+    /* Hero-Inhalt sauber ausrichten */
+.hero-inner{
+  max-width: 640px;
+  padding-right: 10px;
+}
+
+
     .hero-breadcrumb {
       font-size: 0.8rem;
       margin-bottom: 10px;
-      color: rgba(255,255,255,0.9);
+      color: rgba(16,32,48,0.8);
     }
 
     .hero-breadcrumb a {
@@ -247,18 +254,20 @@
     .hero-help h1 {
       font-size: clamp(2.2rem, 3vw, 2.7rem);
       margin-bottom: 8px;
+      line-height: 1.05;
+  letter-spacing: -0.01em;
     }
 
     .hero-help .hero-subtext {
       font-size: 1.02rem;
       max-width: 36rem;
-      color: rgba(255,255,255,0.94);
+      color: rgba(16,32,48,0.8);
     }
 
     .search-box {
       position: absolute;
       left: 50%;
-      top: 78%; /* sitzt mittig/unten im Headerbereich */
+      top: 70%;
       transform: translateX(-50%);
       width: 80%;
       max-width: 520px;
@@ -550,14 +559,12 @@ a.btn {
     <!-- HERO HELP + SUCHE -->
     <section class="hero-help" id="top">
       <div class="hero-inner">
-        <div class="hero-breadcrumb">
-          <a href="index-S2EStartseite.html">Startseite</a> · <span>Hilfecenter</span>
-        </div>
-        <h1>Hilfe &amp; Support</h1>
+       
+        <h1>Antworten.<br>Ohne Umwege.</h1>
         <p class="hero-subtext">
-          Platzhaltertext: Hier kann später stehen, dass alle Anleitungen, Fragen und Hilfen
-          zu S2E an einem Ort zu finden sind. Die Suche darunter ist aktuell noch ohne Funktion
-          und dient als Platzhalter.
+          Egal ob Sie bereits Kunde sind oder sich für S2E interessieren:
+  Geben Sie Ihre Frage einfach in das Suchfeld ein und erhalten Sie
+  sofort die passende Antwort.
         </p>
       </div>
 
@@ -715,8 +722,8 @@ a.btn {
     <footer>
       <span>© <span id="year"></span> S2E Software. Alle Rechte vorbehalten.</span>
       <span>
-        <a href="#">Impressum</a> ·
-        <a href="#">Datenschutz</a>
+        <a href="index-Impressum.html">Impressum</a> ·
+        <a href="index-Datenschutz.html">Datenschutz</a>
       </span>
     </footer>
   </div>
