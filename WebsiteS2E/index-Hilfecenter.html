@@ -137,6 +137,7 @@
       align-items: center;
       justify-content: space-between;
       margin-bottom: 32px;
+       position: relative;
     }
 
     .nav-left {
@@ -488,6 +489,153 @@ a.btn {
   box-shadow: 0 10px 24px rgba(20, 60, 120, 0.22);
 }
 
+/* =========================
+   MOBILE NAV: Burger links | Logo Mitte | Demo rechts
+   ========================= */
+
+.nav-burger-pill{
+  display: none; /* Desktop aus */
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.10);
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 24px rgba(20, 60, 120, 0.12);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.burger-label{
+  font-weight: 650;
+  color: rgba(16, 32, 48, 0.85);
+  font-size: 0.92rem;
+}
+
+.burger-lines{
+  width: 18px;
+  height: 12px;
+  position: relative;
+  display: inline-block;
+}
+
+.burger-lines::before,
+.burger-lines::after{
+  content:"";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(16, 32, 48, 0.80);
+}
+
+.burger-lines::before{ top: 2px; }
+.burger-lines::after{ bottom: 2px; }
+
+.mobile-nav-menu{
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 12px);
+  background: rgba(255,255,255,0.96);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 18px;
+  padding: 10px;
+  box-shadow: 0 22px 60px rgba(15, 76, 110, 0.18);
+  z-index: 999;
+}
+
+.mobile-nav-menu a{
+  display: block;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: rgba(245, 248, 255, 0.75);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.mobile-nav-menu a:last-child{
+  margin-bottom: 0;
+}
+
+.mobile-nav-menu.is-open{
+  display: block;
+}
+
+/* MOBILE Layout */
+@media (max-width: 640px){
+
+  /* Desktop-Links & Text weg */
+  .nav-links { display: none !important; }
+  .logo-text { display: none !important; }
+
+  /* Burger an */
+  .nav-burger-pill { display: inline-flex !important; }
+
+  /* Header = 3-Spalten Grid */
+  header.nav{
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-bottom: 18px !important;
+    position: relative !important;
+  }
+
+  /* Links */
+  .nav-burger-cta{
+    grid-column: 1 !important;
+    justify-self: start !important;
+    height: 44px !important;
+    z-index: 2;
+  }
+
+  /* Mitte */
+  .nav-left{
+    grid-column: 2 !important;
+    justify-self: center !important;
+    height: 52px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Rechts */
+  .nav-cta{
+    grid-column: 3 !important;
+    justify-self: end !important;
+    height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* Burger & Demo gleich groß */
+  .nav-cta .btn,
+  .nav-burger-cta{
+    height: 44px !important;
+    padding: 0 14px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+  }
+
+  /* Logo auf Mobile größer */
+  .logo-image{
+    width: 52px !important;
+    height: 52px !important;
+    display: block !important;
+  }
+}
+
+
     /* RESPONSIVE */
     @media (max-width: 880px) {
       .grid-3,
@@ -506,7 +654,7 @@ a.btn {
 
       .hero-help {
         padding: 26px 20px;
-        border-radius: 0 0 32px 32px;
+        border-radius: 32px 32px 32px 32px;
         margin-inline: -4px;
         height: 280px;
       }
@@ -532,29 +680,52 @@ a.btn {
   <div class="page">
     <!-- NAVBAR -->
     <header class="nav">
-      <div class="nav-left">
-        <img src="img/s2e-logo.png" alt="S2E Logo" class="logo-image">
-        <div>
-          <div class="logo-text-main">s2e</div>
-          <div class="logo-text-sub">Eure neue Lieblingsabkürzung</div>
-        </div>
-      </div>
 
-      <nav class="nav-links">
-  <a href="index.html">Startseite</a>
-  <a href="index-Praxisbeispiele.html">Praxisbeispiele</a>
-  <a href="index-ModuleFunktionen.html">Module & Funktionen</a>
-  <a href="index-Kosten.html">Preise & Nutzen</a>
-  <a href="index-VisionenWerte.html">Vision & Werte</a>
-  <a href="index-Hilfecenter.html">Hilfecenter</a>
-</nav>
+  <!-- 1) LINKS: Burger (nur Mobile sichtbar) -->
+  <button class="btn btn-primary nav-burger-pill nav-burger-cta" id="mobileNavToggle"
+          aria-label="Menü öffnen"
+          aria-controls="mobileNavMenu"
+          aria-expanded="false"
+          type="button">
+    <span class="burger-lines" aria-hidden="true"></span>
+    <span class="burger-label">Menü</span>
+  </button>
 
-     <div class="nav-cta">
-    <a href="index-bookins.html" class="btn btn-primary">
-      Demo buchen
-    </a>
+  <!-- 2) MITTE: Logo -->
+  <div class="nav-left">
+    <img src="img/s2e-logo.png" alt="S2E Logo" class="logo-image">
+    <div class="logo-text">
+      <div class="logo-text-main">s2e</div>
+      <div class="logo-text-sub">Eure neue Lieblingsabkürzung</div>
+    </div>
   </div>
-</header> 
+
+  <!-- 3) DESKTOP: Links -->
+  <nav class="nav-links">
+    <a href="index.html">Startseite</a>
+    <a href="index-Praxisbeispiele.html">Praxisbeispiele</a>
+    <a href="index-ModuleFunktionen.html">Module & Funktionen</a>
+    <a href="index-Kosten.html">Preise & Nutzen</a>
+    <a href="index-VisionenWerte.html">Vision & Werte</a>
+    <a href="index-Hilfecenter.html">Hilfecenter</a>
+  </nav>
+
+  <!-- 4) RECHTS: Demo -->
+  <div class="nav-cta">
+    <a href="index-bookins.html" class="btn btn-primary">Demo buchen</a>
+  </div>
+
+  <!-- 5) MOBILE Dropdown -->
+  <div class="mobile-nav-menu" id="mobileNavMenu" aria-hidden="true">
+    <a href="index.html">Startseite</a>
+    <a href="index-Praxisbeispiele.html">Praxisbeispiele</a>
+    <a href="index-ModuleFunktionen.html">Module & Funktionen</a>
+    <a href="index-Kosten.html">Preise & Nutzen</a>
+    <a href="index-VisionenWerte.html">Vision & Werte</a>
+    <a href="index-Hilfecenter.html">Hilfecenter</a>
+  </div>
+
+</header>
 
     <!-- HERO HELP + SUCHE -->
     <section class="hero-help" id="top">
@@ -876,5 +1047,40 @@ Tipp: Schreib einfach in normalem Text, Zeilenumbrüche bleiben erhalten.`
 });
 });
 </script>
+
+<script>
+  (function () {
+    const toggle = document.getElementById("mobileNavToggle");
+    const menu = document.getElementById("mobileNavMenu");
+
+    if (!toggle || !menu) return;
+
+    function openMenu() {
+      menu.classList.add("is-open");
+      menu.setAttribute("aria-hidden", "false");
+      toggle.setAttribute("aria-expanded", "true");
+    }
+
+    function closeMenu() {
+      menu.classList.remove("is-open");
+      menu.setAttribute("aria-hidden", "true");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+
+    toggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = menu.classList.contains("is-open");
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    document.addEventListener("click", () => closeMenu());
+    menu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    });
+  })();
+</script>
+
 </body>
 </html>
