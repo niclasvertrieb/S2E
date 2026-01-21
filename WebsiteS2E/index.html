@@ -277,14 +277,14 @@
 
     /* HERO VIDEO */
     .hero-video-large {
-  width: 180%;
-  margin-left: -20%;
-  height: 520px; /* Höhe anpassen – ich empfehle 520–600px */
+ width: 110%;
+  aspect-ratio: 1 / 1;
   border-radius: 24px;
   overflow: hidden;
   box-shadow: var(--shadow-soft);
   border: 1px solid var(--border-soft);
   background: #fff;
+  margin-left: -10%;
 }
 
 .hero-video-large video {
@@ -760,6 +760,7 @@ section:nth-of-type(4) {
   border-radius: inherit;
   cursor: pointer;
   display: block;
+  touch-action: none;
 }
 
 /* OPTIONAL: Logo auf der Oberfläche (DOM-Overlay, NICHT Canvas) */
@@ -1110,6 +1111,14 @@ input[type="number"] {
     width: 52px !important;
     height: 52px !important;
     display: block !important;
+  }
+
+  .hero-video-large {
+    width: 90%;
+    margin-left: 0;        /* ❗ Überstand entfernen */
+    max-width: 100%;
+    aspect-ratio: 1 / 1; 
+    margin: 0 auto; 
   }
 }
 
@@ -1829,51 +1838,64 @@ ctx.fillText("S2E Sofortgewinn", canvas.width / 2, canvas.height / 2);
   window.addEventListener("resize", resizeCanvas);
 
   // Rubbeln aktivieren
+   // Rubbeln aktivieren (Pointer Events)
   let isDrawing = false;
+
+  function getPoint(e) {
+    const rect = canvas.getBoundingClientRect();
+    const clientX = e.clientX ?? (e.touches && e.touches[0]?.clientX);
+    const clientY = e.clientY ?? (e.touches && e.touches[0]?.clientY);
+    return { x: clientX - rect.left, y: clientY - rect.top };
+  }
 
   function scratch(e) {
     if (!isDrawing) return;
 
-    const rect = canvas.getBoundingClientRect();
-    const x = (e.clientX || e.touches?.[0]?.clientX) - rect.left;
-    const y = (e.clientY || e.touches?.[0]?.clientY) - rect.top;
+    // verhindert Seiten-Scrollen auf Mobile
+    e.preventDefault();
+
+    const p = getPoint(e);
 
     ctx.globalCompositeOperation = "destination-out";
     ctx.beginPath();
-    ctx.arc(x, y, 26, 0, Math.PI * 2);
+    ctx.arc(p.x, p.y, 26, 0, Math.PI * 2);
     ctx.fill();
   }
 
-  canvas.addEventListener("mousedown", () => isDrawing = true);
-  canvas.addEventListener("mouseup", () => isDrawing = false);
-  canvas.addEventListener("mousemove", scratch);
+  canvas.addEventListener("pointerdown", (e) => {
+    isDrawing = true;
+    canvas.setPointerCapture(e.pointerId);
+    scratch(e);
+  });
 
-  canvas.addEventListener("touchstart", () => isDrawing = true);
-  canvas.addEventListener("touchend", () => isDrawing = false);
-  canvas.addEventListener("touchmove", scratch);
-});
+  canvas.addEventListener("pointermove", scratch, { passive: false });
+
+  canvas.addEventListener("pointerup", () => { isDrawing = false; });
+  canvas.addEventListener("pointercancel", () => { isDrawing = false; });
+  });
 </script>
+
+
 <script>
+/* ============================================
+   Rezensionen – Slider
+   ============================================ */
+
 const track = document.querySelector(".review-track");
 const slides = document.querySelectorAll(".review-item");
 const dots = document.querySelectorAll(".dot");
 
 let current = 0;
 
-/* ============================================
-   Funktion zum Anzeigen eines Slides
-   ============================================ */
 function showSlide(i) {
   current = i;
 
-  // Smooth Translate Bewegung (Left → Right)
+  // Smooth Translate Bewegung
   track.style.transform = `translateX(-${i * 100}%)`;
 
-  // Opacity der aktiven Slides
   slides.forEach(s => s.classList.remove("active"));
   slides[i].classList.add("active");
 
-  // Punkte aktualisieren
   dots.forEach(d => d.classList.remove("active"));
   dots[i].classList.add("active");
 }
@@ -1881,19 +1903,19 @@ function showSlide(i) {
 /* Klickbare Punkte */
 dots.forEach(dot => {
   dot.addEventListener("click", () => {
-    showSlide(dot.dataset.slide);
+    showSlide(Number(dot.dataset.slide));
   });
 });
 
-/* Auto-Slide alle 4 Sekunden */
+/* Auto-Slide */
 setInterval(() => {
-  let next = (current + 1) % slides.length;
-  showSlide(next);
+  showSlide((current + 1) % slides.length);
 }, 4000);
 
 /* Start */
 showSlide(0);
 </script>
+
 
 <script>
   (function () {
