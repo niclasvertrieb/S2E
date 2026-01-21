@@ -1954,5 +1954,449 @@ showSlide(0);
     });
   })();
 </script>
+
+<!-- =========================
+     COOKIE BANNER (S2E-Style)
+     - Sofort: "Alles ablehnen" (nur essentielle bleiben)
+     - Optional: Einstellungen
+     - Speichert Auswahl in localStorage
+========================= -->
+<style>
+  :root{
+    --cb-bg: rgba(255,255,255,0.92);
+    --cb-border: rgba(0,0,0,0.08);
+    --cb-shadow: 0 18px 40px rgba(15, 76, 110, 0.12);
+    --cb-text: #102030;
+    --cb-text-soft: #5a6b81;
+    --cb-primary: #5a8fdc;
+    --cb-accent: #f29a9a;
+    --cb-radius: 22px;
+    --cb-pill: 999px;
+  }
+
+  .cookie-backdrop{
+    position: fixed;
+    inset: 0;
+    background: rgba(16, 32, 48, 0.28);
+    backdrop-filter: blur(6px);
+    display: none;
+    z-index: 9998;
+  }
+
+  .cookie-banner{
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    max-width: 980px;
+    margin: 0 auto;
+    background: var(--cb-bg);
+    border: 1px solid var(--cb-border);
+    box-shadow: var(--cb-shadow);
+    border-radius: var(--cb-radius);
+    z-index: 9999;
+    display: none;
+    overflow: hidden;
+  }
+
+  .cookie-inner{
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+    gap: 16px;
+    padding: 16px 16px 14px;
+    align-items: center;
+  }
+
+  .cookie-title{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+    font-weight: 800;
+    color: var(--cb-text);
+  }
+
+  .cookie-emoji{
+    font-size: 30px;
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.10));
+  }
+
+  .cookie-text{
+    color: var(--cb-text-soft);
+    font-size: 0.95rem;
+    line-height: 1.35;
+  }
+
+  .cookie-actions{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .cb-btn{
+    border-radius: var(--cb-pill);
+    padding: 10px 14px;
+    font-size: 0.92rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+  }
+
+  .cb-btn-primary{
+    background: linear-gradient(135deg, var(--cb-primary), #6ea8ff);
+    color: #fff;
+    box-shadow: 0 10px 26px rgba(30, 87, 153, 0.25);
+    border-color: rgba(255,255,255,0.4);
+    font-weight: 700;
+  }
+  .cb-btn-primary:hover{ transform: translateY(-1px); }
+
+  .cb-btn-ghost{
+    border-color: rgba(90, 111, 143, 0.22);
+    background: rgba(255,255,255,0.65);
+    color: var(--cb-text);
+    font-weight: 650;
+  }
+  .cb-btn-ghost:hover{ background: rgba(255,255,255,0.9); }
+
+  .cb-btn-danger{
+    border-color: rgba(242, 154, 154, 0.45);
+    background: rgba(255, 224, 224, 0.65);
+    color: #102030;
+    font-weight: 750;
+  }
+  .cb-btn-danger:hover{ background: rgba(255,224,224,0.9); }
+
+  .cookie-links{
+    margin-top: 8px;
+    font-size: 0.82rem;
+    color: var(--cb-text-soft);
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .cookie-links a{
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  /* Einstellungen Panel */
+  .cookie-settings{
+    border-top: 1px solid var(--cb-border);
+    padding: 12px 16px 14px;
+    display: none;
+    background: rgba(255,255,255,0.80);
+  }
+
+  .cookie-settings h4{
+    margin: 0 0 10px;
+    font-size: 0.95rem;
+    color: var(--cb-text);
+  }
+
+  .cookie-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .cookie-row{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: rgba(245, 248, 255, 0.72);
+  }
+
+  .cookie-row strong{
+    display: block;
+    color: var(--cb-text);
+    font-size: 0.92rem;
+    margin-bottom: 2px;
+  }
+
+  .cookie-row p{
+    margin: 0;
+    color: var(--cb-text-soft);
+    font-size: 0.85rem;
+    line-height: 1.25;
+  }
+
+  .cb-toggle{
+    min-width: 52px;
+    height: 30px;
+    border-radius: 999px;
+    border: 1px solid rgba(0,0,0,0.10);
+    background: rgba(255,255,255,0.75);
+    position: relative;
+    cursor: pointer;
+    flex: 0 0 auto;
+  }
+
+  .cb-toggle[data-on="true"]{
+    background: rgba(90, 143, 220, 0.18);
+    border-color: rgba(90, 143, 220, 0.35);
+  }
+
+  .cb-knob{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 4px;
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--cb-primary), var(--cb-accent));
+    box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+    transition: left 0.18s ease;
+  }
+
+  .cb-toggle[data-on="true"] .cb-knob{
+    left: 26px;
+  }
+
+  .cb-badge{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.9);
+    border: 1px solid rgba(0,0,0,0.06);
+    color: var(--cb-text-soft);
+    margin-left: 8px;
+    white-space: nowrap;
+  }
+
+  /* Mobile */
+  @media (max-width: 720px){
+    .cookie-inner{
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .cookie-actions{
+      justify-content: flex-start;
+    }
+  }
+</style>
+
+<div class="cookie-backdrop" id="cookieBackdrop" aria-hidden="true"></div>
+
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-modal="true" aria-label="Cookie-Einstellungen">
+  <div class="cookie-inner">
+    <div>
+      <div class="cookie-title">
+        <span class="cookie-emoji">🍪</span>
+        <span>Darf ich deine Kekse haben?</span>
+      </div>
+      <div class="cookie-text">
+        Wir nutzen essenzielle Cookies, damit die Seite zuverlässig läuft. Optional helfen uns Analyse-Cookies dabei,
+        S2E besser zu machen. Du kannst jederzeit später ändern.
+        <div class="cookie-links">
+          <a href="index-Datenschutz.html">Datenschutz</a>
+          <a href="index-Impressum.html">Impressum</a>
+          <a href="#" onclick="openCookieSettings(); return false;">Cookie-Einstellungen</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cookie-actions">
+      <!-- Sofort-Option: alles ablehnen (nur essential bleibt) -->
+      <button class="cb-btn cb-btn-danger" id="cbReject">Alles ablehnen</button>
+
+      <button class="cb-btn cb-btn-ghost" id="cbSettings">Einstellungen</button>
+
+      <button class="cb-btn cb-btn-primary" id="cbAcceptAll">Alles akzeptieren</button>
+    </div>
+  </div>
+
+  <div class="cookie-settings" id="cookieSettings">
+    <h4>Cookie-Auswahl</h4>
+
+    <div class="cookie-grid">
+      <div class="cookie-row">
+        <div>
+          <strong>Essenzielle Cookies <span class="cb-badge">immer aktiv</span></strong>
+          <p>Notwendig für Grundfunktionen (z. B. Navigation, Session, Sicherheit).</p>
+        </div>
+        <div class="cb-toggle" data-on="true" aria-disabled="true" title="Essenzielle Cookies sind immer aktiv">
+          <span class="cb-knob"></span>
+        </div>
+      </div>
+
+      <div class="cookie-row">
+        <div>
+          <strong>Analyse / Statistik</strong>
+          <p>Hilft uns zu verstehen, welche Inhalte genutzt werden (nur mit Zustimmung).</p>
+        </div>
+        <button class="cb-toggle" id="toggleAnalytics" data-on="false" type="button" aria-label="Analyse Cookies umschalten">
+          <span class="cb-knob"></span>
+        </button>
+      </div>
+
+      <div class="cookie-row">
+        <div>
+          <strong>Externe Inhalte</strong>
+          <p>Zum Beispiel eingebettete Videos oder Karten (nur mit Zustimmung).</p>
+        </div>
+        <button class="cb-toggle" id="toggleExternal" data-on="false" type="button" aria-label="Externe Inhalte umschalten">
+          <span class="cb-knob"></span>
+        </button>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:12px; flex-wrap:wrap;">
+      <button class="cb-btn cb-btn-ghost" id="cbSave">Auswahl speichern</button>
+      <button class="cb-btn cb-btn-primary" id="cbAcceptSelected">Auswahl akzeptieren</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ===== Cookie Consent State =====
+  const CONSENT_KEY = "s2e_cookie_consent_v1";
+
+  const banner = document.getElementById("cookieBanner");
+  const backdrop = document.getElementById("cookieBackdrop");
+  const settings = document.getElementById("cookieSettings");
+
+  const btnReject = document.getElementById("cbReject");
+  const btnSettings = document.getElementById("cbSettings");
+  const btnAcceptAll = document.getElementById("cbAcceptAll");
+  const btnSave = document.getElementById("cbSave");
+  const btnAcceptSelected = document.getElementById("cbAcceptSelected");
+
+  const toggleAnalytics = document.getElementById("toggleAnalytics");
+  const toggleExternal = document.getElementById("toggleExternal");
+
+  function getConsent() {
+    try { return JSON.parse(localStorage.getItem(CONSENT_KEY)); }
+    catch { return null; }
+  }
+
+  function setConsent(consent) {
+    localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
+  }
+
+  function openBanner() {
+    banner.style.display = "block";
+    backdrop.style.display = "block";
+    backdrop.setAttribute("aria-hidden", "false");
+  }
+
+  function closeBanner() {
+    banner.style.display = "none";
+    backdrop.style.display = "none";
+    backdrop.setAttribute("aria-hidden", "true");
+    settings.style.display = "none";
+  }
+
+  function setToggle(el, on) {
+    el.setAttribute("data-on", on ? "true" : "false");
+  }
+
+  function readToggles() {
+    return {
+      essential: true, // immer aktiv
+      analytics: toggleAnalytics.getAttribute("data-on") === "true",
+      external: toggleExternal.getAttribute("data-on") === "true",
+      ts: new Date().toISOString()
+    };
+  }
+
+  function applyConsent(consent) {
+    // Hier würdest du je nach Zustimmung Scripts nachladen.
+    // Beispiel:
+    // if(consent.analytics){ loadAnalytics(); }
+    // if(consent.external){ enableEmbeds(); }
+
+    document.documentElement.dataset.consentAnalytics = consent.analytics ? "1" : "0";
+    document.documentElement.dataset.consentExternal = consent.external ? "1" : "0";
+  }
+
+  function ensureBanner() {
+    const existing = getConsent();
+    if (!existing) {
+      // default: nur essential
+      setToggle(toggleAnalytics, false);
+      setToggle(toggleExternal, false);
+      openBanner();
+    } else {
+      // toggles spiegeln (falls du Einstellungen wieder öffnen willst)
+      setToggle(toggleAnalytics, !!existing.analytics);
+      setToggle(toggleExternal, !!existing.external);
+      applyConsent(existing);
+    }
+  }
+
+  // Toggle click
+  function toggleClick(el) {
+    const on = el.getAttribute("data-on") === "true";
+    setToggle(el, !on);
+  }
+  toggleAnalytics.addEventListener("click", () => toggleClick(toggleAnalytics));
+  toggleExternal.addEventListener("click", () => toggleClick(toggleExternal));
+
+  // Buttons
+  btnSettings.addEventListener("click", () => {
+    settings.style.display = settings.style.display === "block" ? "none" : "block";
+  });
+
+  btnReject.addEventListener("click", () => {
+    const consent = { essential: true, analytics: false, external: false, ts: new Date().toISOString() };
+    setConsent(consent);
+    applyConsent(consent);
+    closeBanner();
+  });
+
+  btnAcceptAll.addEventListener("click", () => {
+    const consent = { essential: true, analytics: true, external: true, ts: new Date().toISOString() };
+    setConsent(consent);
+    applyConsent(consent);
+    closeBanner();
+  });
+
+  btnSave.addEventListener("click", () => {
+    const consent = readToggles();
+    setConsent(consent);
+    applyConsent(consent);
+    closeBanner();
+  });
+
+  btnAcceptSelected.addEventListener("click", () => {
+    const consent = readToggles();
+    setConsent(consent);
+    applyConsent(consent);
+    closeBanner();
+  });
+
+  // Klick auf Backdrop schließt nicht automatisch (damit niemand aus Versehen zustimmt)
+  // backdrop.addEventListener("click", closeBanner);
+
+  ensureBanner();
+
+  // Optional: global function to reopen settings (z.B. Footer-Link)
+  window.openCookieSettings = function(){
+    const existing = getConsent();
+    if (existing) {
+      setToggle(toggleAnalytics, !!existing.analytics);
+      setToggle(toggleExternal, !!existing.external);
+    }
+    openBanner();
+    settings.style.display = "block";
+  };
+</script>
+
 </body>
 </html>
