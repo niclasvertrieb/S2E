@@ -2,8 +2,9 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>S2E – Vision & Werte</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>S2E – Vision & Werte | Strukturierte Kanzleiprozesse (Ehlers & Schäfer)</title>
+  <meta name="description" content="S2E steht für strukturierte Kanzleiprozesse, DATEV-Datenübernahme und flexible Excel-Workflows. Vision & Werte – mit Praxisbezug zu Kanzleien wie Ehlers & Schäfer.">
+
   <style>
     :root {
       --bg-gradient-start: #e4f2ff;
@@ -63,17 +64,15 @@
       gap: 10px;
     }
 
-    .logo-text-main {
+   .logo-text-main {
       font-weight: 700;
-      font-size: 1.35rem;
+      font-size: 0.80rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-    }
-
-    .logo-text-sub {
-      font-size: 0.78rem;
       color: var(--text-soft);
     }
+
+
 
     .nav-links {
       display: flex;
@@ -162,6 +161,7 @@
       margin-bottom: 10px;
       position: relative;
       z-index: 1;
+      text-shadow: 0 6px 18px rgba(16, 32, 48, 0.30);
     }
 
     .hero-subtext {
@@ -171,12 +171,10 @@
       margin-bottom: 18px;
       position: relative;
       z-index: 1;
-      .hero-subtext {
   max-width: 30rem;
   line-height: 1.55;
+   text-shadow: 0 3px 10px rgba(16, 32, 48, 0.25);
 }
-
-    }
 
     .hero-tags {
       display: flex;
@@ -197,10 +195,11 @@
     /* HERO mit Bild */
 .hero-image {
   background-image: url("img/hero-visionwerte.jpg");
-  background-size: cover;
+  background-size: 110%;
   background-repeat: no-repeat;
-  background-position: right 0% bottom 100%;
+  background-position: center 12%;
   color: #fff;
+  padding-top: 72px;
 }
 
 /* dunkles Overlay für Lesbarkeit */
@@ -208,11 +207,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(16, 32, 48, 0.55),
-    rgba(16, 32, 48, 0.35)
-  );
+
   z-index: 0;
 }
 
@@ -339,11 +334,16 @@
     }
 
     /* TEAM */
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-    }
+    .team-grid{
+  display: grid;
+  gap: 18px;
+
+  /* Cards mit fester „schöner“ Breite */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 340px));
+
+  /* Ganze Reihe mittig ausrichten */
+  justify-content: center;
+}
 
     .team-card {
       background: rgba(255,255,255,0.96);
@@ -434,6 +434,31 @@
       color: var(--primary);
       margin-top: 2px;
     }
+
+    /* ehler scheafer verbindung*/
+    .card-principle {
+  padding: 28px 30px;               /* mehr Luft */
+}
+
+.principle-title {
+  font-size: 1.45rem;
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+
+.principle-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1.25rem;               /* 🔥 deutlich größer */
+  line-height: 2.05;
+}
+
+.principle-list li {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
 
 
       /* CTA / DEMO */
@@ -779,8 +804,7 @@ a.btn {
   <div class="nav-left">
     <img src="img/s2e-logo.png" alt="S2E Logo" class="logo-image">
     <div class="logo-text">
-      <div class="logo-text-main">s2e</div>
-      <div class="logo-text-sub">Eure neue Lieblingsabkürzung</div>
+      <div class="logo-text-main">Das<br /> Profi-Tool</div>      
     </div>
   </div>
 
@@ -826,7 +850,7 @@ a.btn {
       <div class="section-header">
         <h2 class="section-title">Warum es S2E gibt</h2>
         <p class="section-subtitle">
-          Lernen Sie die Menschen hinter S2E kennen und verstehen Sie, welche Idee hinter dieser Software steht.
+          In vielen Kanzleien fehlt es nicht an Fachwissen, sondern an klaren, einheitlichen Arbeitswegen.
         </p>
       </div>
 
@@ -868,8 +892,7 @@ a.btn {
       <div class="section-header">
         <h2 class="section-title">Die Menschen hinter S2E</h2>
         <p class="section-subtitle">
-          Platzhaltertext: Hier können sich später die drei Personen vorstellen, die S2E ins
-          Leben gerufen haben – mit Foto, Rolle und kurzem Hintergrund.
+          Persönlichkeiten mit Blick fürs Ganze.
         </p>
       </div>
 
@@ -880,30 +903,19 @@ a.btn {
       <img src="img/sven.jpg" alt="Name 1" class="team-photo-img">
     </div>
     <div class="team-name">Sven Ehlers</div>
-    <div class="team-role">Platzhalter-Rolle</div>
+    <div class="team-role">Technische Leitung & Produktentwicklung</div>
     <p class="team-text">
       Der Programmentwickler und Ideengeber hinter allem. Gleichzeitig praktizierender Steuerberater mit eigener Kanzlei und dem Schwerpunkt der Beratung von Steuerberatern im Bereich Digitalisierung. Er treibt die Weiterentwicklung voran und behält auch die aktuellen Entwicklungen (Cloud und KI) im Blick. Er ist gut vernetzt im IT-Bereich und dem größten Softwareanbieter für Steuerberater. Sein Anspruch: Was digital vorhanden ist, muss digital bleiben – ohne Medienbruch.  
     </p>
   </div>
 
-  <div class="team-card">
-    <div class="team-photo-wrap">
-      <img src="img/scheafer.jpg" alt="Name 2" class="team-photo-img">
-    </div>
-    <div class="team-name">Andreas Schaefer</div>
-    <div class="team-role">Platzhalter-Rolle</div>
-    <p class="team-text">
-      Platzhaltertext für den Hintergrund dieser Person. Zum Beispiel technische
-      Verantwortung, Produktentwicklung oder koordinierende Aufgaben.
-    </p>
-  </div>
 
   <div class="team-card">
     <div class="team-photo-wrap">
       <img src="img/jens.jpg" alt="Name 3" class="team-photo-img">
     </div>
     <div class="team-name">Jens Peter Ehlers</div>
-    <div class="team-role">Platzhalter-Rolle</div>
+    <div class="team-role">Konzept, Perspektive & Sparring</div>
     <p class="team-text">
       Der Überzeuger und Vermittler. Sein Credo: Das wichtigste Kapital – die Mitarbeiter – müssen bei Einführung neuer Werkzeuge mitgenommen werden. Nur wenn diese hinter einem Tool stehen, kann es wirksam eingesetzt werden. Er verfügt über ein großes Netzwerk von Steuerberatern, DATEV-Fachleuten, herausragenden Coaches. Seine Erfahrung basiert auf der mehr als 15jährigen Leitung und Erweiterung einer mittelständischen Steuerberatungskanzlei und hat schon viele Projekte in seiner Kanzlei erfolgreich umgesetzt. Er versteht, was Mitarbeiter und Inhaber bewegt und wie man die Ziele vereinen kann.
     </p>
@@ -940,7 +952,48 @@ Die Gesellschafter-Geschäftsführer sind beide Praktiker. Geschwister, die mit 
 </div> 
     </section>
 
-    <!-- CTA / DEMO -->
+
+
+<!-- PRAXISBEZUG / SEO: Ehlers & Schäfer -->
+<section class="section" id="praxisbezug">
+  <div class="section-header">
+    <h2 class="section-title">Praxisbezug: Kanzleien wie Ehlers &amp; Schäfer</h2>
+    <p class="section-subtitle">
+      Unsere Vision wird dann wirklich wertvoll, wenn sie im Kanzleialltag funktioniert – strukturiert, nachvollziehbar und ohne Medienbruch.
+    </p>
+  </div>
+
+  <div class="story-grid">
+    <div class="story-text">
+      <h3>Warum dieser Bezug wichtig ist</h3>
+      <p>
+        In Kanzleien wie <span class="story-highlight">Ehlers &amp; Schäfer</span> zeigt sich besonders deutlich:
+        Was digital vorhanden ist, sollte auch digital weiterverarbeitet werden – sauber, effizient und überprüfbar.
+      </p>
+      <p>
+        Genau hier setzt S2E an: Mandantendaten lassen sich strukturiert übernehmen, Prozesse können kanzleiindividuell abgebildet
+        und Ergebnisse in Excel transparent kontrolliert werden.
+      </p>
+      <p class="pill-label" style="margin-top:12px;">Hinweis</p>
+      <p style="margin-bottom:0;">
+        Diese Erwähnung dient der Einordnung typischer Kanzlei-Anforderungen und ist keine werbliche Referenzdarstellung.
+      </p>
+    </div>
+
+   <div class="card card-cta card-principle">
+  <div>
+    <h4 class="principle-title">So sieht das Prinzip aus</h4>
+    <ul class="principle-list">
+      <li>📥 DATEV-Daten übernehmen</li>
+      <li>🏢 Mandantendaten strukturiert abbilden</li>
+      <li>🔁 Abgleich &amp; Kontrolle in Excel</li>
+      <li>✅ Einheitliche Ergebnisse im Team</li>
+    </ul>
+  </div>
+</div>
+</section>
+
+  <!-- CTA / DEMO -->
 <section class="section" id="demo">
   <div class="cta" style="
     background: linear-gradient(135deg, #c2d1f9 0%, #f5c5ba 100%);
@@ -953,8 +1006,8 @@ Die Gesellschafter-Geschäftsführer sind beide Praktiker. Geschwister, die mit 
     <div>
       <div class="cta-title" style="color:#102030;">Module und Funktionen live sehen</div>
       <p style="color:#334;">
-        Platzhaltertext für die Demo-Einladung. In einer kurzen Online-Demo
-        können später alle Module und Funktionen im Detail gezeigt werden.
+        In der Live-Demo zeigen wir Ihnen S2E Schritt für Schritt und beantworten alles, was Ihnen durch den Kopf geht. <br/>
+Ihre Rückmeldung hilft uns, S2E weiter an echten Kanzlei-Bedürfnissen auszurichten.
       </p>
     </div>
 
@@ -967,38 +1020,38 @@ Die Gesellschafter-Geschäftsführer sind beide Praktiker. Geschwister, die mit 
   </div>
 </section>
 
+
     <!-- FAQ UNTER DEMO -->
     <section class="section" id="faq">
       <div class="section-header">
         <h2 class="section-title">Häufige Fragen zu S2E</h2>
         <p class="section-subtitle">
-          Platzhaltertext für eine kurze Einführung in die FAQ. Die Fragen und Antworten
-          können später mit echten Inhalten gefüllt werden.
+          Wir lassen dich mit deinen Fragen nicht allein.<br>
+Solltest du hier oder im Hilfecenter keine passende Antwort finden, schreib uns gerne eine E-Mail.
         </p>
       </div>
 
       <div class="faq-grid">
         <div class="faq-item">
-          <div class="faq-question">Platzhalter-Frage 1 zu S2E &amp; Team?</div>
+          <div class="faq-question">Gibt es eine Mindestlaufzeit des Vertrages?</div>
           <div class="faq-answer">
-            Platzhalter-Antwort. Hier kann später eine typische Frage zum Hintergrund oder zur
-            Erreichbarkeit beantwortet werden.
+            Die Mindestlaufzeit beträgt 12 Monate. Sollte 6 Wochen vorher nicht gekündigt werden, verlängert sich die Laufzeit um weitere 12 Monate. Sollte Dir aber zwischendurch eine weitere Nutzung nicht mehr möglich erscheinen, dann sprich uns an. Wir finden dann sicherlich eine Lösung. 
           </div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-question">Platzhalter-Frage 2 zur Weiterentwicklung?</div>
+          <div class="faq-question">Kann ich mir individuelle Vorlagen anfertigen?</div>
           <div class="faq-answer">
-            Platzhalter-Antwort. Hier kann später stehen, wie häufig Updates kommen und
-            wie die Planung neuer Funktionen erfolgt.
+           Es besteht die Möglichkeit eigene Vorlagen auf Grundlage vorhandener Vorlagen anzulegen. Es können auch verschiedene Vorlagen zu einem Vorgang zusammengefasst werden. So können individuelle Kanzlei-Prozesse gut unterstützt werden. 
           </div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-question">Platzhalter-Frage 3 zum Support?</div>
+          <div class="faq-question">Wie aufwendig ist die Einrichtung?</div>
           <div class="faq-answer">
-            Platzhalter-Antwort. Hier kann später erklärt werden, wie Unterstützung aussieht,
-            wenn Fragen im Alltag auftreten.
+            Für die Installation gibt es eine Anleitung. Hierbei unterstützen wir kostenlos sowohl Euch als auch euren Systempartner. In der Regel dauert die gesamte Installation 3 Minuten pro Terminalserver. 
+
+Pro Nutzer ist noch ca. 1 Minute durch den Benutzer selbst notwendig. Hierfür gibt es eine gesonderte Anleitung. 
           </div>
         </div>
       </div>

@@ -65,13 +65,9 @@
 
     .logo-text-main {
       font-weight: 700;
-      font-size: 1.35rem;
+      font-size: 0.80rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-    }
-
-    .logo-text-sub {
-      font-size: 0.78rem;
       color: var(--text-soft);
     }
 
@@ -422,6 +418,36 @@
   box-shadow: 0 10px 24px rgba(20, 60, 120, 0.22);
 }
 
+.direct-start-card {
+  background: linear-gradient(
+    135deg,
+    rgba(90,143,220,0.10),
+    rgba(242,154,154,0.10)
+  );
+  border: 1px solid rgba(90,143,220,0.25);
+}
+
+.direct-start-text {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  margin-bottom: 14px;
+}
+
+.direct-start-btn {
+  width: 100%;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+
+.direct-start-hint {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: var(--text-soft);
+  text-align: center;
+}
+
+
 /* =========================
    MOBILE NAV: Burger links | Logo Mitte | Demo rechts
    ========================= */
@@ -638,8 +664,7 @@
   <div class="nav-left">
     <img src="img/s2e-logo.png" alt="S2E Logo" class="logo-image">
     <div class="logo-text">
-      <div class="logo-text-main">s2e</div>
-      <div class="logo-text-sub">Eure neue Lieblingsabkürzung</div>
+      <div class="logo-text-main">Das<br /> Profi-Tool</div>
     </div>
   </div>
 
@@ -802,6 +827,29 @@
           </div>
            <hr class="demo-divider" />
 
+          <div class="demo-info-card direct-start-card">
+  <h3>Sie kennen S2E schon?</h3>
+
+  <p class="direct-start-text">
+    Dann überspringen Sie die Demo und starten Sie direkt.
+    Füllen Sie kurz das Formular aus – wir kümmern uns um Einrichtung und Start.
+  </p>
+
+  <a
+  href="https://forms.office.com/pages/responsepage.aspx?id=vsktkTnA3EyvHUbX8OfGGWeWYxbfudtMuBhRyf9RrqxUMUdJUUFLUldHSDVKTkg5MThTQkJWTldBMyQlQCN0PWcu&route=shorturl"
+  class="btn btn-primary direct-start-btn"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  S2E direkt einsetzen →
+</a>
+
+  <small class="direct-start-hint">
+    Kein Demo-Termin · Direkter Einstieg · Persönliche Einrichtung
+  </small>
+</div>
+ 
+
 <p class="demo-links-title"><strong>Mehr dazu:</strong></p>
 
 <div class="demo-links">
@@ -824,7 +872,7 @@
 
     <!-- FOOTER -->
     <footer>
-  <span>© <span id="year"></span> S2E · Schweizer Taschenmesser für Steuerberater</span>
+  <span>© <span id="year"></span> S2E Software. Alle Rechte vorbehalten.</span>
   <span>
     <a href="index-Impressum.html">Impressum</a> ·
     <a href="index-Datenschutz.html">Datenschutz</a>

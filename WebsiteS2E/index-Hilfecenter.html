@@ -148,13 +148,9 @@
 
     .logo-text-main {
       font-weight: 700;
-      font-size: 1.35rem;
+      font-size: 0.80rem;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-    }
-
-    .logo-text-sub {
-      font-size: 0.78rem;
       color: var(--text-soft);
     }
 
@@ -232,6 +228,8 @@
     .hero-inner {
       position: relative;
       z-index: 2;
+       text-shadow: 0 3px 10px rgba(16, 32, 48, 0.25);
+       color: #ffffff;
     }
 
     /* Hero-Inhalt sauber ausrichten */
@@ -262,7 +260,7 @@
     .hero-help .hero-subtext {
       font-size: 1.02rem;
       max-width: 36rem;
-      color: rgba(16,32,48,0.8);
+      color: #ffffff;
     }
 
     .search-box {
@@ -695,8 +693,7 @@ a.btn {
   <div class="nav-left">
     <img src="img/s2e-logo.png" alt="S2E Logo" class="logo-image">
     <div class="logo-text">
-      <div class="logo-text-main">s2e</div>
-      <div class="logo-text-sub">Eure neue Lieblingsabkürzung</div>
+      <div class="logo-text-main">Das<br /> Profi-Tool</div>
     </div>
   </div>
 
@@ -740,7 +737,7 @@ a.btn {
       </div>
 
       <div class="search-box">
-        <input type="text" placeholder="Wonach suchst du? (Platzhalter-Suche)" />
+        <input type="text" placeholder="Wonach suchst du?" />
       </div>
       <div class="search-results" id="searchResults"></div>
 
@@ -855,35 +852,32 @@ a.btn {
     <!-- FAQ UNTER CTA -->
     <section class="section" id="faq">
       <div class="section-header">
-        <h2 class="section-title">Häufige Fragen (Platzhalter)</h2>
+        <h2 class="section-title">Häufige fragen zu S2E</h2>
         <p class="section-subtitle">
-          Die folgenden Fragen und Antworten sind zunächst Platzhalter. Sie können später
-          mit echten Inhalten aus dem Alltag mit S2E gefüllt werden.
+          Wir lassen dich mit deinen Fragen nicht allein.<br>
+Solltest du hier oder im Hilfecenter keine passende Antwort finden, schreib uns gerne eine E-Mail.
         </p>
       </div>
 
       <div class="faq-grid">
         <div class="faq-item">
-          <div class="faq-question">Platzhalter-Frage 1 zum Einstieg?</div>
+          <div class="faq-question">Wie schnell erhalte ich eine Antwort vom Support?</div>
           <div class="faq-answer">
-            Platzhalter-Antwort: Hier könnte später stehen, wie neue Nutzer starten,
-            welche Voraussetzungen es gibt und wo sie beginnen sollten.
+           In der Regel erhältst du innerhalb von 24 Stunden an Werktagen eine Rückmeldung. In dringenden Fällen bemühen wir uns um eine schnellere Lösung.
           </div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-question">Platzhalter-Frage 2 zur Testphase?</div>
+          <div class="faq-question">Wie erfolgt der Kontakt mit dem S2E-Support?</div>
           <div class="faq-answer">
-            Platzhalter-Antwort: Hier kann später erklärt werden, ob und wie eine
-            Testphase funktioniert und was dabei zu beachten ist.
+            Der Support erfolgt per E-Mail. So stellen wir sicher, dass dein Anliegen gezielt und effizient geklärt wird.
           </div>
         </div>
 
         <div class="faq-item">
-          <div class="faq-question">Platzhalter-Frage 3 zum Support?</div>
+          <div class="faq-question">Gibt es persönliche Unterstützung bei Fragen?</div>
           <div class="faq-answer">
-            Platzhalter-Antwort: Dieser Bereich kann später beschreiben, wie schnell
-            Antworten kommen und über welche Kanäle der Support erreichbar ist.
+            Ja. Bei Bedarf bieten wir persönliche Unterstützung per Termin an – besonders bei Einrichtung, individuellen Fragen oder speziellen Kanzlei-Prozessen.
           </div>
         </div>
       </div>
@@ -939,7 +933,125 @@ Tipp: Schreib einfach in normalem Text, Zeilenumbrüche bleiben erhalten.`
       keywords: ["datev", "csv", "import", "schnittstelle"],
       content:
 `Platzhalter: Hier erklärst du später CSV/DATEV-Import usw.`
-    }
+    },
+  {
+    id: "anmeldung-s2e",
+    title: "Muss ich mich bei S2E anmelden?",
+    category: "FAQ",
+    keywords: ["anmeldung", "login", "zugang", "rechte", "berechtigung"],
+    content:
+`Es ist keine gesonderte Anmeldung erforderlich.
+
+S2E nutzt automatisch die vorhandenen Rechte des Benutzers, die dieser im DATEV Kanzlei-Rechnungswesen besitzt.`
+  },
+  {
+    id: "individuelle-vorlagen",
+    title: "Kann ich mir individuelle Vorlagen anfertigen?",
+    category: "FAQ",
+    keywords: ["vorlagen", "individuell", "kanzlei", "prozesse", "anpassen"],
+    content:
+`Ja, es besteht die Möglichkeit, eigene Vorlagen auf Grundlage vorhandener Vorlagen anzulegen.
+
+Zudem können mehrere Vorlagen zu einem Vorgang zusammengefasst werden, sodass individuelle Kanzlei-Prozesse optimal unterstützt werden.`
+  },
+  {
+    id: "abo-mitarbeiter",
+    title: "Muss das Abo für alle Mitarbeiter bezahlt werden?",
+    category: "FAQ",
+    keywords: ["abo", "lizenz", "mitarbeiter", "nutzer", "kosten"],
+    content:
+`Es ist vorgesehen, nur für aktive Nutzer zu zahlen.
+
+Die Mindestlizenzanzahl beträgt 3 Nutzer (90 EUR).`
+  },
+  {
+    id: "preis-netto-brutto",
+    title: "Sind die 30 € im Monat Brutto- oder Nettopreis?",
+    category: "FAQ",
+    keywords: ["preis", "kosten", "netto", "brutto", "umsatzsteuer"],
+    content:
+`Alle Preise verstehen sich zuzüglich der gesetzlichen Umsatzsteuer.
+
+Es handelt sich somit um Nettopreise.`
+  },
+  {
+    id: "einrichtung-aufwand",
+    title: "Wie aufwendig ist die Einrichtung von S2E?",
+    category: "FAQ",
+    keywords: ["einrichtung", "installation", "aufwand", "setup", "support"],
+    content:
+`Für die Installation stellen wir eine ausführliche Anleitung zur Verfügung.
+
+Zusätzlich unterstützen wir Euch sowie euren Systempartner kostenlos.
+
+In der Regel dauert die Installation ca. 3 Minuten pro Terminalserver.
+
+Pro Nutzer werden etwa 1 Minute benötigt, die durch den Benutzer selbst durchgeführt wird. Auch hierfür gibt es eine gesonderte Anleitung.`
+  },
+  {
+    id: "it-voraussetzungen",
+    title: "Welche IT-Voraussetzungen werden benötigt?",
+    category: "FAQ",
+    keywords: ["it", "voraussetzungen", "datev", "microsoft 365", "system"],
+    content:
+`S2E wurde für den Einsatz auf einem DATEVasp-System in Verbindung mit Microsoft 365 entwickelt.
+
+Auch mit anderen Dienstleistern, die vergleichbare Systemkonstellationen betreuen, bestehen gute Erfahrungen.
+
+DATEV SmartIT kann derzeit leider nicht unterstützt werden.`
+  },
+  {
+    id: "arbeitsweise-ersetzen",
+    title: "Werden bestehende Arbeitsweisen ersetzt oder ergänzt?",
+    category: "FAQ",
+    keywords: ["arbeitsweise", "prozesse", "struktur", "workflow", "anpassung"],
+    content:
+`S2E ersetzt bestehende Arbeitsweisen nicht, sondern ergänzt und strukturiert sie sinnvoll.
+
+Die bereitgestellten Vorlagen können flexibel an individuelle Kanzleiabläufe angepasst und jederzeit erweitert werden.`
+  },
+  {
+    id: "kleine-kanzleien",
+    title: "Ist S2E auch für kleine Kanzleien sinnvoll?",
+    category: "FAQ",
+    keywords: ["kleine kanzlei", "fibu", "effizienz", "zeitersparnis", "qualität"],
+    content:
+`Das hängt von deiner Kanzleiausrichtung ab.
+
+Bereits bei rund 10 Fibu-Mandaten kann S2E helfen, Zeit einzusparen und gleichzeitig die Qualität der Finanzbuchhaltung und Jahresabschlüsse zu verbessern.`
+  },
+  {
+    id: "flexibilitaet-kanzlei",
+    title: "Wie flexibel ist S2E bei individuellen Kanzleistrukturen?",
+    category: "FAQ",
+    keywords: ["flexibilität", "kanzleistruktur", "excel", "anpassbar", "prozesse"],
+    content:
+`Da es sich bei S2E um ein Excel-basiertes Tool handelt, kann es individuell an bestehende Kanzleistrukturen und Abläufe angepasst werden.
+
+Die Grenzen setzt dabei ausschließlich Excel selbst.`
+  },
+  {
+    id: "kuendigung-nutzung",
+    title: "Was passiert, wenn wir S2E nicht mehr nutzen möchten?",
+    category: "FAQ",
+    keywords: ["kündigung", "lizenz", "deinstallation", "daten", "export"],
+    content:
+`In diesem Fall wird einfach keine weitere Lizenzdatei bereitgestellt.
+
+Sollten Arbeitsergebnisse nicht anderweitig (z. B. als PDF) gesichert sein, empfehlen wir vor Ablauf der Lizenz, individuelle Formeln durch feste Werte zu ersetzen, damit die Ergebnisse auch nach der Deinstallation verfügbar bleiben.`
+  },
+  {
+    id: "mindestlaufzeit",
+    title: "Gibt es eine Mindestlaufzeit?",
+    category: "FAQ",
+    keywords: ["mindestlaufzeit", "laufzeit", "kündigung", "vertrag", "verlängerung"],
+    content:
+`Die Mindestlaufzeit beträgt 12 Monate.
+
+Wird nicht spätestens 6 Wochen vor Ablauf gekündigt, verlängert sich die Laufzeit automatisch um weitere 12 Monate.
+
+Sollte während der Laufzeit eine weitere Nutzung nicht möglich erscheinen, sprich uns bitte an – wir finden gemeinsam eine Lösung.`
+  }
   ];
 
   // 2) Elemente
