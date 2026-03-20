@@ -2,8 +2,10 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>S2E – Schweizer Taschenmesser für Steuerberater</title>
+  <title>S2E – Das Profi-Tool</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="icon" type="image/png" href="img/favicon-32.png" />
   <style>
     :root {
       --bg-gradient-start: #e4f2ff;
@@ -20,6 +22,7 @@
       --radius-xl: 24px;
       --radius-lg: 18px;
       --radius-pill: 999px;
+      --top-stripe: linear-gradient(135deg, #c2d1f9 0%, #f5c5ba 100%);
     }
 
     * {
@@ -47,6 +50,7 @@
       margin: 0 auto;
       padding: 24px 20px 60px;
     }
+
 
     /* NAVBAR */
     .nav {
@@ -230,6 +234,7 @@
   object-fit: cover;
   border-radius: 24px;
   display: block;
+   object-position: 50% 20%;
 }
 
     /* FAQ GRID – wie auf der Kostenseite */
@@ -403,6 +408,20 @@
       margin: 0 auto;
     }
 
+    /* Top-Stripe */
+.has-top-stripe{
+  position: relative;
+  overflow: hidden;
+}
+.has-top-stripe::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:0;
+  height:4px;
+  background: var(--top-stripe);
+  opacity:.95;
+}
+
     /* Mehr Abstand zwischen den Sektionen */
 .section + .section {
   margin-top: 50px;
@@ -501,39 +520,109 @@ section:nth-of-type(4) {
    REZENSIONEN – Smooth Slider ohne Ruckeln (Left → Right Wipe)
    =================================================================== */
 
-.review-slider {
+/* =========================
+   REZENSIONEN – schöner & "Mehr lesen"
+   ========================= */
+
+
+.review-text{
+  font-size: 1.05rem;
+  color: var(--text);
+  line-height: 1.55;
+  margin: 0 0 10px;
+}
+
+/* Vorschau: 4 Zeilen */
+.review-text.is-clamped{
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  width: 100%;
 }
 
-.review-track {
-  display: flex;                   /* Slides horizontal nebeneinander */
-  transition: transform 0.6s ease; /* Smooth Slide-Bewegung */
-  will-change: transform;          /* Ultra smooth GPU Optimierung */
+/* Autor */
+.review-author{
+  display: block;
+  color: var(--text-soft);
+  font-size: 0.92rem;
+  margin-top: 2px;
 }
 
-.review-item {
-  min-width: 100%;                 /* Jeder Slide = volle Breite */
+/* Slider-Basis wie vorher */
+.review-slider { overflow: hidden; width: 100%; }
+
+.review-track{
+  display: flex;
+  transition: transform 0.6s ease;
+  will-change: transform;
+}
+
+/* Slide wie vorher: zentriert, ohne Kasten */
+.review-item{
+  min-width: 100%;
   text-align: center;
   padding: 10px 20px;
-  opacity: 0.0;
+  opacity: 0;
   transition: opacity 0.4s ease;
 }
 
-.review-item.active {
-  opacity: 1;                      /* Nur aktiver Slide sichtbar */
-}
+.review-item.active{ opacity: 1; }
 
-.review-item p {
+/* Text wie vorher, nur clamp dazu */
+.review-item p{
   font-size: 1.25rem;
   color: var(--text);
   margin-bottom: 8px;
+  line-height: 1.55;
 }
 
-.review-item strong {
+/* Vorschau: 4 Zeilen */
+.review-item p.is-clamped{
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Autor wie vorher */
+.review-item strong{
   color: var(--text-soft);
   font-size: 0.95rem;
 }
+
+/* Mehr-lesen Button: klein & clean, ohne Box */
+.review-more{
+  margin: 10px auto 6px;
+  border: 1px solid rgba(90,111,143,0.22);
+  background: rgba(255,255,255,0.55);
+  color: var(--text);
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 8px 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.18s ease;
+}
+
+.review-more:hover{
+  background: rgba(255,255,255,0.9);
+  transform: translateY(-1px);
+}
+
+.review-more:hover{
+  background: rgba(255,255,255,0.95);
+  transform: translateY(-1px);
+}
+
+/* Wenn geöffnet */
+.review-item.is-expanded .review-text{
+  display: block;
+  overflow: visible;
+}
+
+
 
 /* Punkte */
 .review-dots {
@@ -716,6 +805,8 @@ section:nth-of-type(4) {
       display: block;
     }
 
+
+
 /* ================================
    S2E RUBBELLOSE – VISUELLER STIL
    ================================ */
@@ -778,22 +869,27 @@ section:nth-of-type(4) {
   /* =============================================
    VIDEO-KARTEN – Pastellverlauf + schwarze Schrift
    ============================================= */
-.video-card-s2e {
-  background: linear-gradient(
-    135deg,
-    #c2d1f9 0%,   /* Pastellblau */
-    #f5c5ba 100%  /* Pastell-Apricot */
-  );
-
+.video-card-s2e{
+  background: rgba(255,255,255,0.95);
   border-radius: var(--radius-xl);
   padding: 24px 24px 28px;
 
-  /* Schrift jetzt schwarz */
-  color: #111111; /* dunkles, weiches Schwarz statt hartes Schwarz */
+  color: var(--text);
 
-  /* Schatten + leichter weißer Rand */
-  box-shadow: 0 14px 32px rgba(33, 56, 118, 0.20);
-  border: 1px solid rgba(255,255,255,0.35);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+  border: 1px solid var(--border-soft);
+}
+
+.video-card-s2e h3{
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.video-card-s2e video{
+  width: 100%;
+  border-radius: 18px;
+  display: block;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.10);
 }
 
 /* =============================================
@@ -813,18 +909,24 @@ section:nth-of-type(4) {
   color: #222222; /* etwas weicheres Schwarz */
 }
 
-
-.video-card-s2e h3 {
-  color: #111;
-  margin-bottom: 12px;
+/* Button unter Videos: garantiert mittig */
+.video-more-wrap{
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin-top: 28px !important;
 }
 
-.video-card-s2e video {
-  width: 100%;
-  border-radius: 18px;
-  display: block;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+.video-more-btn{
+  font-size: 1rem !important;
+  padding: 12px 26px !important;
+  font-weight: 600 !important; /* passt zu .btn-primary */
+  border-radius: var(--radius-pill) !important;
 }
+
+
+
 
 
     /* CTA STRIP */
@@ -973,7 +1075,7 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 input[type="number"] {
-  -moz-appearance: textfield; /* Firefox */
+  appearance: textfield; /* Firefox */
 }
 
 /* =========================
@@ -1144,6 +1246,8 @@ input[type="number"] {
 }
 
 
+
+
     /* RESPONSIVE */
     @media (max-width: 880px) {
       .hero {
@@ -1248,7 +1352,7 @@ input[type="number"] {
 
   <!-- 4) RECHTS: Demo -->
   <div class="nav-cta">
-    <a href="index-bookins.html" class="btn btn-primary">Demo buchen</a>
+    <a href="index-bookins.html" class="btn btn-primary">Live erleben</a>
   </div>
 
   <!-- MOBILE Dropdown -->
@@ -1373,27 +1477,24 @@ auch bei wachsendem Mandantenbestand.
       <div class="video-small-grid">
 
   <div class="video-card-s2e">
-    <h3>Soll/Ist-Abgleich erklärt</h3>
-    <video controls poster="preview-sollist.jpg">
-      <source src="video/soll-ist.mp4" type="video/mp4" />
-    </video>
+    
+    <video controls preload="metadata" playsinline poster="img/cover-fall1-start.jpg">
+  <source src="video/start-fall1.mp4" type="video/mp4" />
+</video>
   </div>
 
   <div class="video-card-s2e">
-    <h3>Datenimport ohne Medienbrüche</h3>
-    <video controls poster="preview-import.jpg">
-      <source src="video/import.mp4" type="video/mp4" />
-    </video>
-  </div>
-
+    
+    <video controls preload="metadata" playsinline poster="img/cover-fall2-start.jpg">
+  <source src="video/start-fall2.mp4" type="video/mp4" />
+</video>
+</div>
 </div>
 
 <!-- Button unter den Videos -->
-<div style="text-align:center; margin-top:28px;">
-  <a href="index-Praxisbeispiele.html">
-    <button class="btn btn-primary" style="font-size:1rem; padding:12px 26px;">
-      Mehr Praxisbeispiele ansehen →
-    </button>
+<div class="video-more-wrap">
+  <a href="index-Praxisbeispiele.html" class="btn btn-primary video-more-btn">
+    Mehr Praxisbeispiele ansehen →
   </a>
 </div>
 </section>
@@ -1408,22 +1509,22 @@ auch bei wachsendem Mandantenbestand.
   </div>
 
   <div class="big-theme-grid">
-    <div class="big-theme-card">
+    <div class="big-theme-card has-top-stripe">
       <h3>1. Import jeglicher Daten</h3>
       <p>Alles, was Excel verarbeiten kann, kann S2E auch verarbeiten – ohne Medienbruch.</p>
     </div>
 
-    <div class="big-theme-card">
+    <div class="big-theme-card has-top-stripe">
       <h3>2. Automatischer Soll/Ist-Abgleich</h3>
       <p>S2E erkennt Abweichungen vollständig automatisch. Sie prüfen nur noch.</p>
     </div>
 
-    <div class="big-theme-card">
+    <div class="big-theme-card has-top-stripe">
       <h3>3. Automatische Buchungssätze</h3>
       <p>Regelbasiert und sauber – die Qualität der Buchungen wird verlässlich konstant.</p>
     </div>
 
-    <div class="big-theme-card">
+    <div class="big-theme-card has-top-stripe">
       <h3>4. Individuelle Auswertungen</h3>
       <p>Kontenwerte auslesen, vergleichen und visualisieren – maßgeschneidert.</p>
     </div>
@@ -1446,7 +1547,7 @@ auch bei wachsendem Mandantenbestand.
 <!-- welche probleme löst s2e-->
 <section class="section" id="probleme">
   <div class="section-header">
-    <h2 class="section-title">Was macht S2E besser?</h2>
+    <h2 class="section-title">Diese Vorteile liefert S2E</h2>
     <p class="section-subtitle">
       Ein System statt Insellösungen
     </p>
@@ -1510,7 +1611,7 @@ auch bei wachsendem Mandantenbestand.
 <section class="section" id="nutzen">
   <div class="section-header">
     <h2 class="section-title">
-      Die 3 Hauptgewinne von S2E und ihr Umsatzpotenzial.
+      Die 3 Hauptgewinne von S2E und ihr Umsatzpotenzial
     </h2>
     <p class="section-subtitle">
       Rubbeln Sie die drei Hauptgewinne frei, die Kanzleien sofort erzielen.
@@ -1641,10 +1742,9 @@ auch bei wachsendem Mandantenbestand.
      REZENSIONEN – Smooth Slider mit 5 Slides
      ============================================================ -->
 <section class="section" id="reviews">
-
   <div class="section-header">
     <h2 class="section-title">Was Kanzleien über S2E sagen</h2>
-    <p class="section-subtitle">Die folgenden Rezensionen sind Platzhalter.</p>
+    <p class="section-subtitle">Echte Erfahrungen aus der Praxis.</p>
   </div>
 
   <div class="review-slider">
@@ -1652,46 +1752,88 @@ auch bei wachsendem Mandantenbestand.
 
       <!-- SLIDE 1 -->
       <div class="review-item">
-        <p>„S2E hat unseren Jahresabschluss massiv beschleunigt.“</p>
-        <strong>– Max Mustermann</strong>
+        <div class="review-card">
+          <p class="review-text is-clamped">
+            Wir setzen S2E Soft für das automatische Auslesen von DATEV-Daten in der laufenden Finanzbuchhaltung,
+            bei Jahresabschlüssen und Steuererklärungen ein. Ziel war es, manuelle Datenexporte zu vermeiden und
+            eine konsistente, live-aktualisierte Datengrundlage für unsere Auswertungen zu schaffen.
+            <br><br>
+            Die Einrichtung verlief unkompliziert, die DATEV-Anbindung war stabil und nach kurzer Einarbeitung konnten wir produktiv arbeiten. Der Support war gut erreichbar und fachlich sicher.<br><br>
+
+Der größte Mehrwert liegt in der spürbaren Zeitersparnis und der deutlichen Qualitätssteigerung. Daten aktualisieren sich automatisch, Auswertungen werden transparenter, und Fehlerquellen lassen sich schneller identifizieren. Gleichzeitig ermöglicht das Tool eine klare Standardisierung unserer Arbeitsprozesse.<br><br>
+
+Empfehlenswert ist S2E Soft für Kanzleien mit einem hohen Qualitätsanspruch, die Effizienz und strukturierte Auswertungen auf Basis von Live-Daten kombinieren möchten. Eine gewisse Excel-Affinität ist dabei hilfreich.<br><br>
+
+Zu berücksichtigen ist, dass sich die Excel-Dateien mit der Einbindung von dem Tool nicht direkt in der Datev DMS bearbeiten lassen, sondern zentral auf einem Laufwerk abzulegeb sind, damit alle Beteiligten darauf zugreifen können. Das sollte organisatorisch eingeplant werden.<br><br>
+            Insgesamt stellt S2E Soft für uns eine deutliche Weiterentwicklung in Richtung Effizienz, Transparenz und Qualität dar.
+          </p>
+
+          <button class="review-more" type="button">Mehr lesen →</button>
+          <strong class="review-author">– Bastian Latz (EPG)</strong>
+        </div>
       </div>
 
       <!-- SLIDE 2 -->
       <div class="review-item">
-        <p>„Wir sparen jeden Monat viele Stunden durch den Soll/Ist-Abgleich.“</p>
-        <strong>– Julia Beispiel</strong>
+        <div class="review-card">
+          <p class="review-text is-clamped">
+            „Als digital aufgestelltes Steuerbüro probieren wir gerne neue Tools aus – aber nur wenige schaffen es wirklich in unseren Alltag. S2E hat das geschafft.
+
+
+Was mich überzeugt hat ist, dass wir innerhalb kürzester Zeit unsere kompletten Jahresabschluss-Arbeitspapiere auf S2E umgestellt haben.
+<br><br>
+            Gerade weil das Tool auf Excel basiert, war die Umstellung für uns erstaunlich unkompliziert. Man arbeitet weiterhin in einer vertrauten Umgebung, hat aber plötzlich deutlich mehr Möglichkeiten.<br><br>
+
+Besonders hilfreich finde ich die direkte Verbindung zu DATEV. Kontenwerte lassen sich schnell und automatisch auslesen, Auswertungen aktualisieren sich sauber und auch Abschlussbuchungen können strukturiert vorbereitet und direkt aus Excel erzeugt werden. Dadurch sparen wir im Abschlussprozess spürbar Zeit.<br><br>
+
+Für mich ist S2E ein typisches Beispiel für Software, die aus der Praxis kommt: keine Spielerei, sondern ein Werkzeug, das den Arbeitsalltag wirklich effizienter macht.
+
+          </p>
+
+          <button class="review-more" type="button">Mehr lesen →</button>
+          <strong class="review-author">– 
+Mario Hofmann (Die Steuererleichteri)</strong>
+        </div>
       </div>
 
       <!-- SLIDE 3 -->
       <div class="review-item">
-        <p>„Der Import ohne Medienbrüche funktioniert unglaublich zuverlässig.“</p>
-        <strong>– Thomas Beispiel</strong>
+        <div class="review-card">
+          <p class="review-text is-clamped">
+            Bei der Vorstellung des Programms war ich sofort begeistert und habe nicht lange mit der Entscheidung gezögert, es anwenden zu wollen.
+          </p>
+
+          <button class="review-more" type="button">Mehr lesen →</button>
+          <strong class="review-author">– Sabine Rieß-Schäfer (Rieß-Schäfer & Amelsberg Steuerberatungsgesellschaft)</strong>
+        </div>
       </div>
 
       <!-- SLIDE 4 -->
       <div class="review-item">
-        <p>„Endlich ein Tool, das unsere Arbeitspapiere wirklich vereinheitlicht.“</p>
-        <strong>– Sabine Musterfrau</strong>
+        <div class="review-card">
+          <p class="review-text is-clamped">
+            Das S2E Tool erleichtert die Jahresabschlussarbeit deutlich, da Daten aus DATEV Rechnungswesen automatisch in Excel übernommen werden können. Dadurch wird die Kontenabstimmung spürbar schneller und übersichtlicher.<br><br>
+
+Zudem stellt das Tool strukturierte Arbeitspapiere bereit und kann in vielen Fällen Buchungssätze automatisch erzeugen. Das erleichtert eine klare Dokumentation und eine sauber vorbereitete Abschlussarbeit.<br><br>
+
+Insgesamt spart das Tool Zeit und verbessert die Arbeitsqualität. Durch seine flexible Einsatzweise eignet es sich für unterschiedliche Mandantenstrukturen und verschiedene Arbeitsabläufe in der Kanzlei.
+          </p>
+
+          <button class="review-more" type="button">Mehr lesen →</button>
+          <strong class="review-author">– Verena Schierloh (EPG)</strong>
+        </div>
       </div>
 
-      <!-- SLIDE 5 -->
-      <div class="review-item">
-        <p>„S2E hat unsere Qualität und Geschwindigkeit spürbar verbessert.“</p>
-        <strong>– Christian Demo</strong>
-      </div>
 
     </div>
   </div>
 
-  <!-- Navigationspunkte für 5 Slides -->
   <div class="review-dots">
     <span class="dot active" data-slide="0"></span>
     <span class="dot" data-slide="1"></span>
     <span class="dot" data-slide="2"></span>
     <span class="dot" data-slide="3"></span>
-    <span class="dot" data-slide="4"></span>
   </div>
-
 </section>
 
     <!-- CTA / DEMO -->
@@ -1904,42 +2046,109 @@ ctx.fillText("S2E Sofortgewinn", canvas.width / 2, canvas.height / 2);
 
 <script>
 /* ============================================
-   Rezensionen – Slider
+   Rezensionen – Slider + "Mehr lesen" (Pause)
+   ============================================ */
+/* ============================================
+   Rezensionen – Slider + "Mehr lesen" (Pause)
    ============================================ */
 
-const track = document.querySelector(".review-track");
-const slides = document.querySelectorAll(".review-item");
-const dots = document.querySelectorAll(".dot");
+const track  = document.querySelector(".review-track");
+const slides = Array.from(document.querySelectorAll(".review-item"));
+const dots   = Array.from(document.querySelectorAll(".dot"));
 
 let current = 0;
+let autoplayId = null;
+const autoplayMs = 4000;
 
-function showSlide(i) {
+function isAnyExpanded(){
+  return slides.some(s => s.classList.contains("is-expanded"));
+}
+
+function showSlide(i){
   current = i;
 
-  // Smooth Translate Bewegung
+  // wenn gerade geöffnet: nicht auto-wechseln
+  if (isAnyExpanded()) return;
+
   track.style.transform = `translateX(-${i * 100}%)`;
 
   slides.forEach(s => s.classList.remove("active"));
   slides[i].classList.add("active");
 
   dots.forEach(d => d.classList.remove("active"));
-  dots[i].classList.add("active");
+  if (dots[i]) dots[i].classList.add("active");
 }
 
-/* Klickbare Punkte */
+function startAutoplay(){
+  stopAutoplay();
+  autoplayId = setInterval(() => {
+    if (isAnyExpanded()) return;
+    showSlide((current + 1) % slides.length);
+  }, autoplayMs);
+}
+
+function stopAutoplay(){
+  if (autoplayId) clearInterval(autoplayId);
+  autoplayId = null;
+}
+
+function collapseAll(){
+  slides.forEach(s => {
+    s.classList.remove("is-expanded");
+    const p = s.querySelector(".review-text");
+    const b = s.querySelector(".review-more");
+    if (p) p.classList.add("is-clamped");
+    if (b) b.textContent = "Mehr lesen →";
+  });
+}
+
+/* Dots: manuell wechseln */
 dots.forEach(dot => {
   dot.addEventListener("click", () => {
+    collapseAll();
     showSlide(Number(dot.dataset.slide));
+    startAutoplay();
   });
 });
 
-/* Auto-Slide */
-setInterval(() => {
-  showSlide((current + 1) % slides.length);
-}, 4000);
+/* Mehr lesen */
+slides.forEach(slide => {
+  const p = slide.querySelector(".review-text");
+  const b = slide.querySelector(".review-more");
+  if (!p || !b) return;
 
-/* Start */
+  // Button nur zeigen, wenn Text wirklich länger ist als die 4 Zeilen
+  const needsButton = (() => {
+    p.classList.add("is-clamped");
+    const clampedH = p.getBoundingClientRect().height;
+    p.classList.remove("is-clamped");
+    const fullH = p.getBoundingClientRect().height;
+    p.classList.add("is-clamped");
+    return fullH > clampedH + 6;
+  })();
+
+  if (!needsButton) {
+    b.style.display = "none";
+    return;
+  }
+
+  b.addEventListener("click", () => {
+    const expanded = slide.classList.toggle("is-expanded");
+    if (expanded){
+      p.classList.remove("is-clamped");
+      b.textContent = "Weniger ↑";
+      stopAutoplay();
+    } else {
+      p.classList.add("is-clamped");
+      b.textContent = "Mehr lesen →";
+      startAutoplay();
+    }
+  });
+});
+
+/* Init */
 showSlide(0);
+startAutoplay();
 </script>
 
 

@@ -2,8 +2,9 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>S2E ProfiTool – Was kann das Tool?</title>
+  <title>S2E – Was kann das Tool?</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+   <link rel="icon" type="image/png" href="img/favicon-32.png" />
   <style>
     :root {
       --bg-gradient-start: #e4f2ff;
@@ -20,6 +21,7 @@
       --radius-xl: 24px;
       --radius-lg: 18px;
       --radius-pill: 999px;
+      --top-stripe: linear-gradient(135deg, #c2d1f9 0%, #f5c5ba 100%);
     }
 
     * {
@@ -132,7 +134,6 @@
       border-radius: 32px;
       overflow: hidden;
       margin-bottom: 56px;
-      box-shadow: 0 24px 60px rgba(15, 76, 110, 0.25);
       display: flex;
       align-items: center;
     }
@@ -151,8 +152,8 @@
       position: absolute;
       inset: 0;
       background: radial-gradient(circle at top left,
-        rgba(228, 242, 255, 0.7),
-        rgba(16, 32, 48, 0.75));
+        rgba(228, 242, 255, 0.4),
+        rgba(16, 32, 48, 0.1));
       mix-blend-mode: multiply;
       z-index: 1;
     }
@@ -248,45 +249,22 @@
   margin: 0 auto;
 }
 
-.case-avatar {
-  position: absolute;
-  right: 1px;
-  bottom: 1px;
 
-  width: 300px;
-  height: auto;
-
-  border-radius: 20px; /* oder 0, wenn ganz eckig */
-  object-fit: cover;
-
-  border: none;        /* 👈 wichtig */
-  box-shadow: none;  /* 👈 wichtig */
-  opacity: 0.92;
-
-  z-index: 2;
-}
 
 .case-row {
-   position: relative;
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 32px;
   align-items: center;
 
-  /* S2E Pastellverlauf – identisch zu Rubbellosen */
-  background: linear-gradient(
-    135deg,
-    #c2d1f9 0%,
-    #f5c5ba 100%
-  );
-
+  background: rgba(255,255,255,0.97);
   border-radius: var(--radius-xl);
-  padding: 32px;
-  border: 1px solid rgba(255,255,255,0.45);
-  box-shadow: 0 14px 32px rgba(33, 56, 118, 0.22);
+  padding: 34px;
+  border: 1px solid var(--border-soft);
+  box-shadow: 0 12px 28px rgba(15, 76, 110, 0.08);
 
-  /* Text jetzt dunkel wie bei Rubbel & Video */
-  color: #102030;
+  color: var(--text);
 }
 
 .case-row--reverse {
@@ -304,15 +282,15 @@
 }
 
     .case-text h3 {
-      font-size: 1.2rem;
-      margin-bottom: 8px;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
       color: #102030;
     }
 
     .case-text p {
-      font-size: 0.95rem;
+      font-size: 1.05rem;
       color: var(--text-soft); 
-      max-width: 30rem;
+      max-width: 38rem;
     }
 
     @media (max-width: 880px) {
@@ -347,6 +325,21 @@
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--text);
+}
+
+/* Top-Stripe (wie Praxisbeispiele) */
+.has-top-stripe{
+  position: relative;
+  overflow: hidden;
+}
+
+.has-top-stripe::before{
+  content:"";
+  position:absolute;
+  left:0; right:0; top:0;
+  height:4px;
+  background: var(--top-stripe);
+  opacity: .95;
 }
 
     /* SECTIONS */
@@ -430,6 +423,109 @@
       color: var(--text-soft);
       margin-bottom: 5px;
     }
+
+/* mehr praxisbeispiele button*/
+
+    .case-more-wrapper {
+  text-align: center;
+  margin-top: 52px;
+  margin-bottom: 38px;
+}
+
+.case-more-btn {
+  font-size: 1rem;
+  padding: 12px 22px;
+}
+
+/* Container (Row) */
+.case-more-row{
+  position: relative; 
+  display: none;                  /* wird per JS eingeblendet */
+  max-width: 820px;
+  margin: 14px auto 0;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+/* Text-Box (schlank) */
+.case-more-text{
+   text-align: center;
+  margin: 0;
+  max-width: 640px;
+
+  background: rgba(255,255,255,0.55);  /* sehr dezent */
+  border: 1px solid rgba(90, 143, 220, 0.10);
+  border-radius: 16px;
+  padding: 10px 12px;
+
+  font-size: 1.08rem;   /* sichtbar, aber nicht riesig */
+  line-height: 1.45;
+  font-weight: 650;
+  color: var(--text-soft);
+
+  animation: fadeInScale 0.35s ease, glowHighlight 1.2s ease;
+}
+
+.case-more-text strong{
+  font-size: 1.14rem;
+  color: var(--text);
+  font-weight: 800;
+}
+
+.case-more-hero{
+  font-size: 1.18rem;
+  font-weight: 850;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+.case-more-sub{
+  font-size: 1.02rem;
+  font-weight: 650;
+  color: var(--text-soft);
+}
+
+
+
+
+.case-more-text p {
+  margin-bottom: 18px;
+}
+
+.demo-arrow{
+  position: absolute;
+  right: -35px;          /* 👈 weiter rechts (negativ = außerhalb) */
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--primary);
+  animation: bounceArrow 1.2s infinite;
+  line-height: 1;
+  padding-right: 0;
+}
+
+
+
+@keyframes bounceArrow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(8px); }
+}
+
+@keyframes glowHighlight {
+  0% {
+    box-shadow: 0 0 0 rgba(90, 143, 220, 0);
+  }
+  40% {
+    box-shadow: 0 0 25px rgba(90, 143, 220, 0.45);
+  }
+  100% {
+    box-shadow: 0 12px 28px rgba(30, 60, 120, 0.12);
+  }
+}
+
+
 
     /* CTA BOTTOM */
     .cta {
@@ -555,16 +651,29 @@ a.btn {
   line-height: 1;
 }
 
-/* Logo-Bild in der Navbar */
-.logo-image {
-  width: 43px;
-  height: 43px;
-  border-radius: 10px;
+/* Rahmen/Fläche bleibt fix */
+.logo-wrap{
+  width: 52px;              /* deine gewünschte Rahmenfläche */
+  height: 52px;
+  border-radius: 12px;
+  overflow: hidden;         /* wichtig: Bild bleibt im Rahmen */
+  background: #fff;         /* optional, wirkt edler */
+  box-shadow: 0 10px 24px rgba(20, 60, 120, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+/* Logo selbst größer innerhalb des Rahmens */
+.logo-image{
+  width: 153%;               /* hier steuerst du NUR das Logo im Rahmen */
+  height: 153%;
   object-fit: contain;
   display: block;
-  box-shadow: 0 10px 24px rgba(20, 60, 120, 0.22);
+  box-shadow: none;         /* Shadow kommt jetzt vom Wrapper */
+  border-radius: 0;         /* Radius kommt vom Wrapper */
+    left: 4px;
 }
-
 /* =========================
    MOBILE NAV: Burger links | Logo Mitte | Demo rechts
    ========================= */
@@ -703,12 +812,16 @@ a.btn {
     line-height: 1 !important;
   }
 
-  /* Logo auf Mobile größer */
-  .logo-image{
-    width: 52px !important;
-    height: 52px !important;
-    display: block !important;
-  }
+   /* Logo */
+.logo-wrap{
+  width: 52px !important;
+  height: 52px !important;
+}
+
+.logo-image{
+  width: 153% !important;
+  height: 153% !important;
+}
 }
 
     /* RESPONSIVE */
@@ -738,9 +851,9 @@ a.btn {
         display: none;
       }
 
-      .hero-video-bg {
-           margin-top: 14px;  
-      }
+     .hero-video-bg .bg-video{
+    object-position: 100% 80%;  /* weiter nach links (weniger %) */
+  }
 
       .hero-title {
         font-size: 2.1rem;
@@ -775,6 +888,18 @@ a.btn {
   }
   .hero-buttons--side .btn{
     width: 100%;
+  }
+
+    .demo-arrow {
+     text-align: center;
+    padding-right: 0;;
+  }
+  .case-more-row{
+    flex-direction: column;
+    align-items: center;
+  }
+  .case-more-text{
+    text-align: center;
   }
    }
 
@@ -817,7 +942,9 @@ a.btn {
 
   <!-- 2) MITTE: Logo -->
   <div class="nav-left">
-    <img src="img/s2e-logo.png" alt="S2E Logo" class="logo-image">
+    <div class="logo-wrap">
+  <img src="img/s2e-logo.png" alt="S2E Logo" class="logo-image">
+</div>
     <div class="logo-text">
       <div class="logo-text-main">Das<br /> Profi-Tool</div>
     </div>
@@ -835,7 +962,7 @@ a.btn {
 
   <!-- 4) RECHTS: Demo -->
   <div class="nav-cta">
-    <a href="index-bookins.html" class="btn btn-primary">Demo buchen</a>
+    <a href="index-bookins.html" class="btn btn-primary">Live erleben</a>
   </div>
 
   <!-- 5) MOBILE Dropdown -->
@@ -874,7 +1001,7 @@ a.btn {
       <a href="https://www.youtube.com/@dersteuerfuturist4438"
          class="btn btn-primary"
          target="_blank" rel="noopener">
-        Erklärvideos ansehen →
+        Unser YouTube-Kanal →
       </a>
 
       <a href="index-ModuleFunktionen.html" class="btn btn-ghost">
@@ -900,7 +1027,7 @@ a.btn {
       <div class="case-list">
 
         <!-- Fall 1: Video links, Text rechts -->
-        <div class="case-row">
+        <div class="case-row has-top-stripe">
           <div class="case-video">
             <video controls playsinline preload="metadata"
                poster="img/praxis-fall1-poster.jpg">
@@ -909,18 +1036,18 @@ a.btn {
             </video>
           </div>
           <div class="case-text">
-            <h3>Fallbeispiel 1 – Platzhalter</h3>
+            <h3>Fallbeispiel 1 ⚖️</h3>
             <p>
               Automatisches „Aufploppen“ von Abstimmdifferenzen im Bereich Anlag und der Banksalden. Ein versehentliches und umbemerktes „Verbuchen“ im Bereich von Bank und Anlag nach erster Abstimmung fällt damit sofort ins Auge. Ohne zusätzliche Zeit der Kontrolle.
             </p>
           </div> 
-           <img src="img/niclas.jpg" alt="Niclas – S2E" class="case-avatar" />
-</div>      
+        </div>
+           
 
         <!-- Fall 2: Text links, Video rechts -->
-        <div class="case-row case-row--reverse">
+        <div class="case-row case-row--reverse has-top-stripe">
           <div class="case-text">
-            <h3>Fallbeispiel 2 – Platzhalter</h3>
+            <h3>Fallbeispiel 2 🧮</h3>
             <p>
               FIBU: Monatliche automatische Abgrenzung / Buchung von Versicherungen, Leasingverträgen, Rückstellung für Jahresabschluss, Berufsgenossenschaft, 13. Gehälter und vieles weitere. Wiederkehrende Buchungen in Kanzlei-Rechnungswesen werden überflüssig. In Excel mit Überwachung und Abgleich.
             </p>
@@ -935,7 +1062,7 @@ a.btn {
         </div>
 
         <!-- Fall 3: Video links, Text rechts -->
-        <div class="case-row">
+        <div class="case-row has-top-stripe">
   <div class="case-video">
     <video controls playsinline preload="metadata"
            poster="img/praxis-fall3-poster.jpg">
@@ -944,7 +1071,7 @@ a.btn {
             </video>
           </div>
           <div class="case-text">
-            <h3>Fallbeispiel 3 – Platzhalter</h3>
+            <h3>Fallbeispiel 3 🏬</h3>
             <p>
              FIBU: Monatliche automatische Verbuchung (kreditorisch oder debitorisch) von Mieten, Leasing, alle wiederkehrende Leistungen (z. B. Stadtwerke). Vorteil: Überwachung, ob Zahlungen tatsächlich erfolgt sind. Auswertung für den Mandanten aus Excel heraus.  
             </p>
@@ -952,9 +1079,9 @@ a.btn {
         </div>
 
         <!-- Fall 4: Text links, Video rechts -->
-        <div class="case-row case-row--reverse">
+        <div class="case-row case-row--reverse has-top-stripe">
           <div class="case-text">
-            <h3>Fallbeispiel 4 – Platzhalter</h3>
+            <h3>Fallbeispiel 4 🤖</h3>
             <p>
               FIBU: Monatliche automatische Kontrolle von den einschlägigen Konten (Lohnabstimmung, durchlaufende Posten, Geldtransit). Erwartete Salden werden den tatsächlichen automatisch gegenübergestellt. Dokumentation in Excel möglich. 
             </p>
@@ -968,7 +1095,7 @@ a.btn {
           </div>
         </div>
 
-        <!-- Fall 5: Video links, Text rechts -->
+        <!-- Fall 5: Video links, Text rechts
         <div class="case-row">
   <div class="case-video">
     <video controls playsinline preload="metadata"
@@ -983,13 +1110,25 @@ a.btn {
              Jahresabschluss: Vollautomatische Abstimmung von Verrechnungskonten im Konzern in einer Excel-Tabelle. Die Daten werden und manuelle Eingabe von mehreren Mandanten in einer Tabelle eingelesen. Saldo muss 0,00 ergeben. Solange dies nicht der Fall ist: Roter Reiter in Excel. 
             </p>
           </div>
-        </div>
+        </div>-->
 
       </div>
 
-    <p class="case-endline">…und das war erst der Anfang!</p>
-    </section>
+<div class="case-more-wrapper">
+  <button class="btn btn-primary case-more-btn" id="caseMoreBtn">
+    Zeig mir mehr Praxisbeispiele ↓
+  </button>
 
+  <!-- Row: Box mittig, Pfeil rechts -->
+  <div class="case-more-row" id="caseMoreRow">
+    <div class="case-more-text">
+      <div class="case-more-hero">👀 Du scheinst dich wirklich für S2E zu interessieren!</div>
+      <div class="case-more-sub">Du willst mehr Praxisbeispiele? Kein Problem! In einer kostenlosen Live-Demo zeigen wir dir, wie S2E im echten Kanzleialltag eingesetzt wird.</div>
+    </div>
+
+    <div class="demo-arrow" aria-hidden="true">↓</div>
+  </div>
+</div>
 
     <!-- CTA / DEMO -->
     <section class="section" id="demo">
@@ -1012,7 +1151,7 @@ Ihre Rückmeldung hilft uns, S2E weiter an echten Kanzlei-Bedürfnissen auszuric
     <!-- Button in Standard S2E-Blau -->
     <div class="cta-input-wrap">
       <div class="cta-actions">
-  <a href="index-bookins.html" class="btn btn-primary">
+  <a href="index-bookins.html" class="btn btn-primary"  id="demoBookBtn">
     Demo buchen →
   </a>
 </div>
@@ -1054,7 +1193,10 @@ Solltest du hier oder im Hilfecenter keine passende Antwort finden, schreib uns 
       <span>© <span id="year"></span> S2E Software. Alle Rechte vorbehalten.</span>
       <span>
         <a href="index-Impressum.html">Impressum</a> ·
-        <a href="index-Datenschutz.html">Datenschutz</a>
+        <a href="index-Datenschutz.html">Datenschutz</a> ·
+        <a href="#" onclick="openCookieSettings(); return false;">
+Cookie-Einstellungen
+</a>
       </span>
     </footer>
   </div>
@@ -1096,6 +1238,462 @@ Solltest du hier oder im Hilfecenter keine passende Antwort finden, schreib uns 
     });
   })();
 </script>
+
+<script>
+  const caseMoreBtn = document.getElementById("caseMoreBtn");
+  const caseMoreRow = document.getElementById("caseMoreRow");
+
+  if (caseMoreBtn && caseMoreRow) {
+    caseMoreBtn.addEventListener("click", () => {
+      caseMoreBtn.style.display = "none";
+      caseMoreRow.style.display = "flex"; // 👈 Row soll Flex sein
+    });
+  }
+</script>
+
+<!-- =========================
+     COOKIE BANNER (S2E-Style)
+     - Sofort: "Alles ablehnen" (nur essentielle bleiben)
+     - Optional: Einstellungen
+     - Speichert Auswahl in localStorage
+========================= -->
+<style>
+  :root{
+    --cb-bg: rgba(255,255,255,0.92);
+    --cb-border: rgba(0,0,0,0.08);
+    --cb-shadow: 0 18px 40px rgba(15, 76, 110, 0.12);
+    --cb-text: #102030;
+    --cb-text-soft: #5a6b81;
+    --cb-primary: #5a8fdc;
+    --cb-accent: #f29a9a;
+    --cb-radius: 22px;
+    --cb-pill: 999px;
+  }
+
+  .cookie-backdrop{
+    position: fixed;
+    inset: 0;
+    background: rgba(16, 32, 48, 0.28);
+    backdrop-filter: blur(6px);
+    display: none;
+    z-index: 9998;
+  }
+
+  .cookie-banner{
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    max-width: 980px;
+    margin: 0 auto;
+    background: var(--cb-bg);
+    border: 1px solid var(--cb-border);
+    box-shadow: var(--cb-shadow);
+    border-radius: var(--cb-radius);
+    z-index: 9999;
+    display: none;
+    overflow: hidden;
+  }
+
+  .cookie-inner{
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+    gap: 16px;
+    padding: 16px 16px 14px;
+    align-items: center;
+  }
+
+  .cookie-title{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+    font-weight: 800;
+    color: var(--cb-text);
+  }
+
+  .cookie-emoji{
+    font-size: 30px;
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.10));
+  }
+
+  .cookie-text{
+    color: var(--cb-text-soft);
+    font-size: 0.95rem;
+    line-height: 1.35;
+  }
+
+  .cookie-actions{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .cb-btn{
+    border-radius: var(--cb-pill);
+    padding: 10px 14px;
+    font-size: 0.92rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+  }
+
+  .cb-btn-primary{
+    background: linear-gradient(135deg, var(--cb-primary), #6ea8ff);
+    color: #fff;
+    box-shadow: 0 10px 26px rgba(30, 87, 153, 0.25);
+    border-color: rgba(255,255,255,0.4);
+    font-weight: 700;
+  }
+  .cb-btn-primary:hover{ transform: translateY(-1px); }
+
+  .cb-btn-ghost{
+    border-color: rgba(90, 111, 143, 0.22);
+    background: rgba(255,255,255,0.65);
+    color: var(--cb-text);
+    font-weight: 650;
+  }
+  .cb-btn-ghost:hover{ background: rgba(255,255,255,0.9); }
+
+  .cb-btn-danger{
+    border-color: rgba(242, 154, 154, 0.45);
+    background: rgba(255, 224, 224, 0.65);
+    color: #102030;
+    font-weight: 750;
+  }
+  .cb-btn-danger:hover{ background: rgba(255,224,224,0.9); }
+
+  .cookie-links{
+    margin-top: 8px;
+    font-size: 0.82rem;
+    color: var(--cb-text-soft);
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .cookie-links a{
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  /* Einstellungen Panel */
+  .cookie-settings{
+    border-top: 1px solid var(--cb-border);
+    padding: 12px 16px 14px;
+    display: none;
+    background: rgba(255,255,255,0.80);
+  }
+
+  .cookie-settings h4{
+    margin: 0 0 10px;
+    font-size: 0.95rem;
+    color: var(--cb-text);
+  }
+
+  .cookie-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .cookie-row{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: rgba(245, 248, 255, 0.72);
+  }
+
+  .cookie-row strong{
+    display: block;
+    color: var(--cb-text);
+    font-size: 0.92rem;
+    margin-bottom: 2px;
+  }
+
+  .cookie-row p{
+    margin: 0;
+    color: var(--cb-text-soft);
+    font-size: 0.85rem;
+    line-height: 1.25;
+  }
+
+  .cb-toggle{
+    min-width: 52px;
+    height: 30px;
+    border-radius: 999px;
+    border: 1px solid rgba(0,0,0,0.10);
+    background: rgba(255,255,255,0.75);
+    position: relative;
+    cursor: pointer;
+    flex: 0 0 auto;
+  }
+
+  .cb-toggle[data-on="true"]{
+    background: rgba(90, 143, 220, 0.18);
+    border-color: rgba(90, 143, 220, 0.35);
+  }
+
+  .cb-knob{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 4px;
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--cb-primary), var(--cb-accent));
+    box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+    transition: left 0.18s ease;
+  }
+
+  .cb-toggle[data-on="true"] .cb-knob{
+    left: 26px;
+  }
+
+  .cb-badge{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.9);
+    border: 1px solid rgba(0,0,0,0.06);
+    color: var(--cb-text-soft);
+    margin-left: 8px;
+    white-space: nowrap;
+  }
+
+  /* Mobile */
+  @media (max-width: 720px){
+    .cookie-inner{
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .cookie-actions{
+      justify-content: flex-start;
+    }
+  }
+</style>
+
+<div class="cookie-backdrop" id="cookieBackdrop" aria-hidden="true"></div>
+
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-modal="true" aria-label="Cookie-Einstellungen">
+  <div class="cookie-inner">
+    <div>
+      <div class="cookie-title">
+        <span class="cookie-emoji">🍪</span>
+        <span>Darf ich deine Kekse haben?</span>
+      </div>
+      <div class="cookie-text">
+        Wir nutzen essenzielle Cookies, damit die Seite zuverlässig läuft. Optional helfen uns Analyse-Cookies dabei,
+        S2E besser zu machen. Du kannst jederzeit später ändern.
+        <div class="cookie-links">
+          <a href="index-Datenschutz.html">Datenschutz</a>
+          <a href="index-Impressum.html">Impressum</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cookie-actions">
+      <!-- Sofort-Option: alles ablehnen (nur essential bleibt) -->
+      <button class="cb-btn cb-btn-danger" id="cbReject">Alles ablehnen</button>
+
+      <button class="cb-btn cb-btn-ghost" id="cbSettings">Einstellungen</button>
+
+      <button class="cb-btn cb-btn-primary" id="cbAcceptAll">Alles akzeptieren</button>
+    </div>
+  </div>
+
+  <div class="cookie-settings" id="cookieSettings">
+    <h4>Cookie-Auswahl</h4>
+
+    <div class="cookie-grid">
+      <div class="cookie-row">
+        <div>
+          <strong>Essenzielle Cookies <span class="cb-badge">immer aktiv</span></strong>
+          <p>Notwendig für Grundfunktionen (z. B. Navigation, Session, Sicherheit).</p>
+        </div>
+        <div class="cb-toggle" data-on="true" aria-disabled="true" title="Essenzielle Cookies sind immer aktiv">
+          <span class="cb-knob"></span>
+        </div>
+      </div>
+
+      <div class="cookie-row">
+        <div>
+          <strong>Analyse / Statistik</strong>
+          <p>Hilft uns zu verstehen, welche Inhalte genutzt werden (nur mit Zustimmung).</p>
+        </div>
+        <button class="cb-toggle" id="toggleAnalytics" data-on="false" type="button" aria-label="Analyse Cookies umschalten">
+          <span class="cb-knob"></span>
+        </button>
+      </div>
+
+      <div class="cookie-row">
+        <div>
+          <strong>Externe Inhalte</strong>
+          <p>Zum Beispiel eingebettete Videos oder Karten (nur mit Zustimmung).</p>
+        </div>
+        <button class="cb-toggle" id="toggleExternal" data-on="false" type="button" aria-label="Externe Inhalte umschalten">
+          <span class="cb-knob"></span>
+        </button>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:12px; flex-wrap:wrap;">
+      <button class="cb-btn cb-btn-ghost" id="cbSave">Auswahl speichern</button>
+      <button class="cb-btn cb-btn-primary" id="cbAcceptSelected">Auswahl akzeptieren</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ===== Cookie Consent State =====
+  const CONSENT_KEY = "s2e_cookie_consent_v1";
+
+  const banner = document.getElementById("cookieBanner");
+  const backdrop = document.getElementById("cookieBackdrop");
+  const settings = document.getElementById("cookieSettings");
+
+  const btnReject = document.getElementById("cbReject");
+  const btnSettings = document.getElementById("cbSettings");
+  const btnAcceptAll = document.getElementById("cbAcceptAll");
+  const btnSave = document.getElementById("cbSave");
+  const btnAcceptSelected = document.getElementById("cbAcceptSelected");
+
+  const toggleAnalytics = document.getElementById("toggleAnalytics");
+  const toggleExternal = document.getElementById("toggleExternal");
+
+  function getConsent() {
+    try { return JSON.parse(localStorage.getItem(CONSENT_KEY)); }
+    catch { return null; }
+  }
+
+  function setConsent(consent) {
+    localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
+  }
+
+  function openBanner() {
+    banner.style.display = "block";
+    backdrop.style.display = "block";
+    backdrop.setAttribute("aria-hidden", "false");
+  }
+
+  function closeBanner() {
+    banner.style.display = "none";
+    backdrop.style.display = "none";
+    backdrop.setAttribute("aria-hidden", "true");
+    settings.style.display = "none";
+  }
+
+  function setToggle(el, on) {
+    el.setAttribute("data-on", on ? "true" : "false");
+  }
+
+  function readToggles() {
+    return {
+      essential: true, // immer aktiv
+      analytics: toggleAnalytics.getAttribute("data-on") === "true",
+      external: toggleExternal.getAttribute("data-on") === "true",
+      ts: new Date().toISOString()
+    };
+  }
+
+  function applyConsent(consent) {
+    // Hier würdest du je nach Zustimmung Scripts nachladen.
+    // Beispiel:
+    // if(consent.analytics){ loadAnalytics(); }
+    // if(consent.external){ enableEmbeds(); }
+
+    document.documentElement.dataset.consentAnalytics = consent.analytics ? "1" : "0";
+    document.documentElement.dataset.consentExternal = consent.external ? "1" : "0";
+  }
+
+  function ensureBanner() {
+    const existing = getConsent();
+    if (!existing) {
+      // default: nur essential
+      setToggle(toggleAnalytics, false);
+      setToggle(toggleExternal, false);
+      openBanner();
+    } else {
+      // toggles spiegeln (falls du Einstellungen wieder öffnen willst)
+      setToggle(toggleAnalytics, !!existing.analytics);
+      setToggle(toggleExternal, !!existing.external);
+      applyConsent(existing);
+    }
+  }
+
+  // Toggle click
+  function toggleClick(el) {
+    const on = el.getAttribute("data-on") === "true";
+    setToggle(el, !on);
+  }
+  toggleAnalytics.addEventListener("click", () => toggleClick(toggleAnalytics));
+  toggleExternal.addEventListener("click", () => toggleClick(toggleExternal));
+
+  // Buttons
+  btnSettings.addEventListener("click", () => {
+    settings.style.display = settings.style.display === "block" ? "none" : "block";
+  });
+
+  btnReject.addEventListener("click", () => {
+    const consent = { essential: true, analytics: false, external: false, ts: new Date().toISOString() };
+    setConsent(consent);
+    applyConsent(consent);
+    closeBanner();
+  });
+
+  btnAcceptAll.addEventListener("click", () => {
+    const consent = { essential: true, analytics: true, external: true, ts: new Date().toISOString() };
+    setConsent(consent);
+    applyConsent(consent);
+    closeBanner();
+  });
+
+  btnSave.addEventListener("click", () => {
+    const consent = readToggles();
+    setConsent(consent);
+    applyConsent(consent);
+    closeBanner();
+  });
+
+  btnAcceptSelected.addEventListener("click", () => {
+    const consent = readToggles();
+    setConsent(consent);
+    applyConsent(consent);
+    closeBanner();
+  });
+
+  // Klick auf Backdrop schließt nicht automatisch (damit niemand aus Versehen zustimmt)
+  // backdrop.addEventListener("click", closeBanner);
+
+  ensureBanner();
+
+  // Optional: global function to reopen settings (z.B. Footer-Link)
+  window.openCookieSettings = function(){
+    const existing = getConsent();
+    if (existing) {
+      setToggle(toggleAnalytics, !!existing.analytics);
+      setToggle(toggleExternal, !!existing.external);
+    }
+    openBanner();
+    settings.style.display = "block";
+  };
+</script>
+
+
 
 </body>
 </html>
