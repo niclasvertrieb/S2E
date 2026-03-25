@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Datenschutzerklärung – S2E</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" type="image/png" href="img/favicon-32.png" />
+  <style>
+    :root {
+      --bg-gradient-start: #e4f2ff;
+      --bg-gradient-end: #ffffff;
+      --primary: #5a8fdc;
+      --text: #102030;
+      --text-soft: #5a6b81;
+      --card-bg: #ffffff;
+      --border-soft: rgba(0,0,0,0.06);
+      --shadow-soft: 0 18px 40px rgba(15, 76, 110, 0.08);
+      --radius-xl: 24px;
+      --radius-pill: 999px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px 20px 60px;
+    }
+
+    /* NAVBAR */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-text-main {
+  font-weight: 700;
+  font-size: 0.80rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+.nav-cta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.btn {
+  border-radius: var(--radius-pill);
+  padding: 10px 18px;
+  font-size: 0.92rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), #6ea8ff);
+  color: #fff;
+  box-shadow: 0 10px 26px rgba(30, 87, 153, 0.35);
+  border-color: rgba(255,255,255,0.4);
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px rgba(30, 87, 153, 0.45);
+}
+
+/* <a> exakt wie <button> aussehen lassen */
+a.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  appearance: none;
+  -webkit-appearance: none;
+  line-height: 1;
+}
+
+/* Logo */
+.logo-wrap{
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(20, 60, 120, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-image{
+  width: 153%;
+  height: 153%;
+  object-fit: contain;
+  display: block;
+  box-shadow: none;
+  border-radius: 0;
+  left: 4px;
+}
+
+/* =========================
+   MOBILE NAV: Burger links | Logo Mitte | Demo rechts
+   ========================= */
+
+.nav-burger-pill{
+  display: none; /* Desktop aus */
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,0.10);
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 24px rgba(20, 60, 120, 0.12);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.burger-label{
+  font-weight: 650;
+  color: rgba(16, 32, 48, 0.85);
+  font-size: 0.92rem;
+}
+
+.burger-lines{
+  width: 18px;
+  height: 12px;
+  position: relative;
+  display: inline-block;
+}
+
+.burger-lines::before,
+.burger-lines::after{
+  content:"";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(16, 32, 48, 0.80);
+}
+
+.burger-lines::before{ top: 2px; }
+.burger-lines::after{ bottom: 2px; }
+
+.mobile-nav-menu{
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(100% + 12px);
+  background: rgba(255,255,255,0.96);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 18px;
+  padding: 10px;
+  box-shadow: 0 22px 60px rgba(15, 76, 110, 0.18);
+  z-index: 999;
+}
+
+.mobile-nav-menu a{
+  display: block;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.06);
+  background: rgba(245, 248, 255, 0.75);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.mobile-nav-menu a:last-child{
+  margin-bottom: 0;
+}
+
+.mobile-nav-menu.is-open{
+  display: block;
+}
+
+    /* HERO */
+    .hero-simple {
+      background: rgba(255,255,255,0.75);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      border-radius: var(--radius-xl);
+      padding: 34px 36px 36px;
+      margin-bottom: 26px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-simple::after{
+      content:"";
+      position:absolute;
+      right:-120px;
+      top:-140px;
+      width:180px;
+      height:180px;
+      border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.65), rgba(90,143,220,0.35));
+      opacity:0.8;
+      pointer-events:none;
+    }
+    .hero-title {
+      font-size: clamp(2.1rem, 3.1vw, 2.7rem);
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+    .hero-subtext {
+      font-size: 1.02rem;
+      color: var(--text-soft);
+      max-width: 40rem;
+    }
+
+    /* CARD CONTENT */
+    .card {
+      background: rgba(255,255,255,0.95);
+      border: 1px solid var(--border-soft);
+      border-radius: var(--radius-xl);
+      box-shadow: 0 10px 26px rgba(0,0,0,0.04);
+      padding: 22px 22px 18px;
+    }
+
+    .card h2 {
+      font-size: 1.1rem;
+      margin: 18px 0 8px;
+    }
+    .card h2:first-of-type { margin-top: 0; }
+
+    .card p, .card li {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    .card ul { margin: 10px 0 14px 18px; }
+    .divider { height: 1px; background: rgba(0,0,0,0.06); margin: 16px 0; }
+
+    .note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(90,143,220,0.10);
+      border: 1px solid rgba(90,143,220,0.18);
+      color: var(--text-soft);
+      font-size: 0.9rem;
+    }
+
+    /* FOOTER */
+    footer {
+      max-width: 1120px;
+      margin: 34px auto 0;
+      padding: 0 20px;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    footer a {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    @media (max-width: 640px){
+
+  /* Desktop-Links & Text weg */
+  .nav-links { display: none !important; }
+  .logo-text { display: none !important; }
+
+  /* Burger an */
+  .nav-burger-pill { display: inline-flex !important; }
+
+  /* Header = 3-Spalten Grid */
+  header.nav{
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-bottom: 18px !important;
+    position: relative !important;
+  }
+
+  /* Links */
+  .nav-burger-cta{
+    grid-column: 1 !important;
+    justify-self: start !important;
+    height: 44px !important;
+    z-index: 2;
+  }
+
+  /* Mitte */
+  .nav-left{
+    grid-column: 2 !important;
+    justify-self: center !important;
+    height: 52px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+
+  /* Rechts */
+  .nav-cta{
+    grid-column: 3 !important;
+    justify-self: end !important;
+    height: 44px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  /* Burger & Demo gleich groß */
+  .nav-cta .btn,
+  .nav-burger-cta{
+    height: 44px !important;
+    padding: 0 14px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    line-height: 1 !important;
+  }
+
+  .logo-wrap{
+    width: 52px !important;
+    height: 52px !important;
+  }
+
+  .logo-image{
+    width: 153% !important;
+    height: 153% !important;
+  }
+
+  .hero-simple {
+    padding: 26px 20px 24px;
+  }
+}
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <header class="nav">
+
+  <!-- 1) LINKS: Burger -->
+  <button class="btn btn-primary nav-burger-pill nav-burger-cta" id="mobileNavToggle"
+          aria-label="Menü öffnen"
+          aria-controls="mobileNavMenu"
+          aria-expanded="false"
+          type="button">
+    <span class="burger-lines" aria-hidden="true"></span>
+    <span class="burger-label">Menü</span>
+  </button>
+
+  <!-- 2) MITTE: Logo -->
+  <div class="nav-left">
+    <div class="logo-wrap">
+      <img src="img/s2e-logo.png" alt="S2E Logo" class="logo-image">
+    </div>
+
+    <div class="logo-text">
+      <div class="logo-text-main">Das<br /> Profi-Tool</div>
+    </div>
+  </div>
+
+  <!-- 3) DESKTOP: Links -->
+  <nav class="nav-links">
+    <a href="index.html">Startseite</a>
+    <a href="Praxisbeispiele.html">Praxisbeispiele</a>
+    <a href="ModuleFunktionen.html">Module &amp; Funktionen</a>
+    <a href="Kosten.html">Preise &amp; Nutzen</a>
+    <a href="VisionenWerte.html">Vision &amp; Werte</a>
+    <a href="Hilfecenter.html">Hilfecenter</a>
+  </nav>
+
+  <!-- 4) RECHTS: Demo -->
+  <div class="nav-cta">
+    <a href="bookins.html" class="btn btn-primary">Live erleben</a>
+  </div>
+
+  <!-- 5) MOBILE Dropdown -->
+  <div class="mobile-nav-menu" id="mobileNavMenu" aria-hidden="true">
+    <a href="index.html">Startseite</a>
+    <a href="Praxisbeispiele.html">Praxisbeispiele</a>
+    <a href="ModuleFunktionen.html">Module &amp; Funktionen</a>
+    <a href="Kosten.html">Preise &amp; Nutzen</a>
+    <a href="VisionenWerte.html">Vision &amp; Werte</a>
+    <a href="Hilfecenter.html">Hilfecenter</a>
+  </div>
+
+</header>
+
+    <section class="hero-simple">
+      <h1 class="hero-title">Datenschutzerklärung</h1>
+      <p class="hero-subtext">
+        Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO.
+      </p>
+    </section>
+
+   <section class="card">
+
+  <h2>Datenschutzrichtlinien</h2>
+  <p><strong>S2E Software GmbH</strong></p>
+  <p>
+    Der Schutz Ihrer persönlichen Daten hat für S2E Software GmbH, oberste Priorität.
+    Dieses Prinzip gilt für unser Internet-Angebot ebenso wie für unsere konventionellen Dienstleistungen.
+    Daher möchten wir Sie an dieser Stelle informieren, wie wir die Datenschutzbestimmungen in unseren Internet-Angeboten umsetzen.
+    Weitere Informationen zu den Risiken der Internet-Nutzung und den Möglichkeiten sich zu schützen finden Sie im Internet unter der Adresse
+    <strong>www.datenschutz.de</strong>.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Datenschutz</h2>
+  <p><strong>Der Schutz Ihrer Privatsphäre ist S2E Software GmbH wichtig!</strong></p>
+  <p>
+    Nachfolgend informieren wir Sie darüber, wie wir mit Ihren Daten umgehen, die bei der Nutzung unserer Internetseiten erhoben werden.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Verantwortlicher</h2>
+  <p>Verantwortlicher im Sinne der EU-Datenschutz-Grundverordnung (DS-GVO) ist:</p>
+  <p>
+    <strong>S2E Software GmbH</strong><br>
+    Mittelweg 25<br>
+    26180 Rastede<br><br>
+    Telefon: +49 4402 9726150<br>
+    Email: <a href="mailto:mail@s2e-software.com">mail@s2e-software.com</a>
+  </p>
+
+  <p>
+    Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst.
+    Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
+  </p>
+  <p>
+    Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich.
+    Soweit auf unseren Seiten personenbezogene Daten (beispielsweise Name, Anschrift oder E-Mail-Adressen) erhoben werden,
+    erfolgt dies, soweit möglich, stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben.
+    Wir weisen darauf hin, dass die Datenübertragung im Internet (z.B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann.
+    Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Cookies</h2>
+  <p>
+    Auf der Internetseite von <strong>https://www.s2e-software.com/</strong> werden sog. Cookies eingesetzt.
+    Bei Cookies handelt es sich um kleine Textdateien, die für die Dauer Ihrer Browser – Sitzung im Zwischenspeicher Ihres Internetbrowsers
+    (sog. Session-Cookies) oder für eine festgelegte Dauer (sog. permanent – Cookies) auf Ihrer Festplatte gespeichert werden.
+    Cookies ermöglichen die Wiedererkennung des Browsers, so dass Ihnen bei künftigen Besuchen der Webseite schneller und gezielter Inhalte
+    zur Verfügung gestellt werden können. Wir verwenden daher technisch notwendige Cookies, um unserem berechtigten Interesse an der Bereitstellung
+    einer auf die Wünsche der User zugeschnittene Inhalte anbieten zu können. Marketing- oder Tracking-Cookies kommen nur zum Einsatz,
+    wenn Sie in die Verwendung ausdrücklich einwilligen.
+  </p>
+
+  <p>
+    Auf unserer Website verwenden wir ein Cookie-Consent-System. Beim ersten Besuch der Website können Sie auswählen, welche Kategorien von Cookies und externen Inhalten geladen werden dürfen.
+Ihre Auswahl wird lokal im Browser Ihres Geräts gespeichert, damit Ihre Einstellungen bei späteren Besuchen berücksichtigt werden können.
+Sie können Ihre Auswahl jederzeit über den Link „Cookie-Einstellungen“ im Footer der Website ändern.
+  </p>
+
+  <p>
+    Sie können der Erhebung und Speicherung Ihrer Daten jederzeit mit Wirkung für die Zukunft widersprechen.
+    Hierzu können Sie die Erfassung der durch das Cookie erzeugten und auf Ihre Nutzung der Website bezogenen Daten (inkl. Ihrer IP-Adresse) an Google
+    sowie die Verarbeitung dieser Daten durch Google verhindern, indem Sie das unter dem folgenden Link verfügbare Browser-Plug-In herunterladen und installieren:
+  </p>
+  <p>
+    <a href="https://tools.google.com/dlpage/gaoptout?hl=de" target="_blank" rel="noopener noreferrer">
+      https://tools.google.com/dlpage/gaoptout?hl=de
+    </a>
+  </p>
+
+
+  <p>
+    Für den Einsatz von Tracking und Marketing Cookies ist ihre ausdrückliche Einwilligung erforderlich.
+    Hierzu haben Sie zu Beginn des Nutzungsvorgangs die Möglichkeit, über den Cookie-Banner Ihre Einwilligung zu verweigern oder zu erteilen und sich über die Datenschutzregeln unseres Unternehmens zu informieren.
+  </p>
+
+  <p>
+    Erteilen Sie uns die Einwilligung, ist Rechtsgrundlage der Verarbeitung personenbezogener Daten Art. 6 Abs. 1 lit. a DSGVO.
+    Eine erteilte Einwilligung können Sie jederzeit und ohne Angabe von Gründen widerrufen. Senden Sie hierfür z.B. eine E-Mail an:
+    <a href="mailto:mail@s2e-software.com">mail@s2e-software.com</a>.
+    Im Impressum (LINK) finden Sie weitere Kontaktdaten, an die Sie den Widerruf richten können.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Microsoft Bookings</h2>
+  <p>
+    Für die Terminbuchung nutzen wir den Dienst Microsoft Bookings der Microsoft Corporation, One Microsoft Way, Redmond, WA 98052-6399, USA.
+Der Kalender wird erst geladen, wenn Sie der Einbindung externer Inhalte zustimmen oder aktiv auf „Bookings öffnen“ klicken.
+Beim Laden des Kalenders kann Microsoft Informationen wie Ihre IP-Adresse und technische Verbindungsdaten verarbeiten.
+Weitere Informationen zum Datenschutz bei Microsoft finden Sie unter:
+https://privacy.microsoft.com/de-de/privacystatement
+  </p>
+
+  <p>Wenn Sie über Microsoft Bookings einen Termin vereinbaren, werden die von Ihnen eingegebenen Daten (z. B. Name, E-Mail-Adresse, Telefonnummer sowie ggf. weitere Angaben) zum Zweck der Terminvereinbarung verarbeitet.
+
+Die Verarbeitung erfolgt auf Grundlage Ihrer Einwilligung gemäß Art. 6 Abs. 1 lit. a DSGVO.
+
+Die Daten werden durch Microsoft verarbeitet. Dabei kann nicht ausgeschlossen werden, dass eine Übermittlung an Server in den USA erfolgt.</p>
+  
+
+  <div class="divider"></div>
+
+
+
+  <h2>LinkedIn</h2>
+  <p>
+    Unsere Website nutzt Funktionen der LinkedIn Corporation. LinkedIn ist ein Internetbasiertes soziales Netzwerk, das eine Konnektierung der Nutzer mit bestehenden Geschäftskontakten
+    sowie das Knüpfen von neuen Businesskontakten ermöglicht. Über 400 Millionen registrierte Personen nutzen LinkedIn in mehr als 200 Ländern.
+    Damit ist LinkedIn derzeit die größte Plattform für Businesskontakte und eine der meistbesuchten Internetseiten der Welt.
+  </p>
+  <p>
+    Betreibergesellschaft von LinkedIn ist die LinkedIn Corporation, 2029 Stierlin Court Mountain View, CA 94043, USA.
+    Für Datenschutzangelegenheiten außerhalb der USA ist LinkedIn Ireland, Privacy Policy Issues, Wilton Plaza, Wilton Place, Dublin 2, Ireland, zuständig.
+  </p>
+  <p>
+    Für die Nutzung von LinkedIn ist ihre ausdrückliche Einwilligung erforderlich. Hierzu haben Sie zu Beginn des Nutzungsvorgangs die Möglichkeit,
+    über den Cookie-Banner Ihre Einwilligung zu verweigern oder zu erteilen und sich über die Datenschutzregeln unseres Unternehmens zu informieren.
+  </p>
+  <p>
+    Erteilen Sie uns die Einwilligung, ist Rechtsgrundlage der Verarbeitung personenbezogener Daten Art. 6 Abs. 1 lit. a DSGVO.
+  </p>
+  <p>
+    Eine erteilte Einwilligung können Sie jederzeit und ohne Angabe von Gründen widerrufen. Senden Sie hierfür z.B. eine E-Mail an:
+    <a href="mailto:mail@s2e-software.com">mail@s2e-software.com</a>. Im Impressum finden Sie weitere Kontaktdaten, an die Sie den Widerruf richten können.
+  </p>
+  <p>
+    Bei jedem einzelnen Abruf unserer Internetseite, die mit einer LinkedIn-Komponente (LinkedIn-Plug-In) ausgestattet ist, veranlasst diese Komponente,
+    dass der von der betroffenen Person verwendete Browser eine entsprechende Darstellung der Komponente von LinkedIn herunterlädt.
+    Weitere Informationen zu den LinkedIn-Plug-Ins können unter
+    <a href="https://developer.linkedin.com/plugins" target="_blank" rel="noopener noreferrer">
+      https://developer.linkedin.com/plugins
+    </a>
+    abgerufen werden. Im Rahmen dieses technischen Verfahrens erhält LinkedIn Kenntnis darüber, welche konkrete Unterseite unserer Internetseite durch die betroffene Person besucht wird.
+  </p>
+  <p>
+    Sofern die betroffene Person gleichzeitig bei LinkedIn eingeloggt ist, erkennt LinkedIn mit jedem Aufruf unserer Internetseite durch die betroffene Person und während der gesamten Dauer
+    des jeweiligen Aufenthaltes auf unserer Internetseite, welche konkrete Unterseite unserer Internetseite die betroffene Person besucht.
+    Diese Informationen werden durch die LinkedIn-Komponente gesammelt und durch LinkedIn dem jeweiligen LinkedIn-Account der betroffenen Person zugeordnet.
+  </p>
+  <p>
+    Betätigt die betroffene Person einen auf unserer Internetseite integrierten LinkedIn-Button, ordnet LinkedIn diese Information dem persönlichen LinkedIn-Benutzerkonto der betroffenen Person zu
+    und speichert diese personenbezogenen Daten.
+  </p>
+  <p>
+    LinkedIn erhält über die LinkedIn-Komponente immer dann eine Information darüber, dass die betroffene Person unsere Internetseite besucht hat,
+    wenn die betroffene Person zum Zeitpunkt des Aufrufes unserer Internetseite gleichzeitig bei LinkedIn eingeloggt ist; dies findet unabhängig davon statt,
+    ob die betroffene Person die LinkedIn-Komponente anklickt oder nicht.
+    Ist eine derartige Übermittlung dieser Informationen an LinkedIn von der betroffenen Person nicht gewollt, kann diese die Übermittlung dadurch verhindern,
+    dass sie sich vor einem Aufruf unserer Internetseite aus ihrem LinkedIn-Account ausloggt.
+  </p>
+  <p>
+    LinkedIn bietet unter
+    <a href="https://www.linkedin.com/psettings/guest-controls" target="_blank" rel="noopener noreferrer">
+      https://www.linkedin.com/psettings/guest-controls
+    </a>
+    die Möglichkeit, E-Mail-Nachrichten, SMS-Nachrichten und zielgerichtete Anzeigen abzubestellen sowie Anzeigen-Einstellungen zu verwalten.
+  </p>
+  <p>
+    LinkedIn nutzt ferner Partner wie Quantcast, Google Analytics, BlueKai, DoubleClick, Nielsen, Comscore, Eloqua und Lotame, die Cookies setzen können.
+    Solche Cookies können unter
+    <a href="https://www.linkedin.com/legal/cookie-policy" target="_blank" rel="noopener noreferrer">
+      https://www.linkedin.com/legal/cookie-policy
+    </a>
+    abgelehnt werden.
+    Die geltenden Datenschutzbestimmungen von LinkedIn sind unter
+    <a href="https://www.linkedin.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">
+      https://www.linkedin.com/legal/privacy-policy
+    </a>
+    abrufbar. Die Cookie-Richtlinie von LinkedIn ist unter
+    <a href="https://www.linkedin.com/legal/cookie-policy" target="_blank" rel="noopener noreferrer">
+      https://www.linkedin.com/legal/cookie-policy
+    </a>
+    abrufbar.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>YouTube</h2>
+  <p>
+    Unsere Webseite nutzt Plugins der von Google betriebenen Seite YouTube.
+    Betreiber der Seiten ist die YouTube, LLC, 901 Cherry Ave., San Bruno, CA 94066, USA.
+  </p>
+  <p>
+    Für den Einsatz von YouTube ist ihre ausdrückliche Einwilligung erforderlich. Hierzu haben Sie zu Beginn des Nutzungsvorgangs die Möglichkeit,
+    über den Cookie-Banner Ihre Einwilligung zu verweigern oder zu erteilen und sich über die Datenschutzregeln unseres Unternehmens zu informieren.
+  </p>
+  <p>
+    Erteilen Sie uns die Einwilligung, ist Rechtsgrundlage der Verarbeitung personenbezogener Daten Art. 6 Abs. 1 lit. a DSGVO.
+    Eine erteilte Einwilligung können Sie jederzeit und ohne Angabe von Gründen widerrufen. Senden Sie hierfür z.B. eine E-Mail an:
+    <a href="mailto:mail@s2e-software.com">mail@s2e-software.com</a>. Im Impressum finden Sie weitere Kontaktdaten, an die Sie den Widerruf richten können.
+  </p>
+  <p>
+    Wenn Sie eine unserer mit einem YouTube- Plugin ausgestatteten Seiten besuchen, wird eine Verbindung zu den Servern von YouTube hergestellt.
+    Dabei wird dem Youtube-Server mitgeteilt, welche unserer Seiten Sie besucht haben.
+  </p>
+  <p>
+    Wenn Sie in Ihrem YouTube-Account eingeloggt sind ermöglichen Sie YouTube, Ihr Surfverhalten direkt Ihrem persönlichen Profil zuzuordnen.
+    Dies können Sie verhindern, indem Sie sich aus Ihrem YouTube- Account ausloggen.
+  </p>
+  <p>
+    Weitere Informationen zum Umgang von Nutzerdaten finden Sie in der Datenschutzerklärung von YouTube unter:
+    <a href="https://www.google.de/intl/de/policies/privacy" target="_blank" rel="noopener noreferrer">
+      https://www.google.de/intl/de/policies/privacy
+    </a>
+  </p>
+
+  <div class="divider"></div>
+
+
+  <h2>Server-Log-Files</h2>
+  <p>
+    Bei jedem Aufruf der Internetseite <strong>https://www.s2e-software.com</strong> erhebt und speichert der Seitenprovider automatisch Informationen
+    in so genannten Server-Log Files, die Ihr Browser automatisch an uns übermittelt.
+  </p>
+  <p>Folgende Daten können hierbei erhoben werden:</p>
+  <ul>
+    <li>Informationen über den Browsertyp und die verwendete Version</li>
+    <li>Das Betriebssystem des Nutzers</li>
+    <li>Den Internet-Service Provider des Nutzers</li>
+    <li>Die IP-Adresse des Nutzers</li>
+    <li>Datum und Uhrzeit des Zugriffs</li>
+    <li>Webseiten, von denen das System des Nutzers auf unsere Internetseite gelangt (Referrer)</li>
+  </ul>
+  <p>
+    Diese Daten sind nicht bestimmten Personen zuzuordnen. Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen.
+    Wir behalten uns vor, diese Daten nachträglich zu prüfen, wenn uns konkrete Anhaltspunkte für eine rechtswidrige Nutzung bekannt werden.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Downloadbereich</h2>
+  <p>
+    Wir bieten unseren Besuchern einen Downloadbereich an, in dem Checklisten kostenfrei herunterladen werden können.
+  </p>
+  <p>
+    Die Nutzung des Downloadbereichs ist auf diverse Cookies angewiesen. Um den Downloadbereich nutzen zu können, müssen Sie daher in das Setzen der entsprechenden Cookies einwilligen.
+    Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO.
+  </p>
+  <p>
+    Für das Laden des Downloadbereichs ist der Einsatz von Cookies erforderlich. Ihre Einwilligung zum Setzen der Cookies auf Ihrem Endgerät können Sie im Cookie-Banner erteilen.
+    Das Cookie dient allein dem Laden des Downloadbereichs in Ihrem Browser. Ihre Einwilligung zur Verarbeitung können Sie jederzeit durch Öffnen der Cookie-Einstellungen widerrufen.
+    Durch den Widerruf ist ein Aufrufen des Downloadbereichs nicht mehr möglich.
+  </p>
+  <p>
+    Ein weiteres Cookie wird für die Freischaltung der jeweiligen Downloads gesetzt. Das Cookie dient der Verifizierung des Downloadlinks,
+    der Ihnen im Rahmen eines jeden Downloads per E-Mail zugesandt wird. Für diese Verarbeitung benötigen wir ebenfalls Ihre Einwilligung.
+    Ihre Einwilligung zur Verarbeitung können Sie jederzeit durch Öffnen der Cookie-Einstellungen widerrufen.
+    Durch den Widerruf ist ein Download von Dateien nicht mehr möglich.
+  </p>
+  <p>
+    Der Einsatz der Cookies erfolgt nur zu den genannten Zwecken. Eine Übermittlung an Dritte und insbesondere in Drittländer findet nicht statt.
+  </p>
+
+  <p>
+    Sobald Sie dem Einsatz der Cookies zugestimmt haben, müssen Sie sich zunächst durch unser Double-Opt-In-Verfahren verifizieren, um die Downloadfunktion nutzen zu können.
+    Hierbei müssen Sie Ihre Kontaktdaten in die vorgesehenen Felder eintragen. Mit der Eingabe und Absendung Ihrer Kontaktdaten fordern Sie eine Aktivierung Ihres Zugangs zum Downloadbereich an.
+    Sie erhalten eine E-Mail, die über den darin enthaltenen Link bestätigt werden muss. Durch die Bestätigung wird Ihr Zugang zum Downloadbereich freigeschaltet.
+  </p>
+
+  <p>Wir verarbeiten Ihre personenbezogenen Daten in diesem Rahmen zu mehreren Zwecken:</p>
+  <ul>
+    <li><strong>Verifikation und Einrichtung eines Zugangs:</strong> Durch das beschriebene Verifikationsverfahren prüfen wir, ob Sie eine menschliche Person sind. Damit verhindern wir etwa den Zugriff von Bots.</li>
+    <li><strong>Kontrolle des Missbrauchs des Downloadbereichs:</strong> Ein Downloadzähler, der die Anzahl der getätigten Downloads des verifizierten Nutzers zählt, dient dieser Kontrolle. Insbesondere ist eine Rückverfolgung der Nutzer durch Speicherung der Kontaktdaten notwendig, um vor allem unbefugt kommerzielle oder missbräuchliche Downloads nachprüfen zu können.</li>
+    <li><strong>Statistische Zwecke:</strong> Mit dem Downloadzähler werten wir aus, wie oft Sie ein Dokument geladen haben und wie oft ein Dokument insgesamt durch alle Benutzer geladen wurde. Die Daten nutzen wir, um unser Angebot weiter zu optimieren.</li>
+  </ul>
+
+  <p>
+    Mit der Absendung Ihrer Kontaktdaten willigen Sie ein, dass wir Ihre Daten zu den genannten Zwecken verarbeiten dürfen.
+    Die Daten werden nicht zu anderen Zwecken verarbeitet. Eine Übermittlung an Dritte (externe Dienstleister) erfolgt nur, soweit sie erforderlich ist,
+    um einen Missbrauch festzustellen und rückverfolgen zu können.
+  </p>
+
+  <p>
+    Die Verarbeitung Ihrer personenbezogenen Daten erfolgt auf Grundlage Ihrer Einwilligung gem. Art. 6 Abs. 1 lit. a DSGVO.
+    Ihre Einwilligung können Sie jederzeit per E-Mail an <a href="mailto:mail@s2e-software.com">mail@s2e-software.com</a> widerrufen.
+    Hierdurch verlieren Sie Ihren Zugang zum Downloadbereich. Ihre Kontaktdaten werden sodann grundsätzlich gelöscht,
+    spätestens nach Ablauf der Verjährungsfristen zur Geltendmachung etwaiger Ansprüche wegen Missbrauchs des Downloadbereichs.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Kontaktformular</h2>
+  <p>
+    Auf unserer Internetseite ist ein Kontakformular vorhanden, das Sie für die elektronische Kontaktaufnahme nutzen können.
+    Wenn Sie uns eine Email senden öffnet sich das Fenster Ihres Mailprogramms (z.B. outlook) und unsere Mailadresse ist bereits im Adressfenster eingegeben.
+    Senden Sie uns eine E-Mail, erhalten wir von Ihnen mindestens Ihre Mailadresse und die weiteren, von Ihnen freiwillig gemachten Angaben z.B. zu Ihrer Person (Name, Vorname, Adresse).
+  </p>
+  <p>
+    Die Bereitstellung des Kontaktbuttons im Kontaktformular dient unseren berechtigten Interessen, da wir so mehr Möglichkeiten haben, mit Ihnen in Kontakt zu treten.
+    Alternativ ist eine Kontaktaufnahme telefonisch oder postalisch möglich.
+    Nehmen Sie über einen der o.g. Kanäle Kontakt mit uns auf, so werden die von Ihnen übermittelten personenbezogenen Daten automatisch gespeichert.
+    Die Speicherung dient allein zu Zwecken der Bearbeitung oder der Kontaktaufnahme. Eine Weitergabe der Daten an Dritte findet nicht statt.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Newsletterdaten</h2>
+  <p>
+    Wenn Sie den auf der Webseite angebotenen Newsletter beziehen möchten, benötigen wir von Ihnen eine E-Mail-Adresse sowie Informationen,
+    welche uns die Überprüfung gestatten, dass Sie der Inhaber der angegebenen E-Mail-Adresse sind und mit dem Empfang des Newsletters einverstanden sind.
+    Weitere Daten werden nicht erhoben. Diese Daten verwenden wir ausschließlich für den Versand der angeforderten Informationen und geben sie nicht an Dritte weiter.
+  </p>
+  <p>
+    Die erteilte Einwilligung zur Speicherung der Daten, der E-Mail-Adresse sowie deren Nutzung zum Versand des Newsletters können Sie jederzeit widerrufen,
+    etwa über den "Austragen"-Link im Newsletter.
+  </p>
+  
+
+  <div class="divider"></div>
+
+  <h2>SSL-Verschlüsselung</h2>
+  <p>
+    Diese Seite nutzt aus Gründen der Sicherheit und zum Schutz der Übertragung vertraulicher Inhalte, wie zum Beispiel der Anfragen, die Sie an uns als Seitenbetreiber senden,
+    eine SSL-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von "http://" auf "https://" wechselt
+    und an dem Schloss-Symbol in Ihrer Browserzeile. Wenn die SSL Verschlüsselung aktiviert ist, können die Daten, die Sie an uns übermitteln, nicht von Dritten mitgelesen werden.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Recht auf Auskunft, Löschung, Sperrung</h2>
+  <p>
+    Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten, personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung
+    sowie ein Recht auf Berichtigung, Sperrung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit
+    unter der im Impressum angegebenen Adresse an uns wenden.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Widerspruch Werbe-Mails</h2>
+  <p>
+    Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten, zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit widersprochen.
+    Die Betreiber der Seiten behalten sich ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Bewerbung</h2>
+  <p>
+    Sofern Sie sich über die E-Mail-Adresse <a href="mailto:mail@s2e-software.com">mail@s2e-software.com</a> bei uns bewerben:
+    Ihre Bewerbung und die damit erfassten Daten werden in unserem Hause vertraulich behandelt.
+    Zugriff hat ausschließlich die Geschäftsleitung und diejenigen Mitarbeiter, die für die Einarbeitung zuständig wären oder unsere jeweiligen Ressortleiter.
+    Ihre Daten werden während des Bewerbungsprozesses intern nicht elektronisch verarbeitet.
+    Ausschließlich Ihre per E-Mail eingegangene Bewerbung wird für sechs Monate gespeichert. Danach erfolgt eine automatische Löschung.
+    Sofern uns Unterlagen in Papierform überlassen worden sind, werden diese im Original per Post zurückgesandt. Kopien werden nicht aufbewahrt.
+  </p>
+
+  <div class="divider"></div>
+
+  <h2>Betroffenenrechte</h2>
+  <p>Sie haben das Recht:</p>
+  <ul>
+    <li>
+      gemäß Art. 15 DSGVO Auskunft über Ihre von uns verarbeiteten personenbezogenen Daten zu verlangen. Insbesondere können Sie Auskunft über die Verarbeitungszwecke,
+      die Kategorie der personenbezogenen Daten, die Kategorien von Empfängern, gegenüber denen Ihre Daten offengelegt wurden oder werden, die geplante Speicherdauer,
+      das Bestehen eines Rechts auf Berichtigung, Löschung, Einschränkung der Verarbeitung oder Widerspruch, das Bestehen eines Beschwerderechts, die Herkunft ihrer Daten,
+      sofern diese nicht bei uns erhoben wurden, sowie über das Bestehen einer automatisierten Entscheidungsfindung einschließlich Profiling und ggf. aussagekräftigen Informationen
+      zu deren Einzelheiten verlangen;
+    </li>
+    <li>
+      gemäß Art. 16 DSGVO unverzüglich die Berichtigung unrichtiger oder Vervollständigung Ihrer bei uns gespeicherten personenbezogenen Daten zu verlangen;
+    </li>
+    <li>
+      gemäß Art. 17 DSGVO die Löschung Ihrer bei uns gespeicherten personenbezogenen Daten zu verlangen, soweit nicht die Verarbeitung zur Ausübung des Rechts auf freie Meinungsäußerung
+      und Information, zur Erfüllung einer rechtlichen Verpflichtung, aus Gründen des öffentlichen Interesses oder zur Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen erforderlich ist;
+    </li>
+    <li>
+      gemäß Art. 18 DSGVO die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen, soweit die Richtigkeit der Daten von Ihnen bestritten wird,
+      die Verarbeitung unrechtmäßig ist, Sie aber deren Löschung ablehnen und wir die Daten nicht mehr benötigen, Sie jedoch diese zur Geltendmachung, Ausübung oder Verteidigung
+      von Rechtsansprüchen benötigen oder Sie gemäß Art. 21 DSGVO Widerspruch gegen die Verarbeitung eingelegt haben;
+    </li>
+    <li>
+      gemäß Art. 20 DSGVO Ihre personenbezogenen Daten, die Sie uns bereitgestellt haben, in einem strukturierten, gängigen und maschinenlesebaren Format zu erhalten
+      oder die Übermittlung an einen anderen Verantwortlichen zu verlangen;
+    </li>
+    <li>
+      gemäß Art. 7 Abs. 3 DSGVO Ihre einmal erteilte Einwilligung jederzeit gegenüber uns zu widerrufen. Dies hat zur Folge, dass wir die Datenverarbeitung,
+      die auf dieser Einwilligung beruhte, für die Zukunft nicht mehr fortführen dürfen und
+    </li>
+    <li>
+      gemäß Art. 77 DSGVO sich bei einer Aufsichtsbehörde zu beschweren. In der Regel können Sie sich hierfür an die Aufsichtsbehörde Ihres üblichen Aufenthaltsortes
+      oder Arbeitsplatzes oder unseres Unternehmenssitzes wenden.
+    </li>
+
+  </ul>
+
+  <div class="divider"></div>
+
+  <h2>Urheberrecht und Bildmaterial</h2>
+
+  <p>Die auf dieser Website verwendeten Bilder, Grafiken, Videos und Designelemente wurden, sofern nicht anders angegeben, von der S2E Software GmbH selbst erstellt.
+Die Nutzung, Vervielfältigung oder Weitergabe dieser Inhalte ist ohne ausdrückliche schriftliche Zustimmung der S2E Software GmbH nicht gestattet.
+Einzelne verwendete Icons oder Emojis können von öffentlich zugänglichen Systembibliotheken stammen und unterliegen den jeweiligen Nutzungsbedingungen der Anbieter.</p>
+
+<div class="divider"></div>
+
+<h2>Hostin</h2>
+
+<p>Diese Website wird über den Anbieter Netlify Inc., 610 22nd Street, Suite 315, San Francisco, CA 94107, USA gehostet.
+Netlify stellt die Infrastruktur zur Bereitstellung dieser Website bereit.
+Beim Aufruf der Website können Server-Logfiles verarbeitet werden (z. B. IP-Adresse, Browserinformationen, Zeitpunkt des Zugriffs).
+Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der sicheren und stabilen Bereitstellung der Website).</p>
+
+
+<div class="divider"></div>
+
+<h2>Einbindung von Videos über Cloudinary</h2>
+
+<p>Auf unserer Website nutzen wir zur Bereitstellung von Videoinhalten den Dienst Cloudinary (Cloudinary Ltd., USA).
+
+Beim Aufruf von Seiten mit eingebetteten Videos wird eine Verbindung zu den Servern von Cloudinary hergestellt. Dabei können personenbezogene Daten wie Ihre IP-Adresse sowie technische Verbindungsdaten verarbeitet werden.
+
+Weitere Informationen finden Sie unter:
+https://cloudinary.com/privacy</p>
+
+<div class="divider"></div>
+
+  <h2>Stand</h2>
+  <p>
+    Diese Datenschutzerklärung ist aktuell gültig und hat den Stand <strong>März 2026</strong>.
+  </p>
+
+</section>
+
+
+     <footer>
+      <span>© <span id="year"></span> S2E Software. Alle Rechte vorbehalten.</span>
+      <span>
+        <a href="Impressum.html">Impressum</a> ·
+        <a href="Datenschutz.html">Datenschutz</a> ·
+        <a href="#" onclick="openCookieSettings(); return false;">
+  Cookie-Einstellungen
+</a>
+      </span>
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+
+<script>
+  (function () {
+    const toggle = document.getElementById("mobileNavToggle");
+    const menu = document.getElementById("mobileNavMenu");
+
+    if (!toggle || !menu) return;
+
+    function openMenu() {
+      menu.classList.add("is-open");
+      menu.setAttribute("aria-hidden", "false");
+      toggle.setAttribute("aria-expanded", "true");
+    }
+
+    function closeMenu() {
+      menu.classList.remove("is-open");
+      menu.setAttribute("aria-hidden", "true");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+
+    toggle.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = menu.classList.contains("is-open");
+      isOpen ? closeMenu() : openMenu();
+    });
+
+    document.addEventListener("click", () => closeMenu());
+    menu.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMenu));
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    });
+  })();
+</script>
+
+  <!-- =========================
+     COOKIE BANNER (S2E-Style)
+     - Sofort: "Alles ablehnen" (nur essentielle bleiben)
+     - Optional: Einstellungen
+     - Speichert Auswahl in localStorage
+========================= -->
+<style>
+  :root{
+    --cb-bg: rgba(255,255,255,0.92);
+    --cb-border: rgba(0,0,0,0.08);
+    --cb-shadow: 0 18px 40px rgba(15, 76, 110, 0.12);
+    --cb-text: #102030;
+    --cb-text-soft: #5a6b81;
+    --cb-primary: #5a8fdc;
+    --cb-accent: #f29a9a;
+    --cb-radius: 22px;
+    --cb-pill: 999px;
+  }
+
+  .cookie-backdrop{
+    position: fixed;
+    inset: 0;
+    background: rgba(16, 32, 48, 0.28);
+    backdrop-filter: blur(6px);
+    display: none;
+    z-index: 9998;
+  }
+
+  .cookie-banner{
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    max-width: 980px;
+    margin: 0 auto;
+    background: var(--cb-bg);
+    border: 1px solid var(--cb-border);
+    box-shadow: var(--cb-shadow);
+    border-radius: var(--cb-radius);
+    z-index: 9999;
+    display: none;
+    overflow: hidden;
+  }
+
+  .cookie-inner{
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+    gap: 16px;
+    padding: 16px 16px 14px;
+    align-items: center;
+  }
+
+  .cookie-title{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+    font-weight: 800;
+    color: var(--cb-text);
+  }
+
+  .cookie-emoji{
+    font-size: 30px;
+    filter: drop-shadow(0 8px 12px rgba(0,0,0,0.10));
+  }
+
+  .cookie-text{
+    color: var(--cb-text-soft);
+    font-size: 0.95rem;
+    line-height: 1.35;
+  }
+
+  .cookie-actions{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .cb-btn{
+    border-radius: var(--cb-pill);
+    padding: 10px 14px;
+    font-size: 0.92rem;
+    border: 1px solid transparent;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    transition: all 0.18s ease;
+    white-space: nowrap;
+  }
+
+  .cb-btn-primary{
+    background: linear-gradient(135deg, var(--cb-primary), #6ea8ff);
+    color: #fff;
+    box-shadow: 0 10px 26px rgba(30, 87, 153, 0.25);
+    border-color: rgba(255,255,255,0.4);
+    font-weight: 700;
+  }
+  .cb-btn-primary:hover{ transform: translateY(-1px); }
+
+  .cb-btn-ghost{
+    border-color: rgba(90, 111, 143, 0.22);
+    background: rgba(255,255,255,0.65);
+    color: var(--cb-text);
+    font-weight: 650;
+  }
+  .cb-btn-ghost:hover{ background: rgba(255,255,255,0.9); }
+
+  .cb-btn-danger{
+    border-color: rgba(242, 154, 154, 0.45);
+    background: rgba(255, 224, 224, 0.65);
+    color: #102030;
+    font-weight: 750;
+  }
+  .cb-btn-danger:hover{ background: rgba(255,224,224,0.9); }
+
+  .cookie-links{
+    margin-top: 8px;
+    font-size: 0.82rem;
+    color: var(--cb-text-soft);
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .cookie-links a{
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  /* Einstellungen Panel */
+  .cookie-settings{
+    border-top: 1px solid var(--cb-border);
+    padding: 12px 16px 14px;
+    display: none;
+    background: rgba(255,255,255,0.80);
+  }
+
+  .cookie-settings h4{
+    margin: 0 0 10px;
+    font-size: 0.95rem;
+    color: var(--cb-text);
+  }
+
+  .cookie-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .cookie-row{
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.06);
+    background: rgba(245, 248, 255, 0.72);
+  }
+
+  .cookie-row strong{
+    display: block;
+    color: var(--cb-text);
+    font-size: 0.92rem;
+    margin-bottom: 2px;
+  }
+
+  .cookie-row p{
+    margin: 0;
+    color: var(--cb-text-soft);
+    font-size: 0.85rem;
+    line-height: 1.25;
+  }
+
+  .cb-toggle{
+    min-width: 52px;
+    height: 30px;
+    border-radius: 999px;
+    border: 1px solid rgba(0,0,0,0.10);
+    background: rgba(255,255,255,0.75);
+    position: relative;
+    cursor: pointer;
+    flex: 0 0 auto;
+  }
+
+  .cb-toggle[data-on="true"]{
+    background: rgba(90, 143, 220, 0.18);
+    border-color: rgba(90, 143, 220, 0.35);
+  }
+
+  .cb-knob{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 4px;
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, var(--cb-primary), var(--cb-accent));
+    box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+    transition: left 0.18s ease;
+  }
+
+  .cb-toggle[data-on="true"] .cb-knob{
+    left: 26px;
+  }
+
+  .cb-badge{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.9);
+    border: 1px solid rgba(0,0,0,0.06);
+    color: var(--cb-text-soft);
+    margin-left: 8px;
+    white-space: nowrap;
+  }
+
+  /* Mobile */
+  @media (max-width: 720px){
+    .cookie-inner{
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .cookie-actions{
+      justify-content: flex-start;
+    }
+  }
+</style>
+
+<div class="cookie-backdrop" id="cookieBackdrop" aria-hidden="true"></div>
+
+<div class="cookie-banner" id="cookieBanner" role="dialog" aria-modal="true" aria-label="Cookie-Einstellungen">
+  <div class="cookie-inner">
+    <div>
+      <div class="cookie-title">
+        <span class="cookie-emoji">🍪</span>
+        <span>Darf ich deine Kekse haben?</span>
+      </div>
+      <div class="cookie-text">
+        Wir nutzen essenzielle Cookies, damit die Seite zuverlässig läuft. Optional helfen uns Analyse-Cookies dabei,
+        S2E besser zu machen. Du kannst jederzeit später ändern.
+        <div class="cookie-links">
+          <a href="Datenschutz.html">Datenschutz</a>
+          <a href="Impressum.html">Impressum</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cookie-actions">
+      <!-- Sofort-Option: alles ablehnen (nur essential bleibt) -->
+      <button class="cb-btn cb-btn-danger" id="cbReject">Alles ablehnen</button>
+
+      <button class="cb-btn cb-btn-ghost" id="cbSettings">Einstellungen</button>
+
+      <button class="cb-btn cb-btn-primary" id="cbAcceptAll">Alles akzeptieren</button>
+    </div>
+  </div>
+
+  <div class="cookie-settings" id="cookieSettings">
+    <h4>Cookie-Auswahl</h4>
+
+    <div class="cookie-grid">
+      <div class="cookie-row">
+        <div>
+          <strong>Essenzielle Cookies <span class="cb-badge">immer aktiv</span></strong>
+          <p>Notwendig für Grundfunktionen (z. B. Navigation, Session, Sicherheit).</p>
+        </div>
+        <div class="cb-toggle" data-on="true" aria-disabled="true" title="Essenzielle Cookies sind immer aktiv">
+          <span class="cb-knob"></span>
+        </div>
+      </div>
+
+      <div class="cookie-row">
+        <div>
+          <strong>Analyse / Statistik</strong>
+          <p>Hilft uns zu verstehen, welche Inhalte genutzt werden (nur mit Zustimmung).</p>
+        </div>
+        <button class="cb-toggle" id="toggleAnalytics" data-on="false" type="button" aria-label="Analyse Cookies umschalten">
+          <span class="cb-knob"></span>
+        </button>
+      </div>
+
+      <div class="cookie-row">
+        <div>
+          <strong>Externe Inhalte</strong>
+          <p>Zum Beispiel eingebettete Videos oder Karten (nur mit Zustimmung).</p>
+        </div>
+        <button class="cb-toggle" id="toggleExternal" data-on="false" type="button" aria-label="Externe Inhalte umschalten">
+          <span class="cb-knob"></span>
+        </button>
+      </div>
+    </div>
+
+    <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:12px; flex-wrap:wrap;">
+      <button class="cb-btn cb-btn-ghost" id="cbSave">Auswahl speichern</button>
+      <button class="cb-btn cb-btn-primary" id="cbAcceptSelected">Auswahl akzeptieren</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ===== Cookie Consent State =====
+  const CONSENT_KEY = "s2e_cookie_consent_v1";
+
+  const banner = document.getElementById("cookieBanner");
+  const backdrop = document.getElementById("cookieBackdrop");
+  const settings = document.getElementById("cookieSettings");
+
+  const btnReject = document.getElementById("cbReject");
+  const btnSettings = document.getElementById("cbSettings");
+  const btnAcceptAll = document.getElementById("cbAcceptAll");
+  const btnSave = document.getElementById("cbSave");
+  const btnAcceptSelected = document.getElementById("cbAcceptSelected");
+
+  const toggleAnalytics = document.getElementById("toggleAnalytics");
+  const toggleExternal = document.getElementById("toggleExternal");
+
+  function getConsent() {
+    try { return JSON.parse(localStorage.getItem(CONSENT_KEY)); }
+    catch { return null; }
+  }
+
+  function setConsent(consent) {
+    localStorage.setItem(CONSENT_KEY, JSON.stringify(consent));
+  }
+
+  function openBanner() {
+    banner.style.display = "block";
+    backdrop.style.display = "block";
+    backdrop.setAttribute("aria-hidden", "false");
+  }
+
+  function closeBanner() {
+    banner.style.display = "none";
+    backdrop.style.display = "none";
+    backdrop.setAttribute("aria-hidden", "true");
+    settings.style.display = "none";
+  }
+
+  function setToggle(el, on) {
+    el.setAttribute("data-on", on ? "true" : "false");
+  }
+
+  function readToggles() {
+    return {
+      essential: true, // immer aktiv
+      analytics: toggleAnalytics.getAttribute("data-on") === "true",
+      external: toggleExternal.getAttribute("data-on") === "true",
+      ts: new Date().toISOString()
+    };
+  }
+
+  function applyConsent(consent) {
+    // Hier würdest du je nach Zustimmung Scripts nachladen.
+    // Beispiel:
+    // if(consent.analytics){ loadAnalytics(); }
+    // if(consent.external){ enableEmbeds(); }
+
+    document.documentElement.dataset.consentAnalytics = consent.analytics ? "1" : "0";
+    document.documentElement.dataset.consentExternal = consent.external ? "1" : "0";
+  }
+
+  function ensureBanner() {
+    const existing = getConsent();
+    if (!existing) {
+      // default: nur essential
+      setToggle(toggleAnalytics, false);
+      setToggle(toggleExternal, false);
+      openBanner();
+    } else {
+      // toggles spiegeln (falls du Einstellungen wieder öffnen willst)
+      setToggle(toggleAnalytics, !!existing.analytics);
+      setToggle(toggleExternal, !!existing.external);
+      applyConsent(existing);
+    }
+  }
+
+  // Toggle click
+  function toggleClick(el) {
+    const on = el.getAttribute("data-on") === "true";
+    setToggle(el, !on);
+  }
+  toggleAnalytics.addEventListener("click", () => toggleClick(toggleAnalytics));
+  toggleExternal.addEventListener("click", () => toggleClick(toggleExternal));
+
+  // Buttons
+  btnSettings.addEventListener("click", () => {
+    settings.style.display = settings.style.display === "block" ? "none" : "block";
+  });
+
+  btnReject.addEventListener("click", () => {
+    const consent = { essential: true, analytics: false, external: false, ts: new Date().toISOString() };
+    setConsent(consent);
+    applyConsent(consent);
+    closeBanner();
+  });
+
+  btnAcceptAll.addEventListener("click", () => {
+    const consent = { essential: true, analytics: true, external: true, ts: new Date().toISOString() };
+    setConsent(consent);
+    applyConsent(consent);
+    closeBanner();
+  });
+
+  btnSave.addEventListener("click", () => {
+    const consent = readToggles();
+    setConsent(consent);
+    applyConsent(consent);
+    closeBanner();
+  });
+
+  btnAcceptSelected.addEventListener("click", () => {
+    const consent = readToggles();
+    setConsent(consent);
+    applyConsent(consent);
+    closeBanner();
+  });
+
+  // Klick auf Backdrop schließt nicht automatisch (damit niemand aus Versehen zustimmt)
+  // backdrop.addEventListener("click", closeBanner);
+
+  ensureBanner();
+
+  // Optional: global function to reopen settings (z.B. Footer-Link)
+  window.openCookieSettings = function(){
+    const existing = getConsent();
+    if (existing) {
+      setToggle(toggleAnalytics, !!existing.analytics);
+      setToggle(toggleExternal, !!existing.external);
+    }
+    openBanner();
+    settings.style.display = "block";
+  };
+</script>
+</body>
+</html>

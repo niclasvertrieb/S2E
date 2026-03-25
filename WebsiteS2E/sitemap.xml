@@ -6,42 +6,42 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://www.s2e-software.com/index-ModuleFunktionen.html</loc>
+    <loc>https://www.s2e-software.com/ModuleFunktionen.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.s2e-software.com/index-kosten.html</loc>
+    <loc>https://www.s2e-software.com/kosten.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://www.s2e-software.com/index-Praxisbeispiele.html</loc>
+    <loc>https://www.s2e-software.com/Praxisbeispiele.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.s2e-software.com/index-bookins.html</loc>
+    <loc>https://www.s2e-software.com/bookins.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.s2e-software.com/index-VisionenWerte.html</loc>
+    <loc>https://www.s2e-software.com/VisionenWerte.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.s2e-software.com/index-Hilfecenter.html</loc>
+    <loc>https://www.s2e-software.com/Hilfecenter.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.s2e-software.com/index-Impressum.html</loc>
+    <loc>https://www.s2e-software.com/Impressum.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://www.s2e-software.com/index-Datenschutz.html</loc>
+    <loc>https://www.s2e-software.com/Datenschutz.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
