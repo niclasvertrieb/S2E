@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Crawl sensible static assets
+Allow: /img/
+Allow: /video/
+
+# Block technical or duplicate-like files
+Disallow: /_headers
+
+Sitemap: https://www.s2e-software.com/sitemap.xml
