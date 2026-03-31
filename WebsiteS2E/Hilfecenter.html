@@ -4,7 +4,10 @@
   <meta charset="UTF-8" />
   <title>S2E – Hilfe & Support</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-   <link rel="icon" type="image/png" href="img/favicon-32.png" />
+   
+   <link rel="icon" type="image/png" sizes="512x512" href="img/favicon-32.png?v=2" />
+  <link rel="shortcut icon" href="img/favicon-32.png?v=2" />
+  <link rel="apple-touch-icon" href="img/favicon-32.png?v=2" />
   <style>
     :root {
       --bg-gradient-start: #e4f2ff;
@@ -382,6 +385,104 @@
       font-size: 0.9rem;
       color: var(--text-soft);
     }
+
+    .updates-layout {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.updates-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.update-card {
+  background: rgba(255,255,255,0.96);
+  border: 1px solid var(--border-soft);
+  border-radius: 18px;
+  padding: 16px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+  transition: all 0.18s ease;
+}
+
+.update-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(15, 76, 110, 0.08);
+}
+
+.update-card.is-active {
+  border-color: rgba(90,143,220,0.45);
+  box-shadow: 0 14px 30px rgba(90,143,220,0.12);
+}
+
+.update-version {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.update-date {
+  font-size: 0.82rem;
+  color: var(--text-soft);
+  margin-bottom: 8px;
+}
+
+.update-short {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+}
+
+.update-detail {
+  background: rgba(255,255,255,0.96);
+  border: 1px solid var(--border-soft);
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.03);
+}
+
+.update-detail-empty {
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+
+.update-detail-version {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.update-detail-date {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  margin-bottom: 14px;
+}
+
+.update-detail-text {
+  font-size: 0.96rem;
+  color: var(--text-soft);
+  white-space: pre-line;
+  margin-bottom: 18px;
+}
+
+.update-points {
+  margin: 0 0 18px 18px;
+  color: var(--text-soft);
+}
+
+.update-points li {
+  margin-bottom: 8px;
+}
+
+@media (max-width: 880px) {
+  .updates-layout {
+    grid-template-columns: 1fr;
+  }
+}
 
     /* CTA / SUPPORT */
     /* CTA / DEMO */
@@ -842,6 +943,24 @@ Fehler, Problem, funktioniert nicht, Excel, Meldung, Importfehler, Absturz, Aktu
       </div>
     </section>
 
+    <section class="section" id="updates">
+  <div class="section-header">
+    <h2 class="section-title">Updates & Versionen</h2>
+    <p class="section-subtitle">
+      Hier findest du die neuesten Änderungen in S2E sowie ältere Updateinformationen.
+    </p>
+  </div>
+
+  <div class="updates-layout">
+    <div class="updates-list" id="updatesList"></div>
+    <div class="update-detail" id="updateDetail">
+      <div class="update-detail-empty">
+        Wähle links ein Update aus, um die Details zu sehen.
+      </div>
+    </div>
+  </div>
+</section>
+
     <!-- CTA / SUPPORT -->
     <!-- CTA / DEMO -->
 <section class="section" id="demo">
@@ -1074,8 +1193,489 @@ Sollten Arbeitsergebnisse nicht anderweitig (z. B. als PDF) gesichert sein, empf
 Wird nicht spätestens 6 Wochen vor Ablauf gekündigt, verlängert sich die Laufzeit automatisch um weitere 12 Monate.
 
 Sollte während der Laufzeit eine weitere Nutzung nicht möglich erscheinen, sprich uns bitte an – wir finden gemeinsam eine Lösung.`
+  },
+
+  {
+  id: "gobd-datensicherheit",
+  title: "Datensicherheit & GoBD in S2E",
+  category: "Daten & Sicherheit",
+  keywords: [
+    "gobd",
+    "datensicherheit",
+    "datev",
+    "zugriff",
+    "rechte",
+    "excel",
+    "dms",
+    "dokumentenablage",
+    "buchungssätze",
+    "festschreibung",
+    "opos",
+    "lskt",
+    "mandanten",
+    "schutz",
+    "passwort",
+    "verzeichnis"
+  ],
+  content:
+`Hier findest du wichtige Hinweise zur Datensicherheit, Zugriffssteuerung und GoBD im S2E Profi-Tool.
+
+Unter anderem wird erklärt:
+- Wie Zugriffe über DATEV und Microsoft gesteuert werden
+- Welche Risiken bei Excel-Arbeitsmappen bestehen
+- Wie du vertrauliche Daten absichern kannst
+- Wie S2E mit DATEV DMS zusammenarbeitet
+- Was du im Hinblick auf GoBD beachten musst
+
+Die vollständigen Informationen findest du in der folgenden PDF.`,
+  pdfUrl: "pdf/S2E_GoBD_Datensicherheit.pdf"
+},
+
+{
+  id: "abgrenzung-funktion",
+  title: "Abgrenzung (ABGR & ABGRDay)",
+  category: "Jahresabschluss",
+  keywords: [
+    "abgrenzung",
+    "abgr",
+    "abgrday",
+    "rechnungsabgrenzung",
+    "periode",
+    "edatum",
+    "bdatum",
+    "linear",
+    "digital"
+  ],
+  content:
+`S2E bietet zwei Abgrenzungsfunktionen:
+
+ABGRDay → tagesgenaue Berechnung  
+ABGR → monatsgenaue Berechnung (linear oder digital)
+
+Typische Fehler:
+#EDATUM → Enddatum vor Startdatum  
+#BDATUM → Buchungsdatum nach Enddatum  
+
+Details und Beispiele findest du in der PDF.`,
+  pdfUrl: "pdf/S2E_Hilfe_Funktion_ABGR.pdf"
+},
+
+{
+  id: "lskt-funktion",
+  title: "LSKT (Lesekonto-Funktion)",
+  category: "Datenimport",
+  keywords: [
+    "lskt",
+    "lesekonto",
+    "datev daten",
+    "konten auslesen",
+    "kontowerte",
+    "kontenbeschriftung",
+    "soll haben",
+    "kontenbereich",
+    "beraternummer",
+    "mandantennummer",
+    "fehlerakek",
+    "fehleramem"
+  ],
+  content:
+`Mit der LSKT-Funktion kannst du Kontenwerte und Bezeichnungen direkt aus DATEV auslesen.
+
+Mögliche Auswertungen:
+- Kontensummen (Soll / Haben)
+- Verkehrszahlen
+- Kontenbeschriftungen
+- Gesellschafterdaten
+
+Typische Fehler:
+FehlerAKEK → Anfangskonto größer als Endkonto  
+FehlerAMEM → Startmonat größer als Endmonat  
+#WERT! → falsche Kontenlänge  
+
+Details zur Anwendung findest du in der PDF.`,
+  pdfUrl: "pdf/S2E_Hilfe_Funktion_LSKT.pdf"
+},
+
+{
+  id: "profitskr03-funktion",
+  title: "ProfitSKR03 (Gewinnfunktion)",
+  category: "Jahresabschluss",
+  keywords: [
+    "profitskr03",
+    "gewinn",
+    "verlust",
+    "skr03",
+    "datev",
+    "lambda funktion",
+    "gewinn berechnen",
+    "mandant",
+    "beraternummer",
+    "fehlerakek",
+    "fehleramem"
+  ],
+  content:
+`Mit der ProfitSKR03-Funktion kannst du den Gewinn oder Verlust direkt aus DATEV berechnen.
+
+Die Funktion basiert auf einer LAMBDA-Logik und steht nach dem Einfügen automatisch zur Verfügung.
+
+Typische Fehler:
+FehlerAKEK → Anfangskonto größer als Endkonto  
+FehlerAMEM → Startmonat größer als Endmonat  
+#WERT! → falsche Kontenlänge  
+
+Details zur Anwendung findest du in der PDF.`,
+  pdfUrl: "pdf/S2E_Hilfe_Funktion_PROFITSKR03.pdf"
+},
+
+{
+  id: "installation-s2e",
+  title: "Installation von S2E",
+  category: "Erste Schritte",
+  keywords: [
+    "installation",
+    "setup",
+    "datev",
+    "server",
+    "datenverzeichnis",
+    "lizenz",
+    "excel addins",
+    "einrichtung",
+    "terminalserver"
+  ],
+  content:
+`Für die Installation wird ein zentrales Datenverzeichnis sowie eine Lizenzdatei benötigt.
+
+Zusätzlich müssen DATEV-Serverdaten und Importpfade hinterlegt werden.
+
+Nach der Installation sind noch Excel-Add-Ins pro Benutzer zu aktivieren.
+
+Die vollständige Anleitung findest du in der PDF.`,
+  pdfUrl: "pdf/S2E_Hilfe_Installation.pdf"
+},
+
+{
+  id: "installation-arbeitsplatz",
+  title: "Installation am Arbeitsplatz",
+  category: "Erste Schritte",
+  keywords: [
+    "arbeitsplatz",
+    "excel",
+    "addins",
+    "installation",
+    "benutzer",
+    "setup",
+    "einrichtung"
+  ],
+  content:
+`Am Arbeitsplatz müssen pro Benutzer die benötigten Excel-Add-Ins aktiviert werden.
+
+Dies erfolgt über Excel → Optionen → Add-Ins → Automatisierung.
+
+Danach ist S2E einsatzbereit.`,
+  pdfUrl: "pdf/S2E_Hilfe_Installation_Arbeitsplatz.pdf"
+},
+
+{
+  id: "schnelleinstieg",
+  title: "Schnelleinstieg in S2E",
+  category: "Erste Schritte",
+  keywords: [
+    "schnelleinstieg",
+    "start",
+    "explorer",
+    "mandant",
+    "wirtschaftsjahr",
+    "arbeitsmappe",
+    "stapel",
+    "export",
+    "datev"
+  ],
+  content:
+`Der Einstieg erfolgt über den S2E Explorer.
+
+Wähle einen Mandanten und das gewünschte Wirtschaftsjahr aus, um eine Arbeitsmappe zu öffnen oder neu anzulegen.
+
+Über die Funktionen im Menü können Daten geprüft, Stapel erstellt und direkt an DATEV übergeben werden.
+
+Details und Ablauf findest du in der PDF.`,
+  pdfUrl: "pdf/S2E_Hilfe_Schnelleinstieg.pdf"
+},
+
+{
+  id: "stapel-bankkontoumsaetze",
+  title: "Stapel Bankkontoumsätze",
+  category: "Datenimport",
+  keywords: [
+    "bankkontoumsätze",
+    "stapel",
+    "bank",
+    "iban",
+    "bic",
+    "datev",
+    "import",
+    "umsatz",
+    "buchung",
+    "ascii"
+  ],
+  content:
+`Bankkontoumsätze werden in S2E über einen speziellen Stapel aufgebaut.
+
+Dabei werden Daten wie Datum, Umsatz sowie IBAN und BIC der Bank strukturiert erfasst und für den Import in DATEV vorbereitet.
+
+Die genaue Struktur und Pflichtfelder findest du in der PDF.`,
+  pdfUrl: "pdf/S2E_Hilfe_Stapel_Bankkontoumsätze.pdf"
+},
+
+{
+  id: "stapel-buchungssaetze",
+  title: "Stapel Buchungssätze",
+  category: "Datenimport",
+  keywords: [
+    "buchungssätze",
+    "buchungsstapel",
+    "datev",
+    "import",
+    "stapel",
+    "umsatz",
+    "gegenkonto",
+    "beleg",
+    "konto",
+    "kost1",
+    "kost2"
+  ],
+  content:
+`Mit S2E kannst du Buchungssätze strukturiert als Stapel für DATEV erstellen.
+
+Dabei werden alle relevanten Felder wie Umsatz, Konto, Gegenkonto und Beleginformationen vorbereitet.
+
+Wichtig:
+Pflichtfelder müssen korrekt befüllt sein, damit der Import funktioniert.
+
+Die genaue Struktur und alle Felder findest du in der PDF.`,
+  pdfUrl: "pdf/S2E_Hilfe_Stapel_Buchungssätze.pdf"
+},
+
+{
+  id: "stapel-debitoren-kreditoren",
+  title: "Stapel Debitoren/Kreditoren",
+  category: "Datenimport",
+  keywords: [
+    "debitoren",
+    "kreditoren",
+    "stammdaten",
+    "datev",
+    "import",
+    "personenstammdaten",
+    "konto",
+    "iban",
+    "adresse",
+    "zahlung",
+    "sepa"
+  ],
+  content:
+`Mit S2E können Debitoren- und Kreditorenstammdaten strukturiert für DATEV aufgebaut werden.
+
+Dabei werden u. a. Kontonummer, Name, Adresse, Bankverbindungen und Zahlungsdaten erfasst.
+
+Wichtig:
+Pflichtfelder müssen korrekt befüllt sein, damit der Import funktioniert.
+
+Die vollständige Struktur findest du in der PDF.`,
+  pdfUrl: "pdf/S2E_Hilfe_Stapel_DebitorenKreditoren.pdf"
+},
+
+{
+  id: "stapel-kontenbeschriftungen",
+  title: "Stapel Kontenbeschriftungen",
+  category: "Datenimport",
+  keywords: [
+    "kontenbeschriftungen",
+    "konto",
+    "beschriftung",
+    "datev",
+    "import",
+    "sprache",
+    "kontobezeichnung",
+    "kontenplan",
+    "bilanzbericht"
+  ],
+  content:
+`Mit S2E können individuelle Kontenbeschriftungen für DATEV hinterlegt werden.
+
+Dabei werden Kontonummer sowie kurze und lange Kontobezeichnungen definiert.
+
+Optional können Beschriftungen auch mehrsprachig gepflegt werden.
+
+Details zur Struktur findest du in der PDF.`,
+  pdfUrl: "pdf/S2E_Hilfe_Stapel_Kontenbeschriftungen.pdf"
+},
+
+{
+  id: "stapel-lodas-bewegungsdaten",
+  title: "Stapel Lodas Bewegungsdaten",
+  category: "Datenimport",
+  keywords: [
+    "lodas",
+    "bewegungsdaten",
+    "lohn",
+    "datev lodas",
+    "import",
+    "lohnart",
+    "persnr",
+    "stunden",
+    "tage",
+    "abrechnung"
+  ],
+  content:
+`Mit S2E können Lodas Bewegungsdaten strukturiert für DATEV erstellt werden.
+
+Dabei werden u. a. Lohnarten, Stunden, Tage und Mitarbeiterdaten verarbeitet.
+
+Optional können Daten auch gezielt für einzelne Mitarbeiter (PersNr) erstellt werden.
+
+Die vollständige Struktur findest du in der PDF.`,
+  pdfUrl: "pdf/S2E_Hilfe_Stapel_Lodas.pdf"
+},
+
+{
+  id: "stapel-lohnbewegungsdaten",
+  title: "Stapel Lohnbewegungsdaten",
+  category: "Datenimport",
+  keywords: [
+    "lohnbewegungsdaten",
+    "lohn",
+    "datev lohn",
+    "import",
+    "lohnart",
+    "persnr",
+    "stunden",
+    "tage",
+    "abrechnung",
+    "kalender"
+  ],
+  content:
+`Mit S2E können Lohnbewegungsdaten strukturiert für DATEV erstellt werden.
+
+Dabei werden u. a. Lohnarten, Stunden, Tage und Mitarbeiterdaten verarbeitet.
+
+Die Daten können monatlich oder kalenderbezogen aufgebaut werden.
+
+Die vollständige Struktur findest du in der PDF.`,
+  pdfUrl: "pdf/S2E_Hilfe_Stapel_Lohn.pdf"
+}
+
+]
+
+
+
+
+
+const UPDATE_INFOS = [
+  {
+    id: "update-1-1-0",
+    version: "Version 1.1",
+    date: "01.04.2026",
+    shortText: "Neues Layout, Lodas-Export und Fehlerbehebungen.",
+    content: `Dieses Update bringt ein neues Layout für S2E sowie Erweiterungen beim Export von Bewegungsdaten für Lodas.
+
+Außerdem wurde die Funktion ergänzt, S2E-Funktionen in Werte umzuwandeln und später wieder in Formeln zurückzuführen.
+
+Zusätzlich wurde ein Fehler bei der Berechnung des Auswertungsmonats [AMonat] behoben.`,
+    points: [
+      "Neues Layout in Homepage und Anwendung",
+      "Lodas Bewegungsdaten Export",
+      "Austausch von S2E-Funktionen in Werte und zurück",
+      "Fehlerbehebung beim Auswertungsmonat"
+    ],
+    pdfUrl: "pdf/S2E_Update_1_1_0.pdf"
+  },
+  {
+    id: "update-1-0-8",
+    version: "Version 1.0.8",
+    date: "01.04.2026",
+    shortText: "Neue Bereiche, OPOS-Verbesserungen und Vorlagenbaukasten.",
+    content: `Mit diesem Update wurden neue Bereiche ergänzt und die Voreinstellung des Rechnungslegungsbereichs erweitert.
+
+Zusätzlich wurde die OPOS-Liste verbessert und der Vorlagenbaukasten für Standard-Vorlagen eingeführt.`,
+    points: [
+      "Voreinstellung des Rechnungslegungsbereichs",
+      "Neue Bereiche wie Auswertungen und Hilfe",
+      "Verbesserungen in der OPOS-Liste",
+      "Vorlagenbaukasten für Standard-Vorlagen",
+      "Quickjobs und Standard-Vorlagen erweitert"
+    ],
+    pdfUrl: "pdf/S2E_Update_1_0_8.pdf"
+  },
+  {
+    id: "update-1-0-7",
+    version: "Version 1.0.7",
+    date: "01.04.2026",
+    shortText: "Jahreswechsel, Expertenmodus und automatische Versionsnummern.",
+    content: `Dieses Update erweitert den S2E Explorer und das Profi-Tool um neue Verwaltungsfunktionen.
+
+Dazu gehören der Jahreswechsel, die automatische Aktualisierung der Arbeitsmappe und ein Expertenmodus für die Vorlagenverwaltung.`,
+    points: [
+      "Aktualisierung der Darstellung im S2E Explorer",
+      "Jahreswechsel direkt in S2E",
+      "Kontrolltabelle aktualisiert automatisch",
+      "Expertenmodus für Vorlagenverwaltung",
+      "Automatische Versionsnummern in Vorlagen"
+    ],
+    pdfUrl: "pdf/S2E_Update_1_0_7.pdf"
   }
-  ];
+];
+
+const updatesListEl = document.getElementById("updatesList");
+const updateDetailEl = document.getElementById("updateDetail");
+
+function renderUpdateDetail(update) {
+  updateDetailEl.innerHTML = `
+    <div class="update-detail-version">${update.version}</div>
+    <div class="update-detail-date">Stand: ${update.date}</div>
+    <div class="update-detail-text">${update.content}</div>
+    <ul class="update-points">
+      ${update.points.map(point => `<li>${point}</li>`).join("")}
+    </ul>
+    <a href="${update.pdfUrl}" target="_blank" class="btn btn-primary">
+      Update-PDF öffnen →
+    </a>
+  `;
+}
+
+function renderUpdates() {
+  if (!updatesListEl || !updateDetailEl) return;
+
+  updatesListEl.innerHTML = UPDATE_INFOS.map((update, index) => `
+    <div class="update-card ${index === 0 ? "is-active" : ""}" data-update-id="${update.id}">
+      <div class="update-version">${update.version}</div>
+      <div class="update-date">${update.date}</div>
+      <div class="update-short">${update.shortText}</div>
+    </div>
+  `).join("");
+
+  renderUpdateDetail(UPDATE_INFOS[0]);
+
+  updatesListEl.addEventListener("click", (e) => {
+    const card = e.target.closest(".update-card");
+    if (!card) return;
+
+    const id = card.getAttribute("data-update-id");
+    const update = UPDATE_INFOS.find(item => item.id === id);
+    if (!update) return;
+
+    document.querySelectorAll(".update-card").forEach(el => {
+      el.classList.remove("is-active");
+    });
+    card.classList.add("is-active");
+
+    renderUpdateDetail(update);
+  });
+}
+
+renderUpdates();
+
+
+  
 
   // 2) Elemente
   const input = document.querySelector(".search-box input");
@@ -1103,14 +1703,27 @@ Sollte während der Laufzeit eine weitere Nutzung nicht möglich erscheinen, spr
   }
 
   function openArticle(article) {
-    metaEl.textContent = `Kategorie: ${article.category}`;
-    titleEl.textContent = article.title;
-    contentEl.textContent = article.content;
+  metaEl.textContent = `Kategorie: ${article.category}`;
+  titleEl.textContent = article.title;
 
-    overlay.classList.add("is-open");
-    overlay.setAttribute("aria-hidden", "false");
-    document.body.style.overflow = "hidden";
+  let html = `<p style="white-space: pre-line;">${article.content}</p>`;
+
+  if (article.pdfUrl) {
+    html += `
+      <div style="margin-top: 18px;">
+        <a href="${article.pdfUrl}" target="_blank" class="btn btn-primary">
+          PDF öffnen →
+        </a>
+      </div>
+    `;
   }
+
+  contentEl.innerHTML = html;
+
+  overlay.classList.add("is-open");
+  overlay.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
 
   function closeArticle() {
     overlay.classList.remove("is-open");
