@@ -1164,6 +1164,142 @@ input[type="number"] {
   display: block;
 }
 
+<!-- =========================
+     S2E LIVE ERLEBEN / MESSEN
+     Einfügen unter den Praxisbeispielen
+========================= -->
+
+<style>
+  .s2e-live-section {
+    margin: 56px 0;
+  }
+
+  .s2e-live-box {
+     display: grid;
+  grid-template-columns: 30% minmax(0, 1fr);
+  gap: 28px;
+  align-items: center;
+  background: rgba(255,255,255,0.96);
+  border-radius: 24px;
+  padding: 26px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 10px 26px rgba(0,0,0,0.05);
+  overflow: hidden;
+  }
+
+  .s2e-live-image {
+    width: 100%;
+    border-radius: 22px;
+    display: block;
+    object-fit: cover;
+    box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+  }
+
+  .s2e-live-content h2 {
+    font-size: 1.75rem;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+
+  .s2e-live-content p {
+    color: var(--text-soft);
+    font-size: 0.98rem;
+    margin-bottom: 18px;
+  }
+
+  .s2e-live-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .s2e-messe-card {
+    background: linear-gradient(135deg, rgba(194,209,249,0.55), rgba(245,197,186,0.45));
+    border-radius: 18px;
+    padding: 16px;
+    border: 1px solid rgba(0,0,0,0.06);
+    margin-bottom: 14px;
+  }
+
+  .s2e-messe-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+  }
+
+  .s2e-messe-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .s2e-messe-list li {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    font-size: 0.94rem;
+  }
+
+  .s2e-messe-list li:last-child {
+    border-bottom: none;
+  }
+
+  .s2e-messe-name {
+    font-weight: 650;
+  }
+
+  .s2e-messe-date {
+    color: var(--text-soft);
+    white-space: nowrap;
+  }
+
+  .s2e-messe-check {
+    color: #1f9d55;
+    font-weight: 800;
+    margin-left: 6px;
+  }
+
+  .s2e-linkedin-box {
+    background: rgba(255,255,255,0.75);
+    border-radius: 16px;
+    padding: 14px 16px;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+
+  .s2e-linkedin-box strong {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .s2e-linkedin-box span {
+    display: block;
+    color: var(--text-soft);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 880px) {
+    .s2e-live-box {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .s2e-live-box {
+      padding: 18px;
+    }
+
+    .s2e-live-content h2 {
+      font-size: 1.45rem;
+    }
+
+    .s2e-messe-list li {
+      flex-direction: column;
+      gap: 2px;
+    }
+    }
 /* =========================
    MOBILE NAV: Burger links | Logo Mitte | Demo rechts
    ========================= */
@@ -1387,9 +1523,12 @@ Daten direkt aus DATEV auslesen, Soll/Ist abgleichen und fertige Buchungssätze 
     Jetzt Demo buchen →
   </a>
 
-  <a href="ModuleFunktionen.html" class="btn btn-ghost">
-    Module & Funktionen
-  </a> 
+  <a href="https://www.linkedin.com/company/s2e-software-gmbh/"
+   class="btn btn-ghost"
+   target="_blank"
+   rel="noopener noreferrer">
+  LinkedIn
+</a>
         </div>
 
         <div class="hero-hint">
@@ -1499,6 +1638,58 @@ auch bei wachsendem Mandantenbestand.
     Mehr Praxisbeispiele ansehen →
   </a>
 </div>
+</section>
+
+<section class="section s2e-live-section" id="live-erleben">
+  <div class="s2e-live-box">
+
+    <div>
+      <img 
+        src="img/messe.jpg" 
+        alt="S2E live auf einer Messe erleben" 
+        class="s2e-live-image"
+      >
+    </div>
+
+    <div class="s2e-live-content">
+      <h2>Willst du S2E live erleben?</h2>
+
+      <p>
+        Mach einen Termin für eine persönliche Demo oder triff uns live auf einer Messe.
+        Wir zeigen dir direkt am Beispiel, wie S2E FIBU und Jahresabschluss einfacher macht.
+      </p>
+
+      
+
+      <div class="s2e-messe-card" id="messen">
+        <h3>Messen dieses Jahr</h3>
+
+        <ul class="s2e-messe-list">
+          <li>
+            <span class="s2e-messe-name">STBExpo Hamburg<span class="s2e-messe-check">✓</span></span>
+            <span class="s2e-messe-date">24.06.2026</span>
+          </li>
+
+          <li>
+            <span class="s2e-messe-name">TAXarena Mainz</span>
+            <span class="s2e-messe-date">19.06.2026</span>
+          </li>
+
+          <li>
+            <span class="s2e-messe-name">TAXarena Hamburg</span>
+            <span class="s2e-messe-date">17.11.2026</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="s2e-live-actions" style="margin-top: 18px; margin-bottom: 0;">
+  <a href="bookins.html" class="btn btn-primary">
+    Termin buchen →
+  </a>
+</div>
+    
+
+  </div>
 </section>
 
     <!-- 4 Hebel -->
