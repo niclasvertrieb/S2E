@@ -2742,15 +2742,79 @@ startAutoplay();
     };
   }
 
-  function applyConsent(consent) {
-    // Hier würdest du je nach Zustimmung Scripts nachladen.
-    // Beispiel:
-    // if(consent.analytics){ loadAnalytics(); }
-    // if(consent.external){ enableEmbeds(); }
+  function loadHubSpotAnalytics() {
+  if (document.getElementById("hs-script-loader")) return;
 
-    document.documentElement.dataset.consentAnalytics = consent.analytics ? "1" : "0";
-    document.documentElement.dataset.consentExternal = consent.external ? "1" : "0";
+  // Der S2E-Cookie-Banner verwaltet die Einwilligung;
+  // kein zweiter HubSpot-Banner.
+  window.disableHubSpotCookieBanner = true;
+
+  window._hsp = window._hsp || [];
+  window._hsp.push([
+    "setHubSpotConsent",
+    {
+      analytics: true,
+      advertisement: false,
+      functionality: false
+    }
+  ]);
+
+  window._hsq = window._hsq || [];
+  window._hsq.push(["setContentType", "site-page"]);
+
+  const script = document.createElement("script");
+  script.type = "text/javascript";
+  script.id = "hs-script-loader";
+  script.async = true;
+  script.defer = true;
+  script.src =
+    "https://js-eu1.hs-scripts.com/147723126.js";
+
+  document.body.appendChild(script);
+}
+
+function revokeHubSpotConsent() {
+  if (!document.getElementById("hs-script-loader")) {
+    return false;
   }
+
+  window._hsp = window._hsp || [];
+
+  window._hsp.push([
+    "setHubSpotConsent",
+    {
+      analytics: false,
+      advertisement: false,
+      functionality: false
+    }
+  ]);
+
+  window._hsp.push(["revokeCookieConsent"]);
+  return true;
+}
+
+function applyConsent(consent) {
+  const hubSpotWasLoaded =
+    document.getElementById("hs-script-loader");
+
+  if (consent.analytics) {
+    loadHubSpotAnalytics();
+  } else if (
+    hubSpotWasLoaded &&
+    revokeHubSpotConsent()
+  ) {
+    window.setTimeout(
+      () => window.location.reload(),
+      50
+    );
+  }
+
+  document.documentElement.dataset.consentAnalytics =
+    consent.analytics ? "1" : "0";
+
+  document.documentElement.dataset.consentExternal =
+    consent.external ? "1" : "0";
+}
 
   function ensureBanner() {
     const existing = getConsent();
